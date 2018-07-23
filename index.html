@@ -23,21 +23,9 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap-material-design.min.css">
     <link rel="stylesheet" type="text/css" href="css/ripples.min.css">
 
-    <!-- GDPR stuff -->
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="960392d9-1031-47ed-9698-e87f03f6201e" type="text/javascript" async></script>
-
     <!-- Template styles -->
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 
-    <!-- Load templates, for brevity -->
-	<script> 
-	$(function()
-	{
-		$("#headerTag").load("html/header.html");
-		$("#bodyTag").load("template/main.html");
-		$("#footerTag").load("html/footer.html");
-	});
-	</script> 
 </head>
 <body>
 
@@ -50,6 +38,16 @@
 </main>
 
 <div id="footerTag"></div>
+
+<!-- Load templates, for brevity -->
+<script> 
+$(function()
+{
+	$("#headerTag").load("html/header.html");
+	$("#bodyTag").load("template/main.html");
+	$("#footerTag").load("html/footer.html");
+});
+</script> 
 
 </body>
 </html>
