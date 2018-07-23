@@ -55,6 +55,15 @@
         background-color: #5490ca
     }
 
+    .btn-twitter {
+      background-color:#55acee;
+    }
+
+    .btn-twitter:focus, .btn-twitter:hover
+    {
+      background-color:#2795e9;
+    }
+
     .additional-margin {
       margin-top: 2rem;
       margin-bottom: 2rem;
