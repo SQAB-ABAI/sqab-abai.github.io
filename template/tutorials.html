@@ -1,0 +1,97 @@
+<script type="text/javascript">
+function loadContent() 
+{
+	var isInDirectory = !checkParamsPresent();
+	/*
+	$.getJSON( "json/tutorialdata.json", function( data ) {
+		var tutorialIndex = 1;
+		var relevantTutorial = data[tutorialIndex].Tutorials;
+
+		if (isInDirectory)
+		{
+			for (var i = 0; i < relevantTutorial.length; i++)
+			{
+				var a = document.createElement("a");
+
+				a.href = "ChartingTutorial.html?index=" + relevantTutorial[i].Index;
+				a.innerHTML = padIndexNumber(relevantTutorial[i].Index) + " - " + relevantTutorial[i].Title + "<br><br>";
+				a.className += " lead";
+
+				document.getElementById("tutorialChartingDirectory").appendChild(a);
+			}
+
+			document.getElementById("tutorialChartingDirectory").style.display = "block";
+		}
+		else
+		{
+			var paramString = document.location.toString().split("?")[1];
+			var index = parseInt(paramString.split("=")[1]) - 1;
+
+			var iframe = document.createElement('iframe');
+			iframe.src = relevantTutorial[index].Video;
+
+		  	document.getElementById("titleRef").innerHTML = relevantTutorial[index].Title;
+		  	document.getElementById("descriptionRef").innerHTML = relevantTutorial[index].Summary;
+			document.getElementById("tutorialIframeDiv").appendChild(iframe);
+
+			document.getElementById("buttonPrev").href = "ChartingTutorial.html?index=" + parseInt(index);
+			document.getElementById("buttonNext").href = "ChartingTutorial.html?index=" + parseInt(index + 2);
+
+			if (index == 0)
+			{
+				document.getElementById("buttonPrev").href = "#"
+				document.getElementById("buttonPrev").className += " invisible";
+			}
+			else if (index >= relevantTutorial.length - 1)
+			{
+				document.getElementById("buttonNext").href = "#"
+				document.getElementById("buttonNext").className += " invisible";
+			}
+
+			document.getElementById("tutorialChartDiv").style.display = "block";			
+		}
+	});
+	*/
+}
+
+function checkParamsPresent()
+{
+	return document.location.toString().indexOf('?') !== -1;
+}
+
+window.addEventListener('load', loadContent(), true);
+</script>
+
+<!--Main layout-->
+<div class="container">
+
+<!--Header row-->
+<div class="row">
+  <div class="col-md-12">
+      <div class="jumbotron">
+        <h2 id="titleRef" class="h2-responsive">SQAB Tutorial</h2>
+        <p id="descriptionRef" class="lead">...</p>
+        <script src="https://apis.google.com/js/platform.js"></script>
+      </div>
+  </div>
+</div>
+<!--/.Header row-->
+
+<!--List row-->
+<div class="row">
+  <div class="col-md-12">
+      <div id="tutorialChartingDirectory" class="well" style="display: none;">
+      </div>
+
+      <div id="tutorialChartDiv" class="well" style="display: none;">
+        <div id="tutorialIframeDiv" class="embed-responsive embed-responsive-16by9 text-center">
+        </div>
+
+        <hr class="extra-margin">
+      </div>
+  </div>
+</div>
+<!--/.List row-->
+
+</div>
+<!--/.Main layout-->
