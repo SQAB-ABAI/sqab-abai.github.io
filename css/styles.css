@@ -78,7 +78,7 @@
     footer {
       margin: 2em 0 0 0;
       padding: 1em 0 0 0;
-      background-color: #007fff;
+      background-color: #838383;
       color: #e7e7e7;
     }
 
@@ -88,6 +88,6 @@
     }
 
     .footer-trailing {      
-      background-color: #0065cc;
+      background-color: #515151;
       padding: 1em 0 1em 0;
     }
