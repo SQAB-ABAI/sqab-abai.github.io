@@ -2,9 +2,11 @@
 function loadContent() 
 {
 	var isInDirectory = !checkParamsPresent();
-	/*
-	$.getJSON( "json/tutorialdata.json", function( data ) {
-		var tutorialIndex = 1;
+
+	console.log("go");
+
+	$.getJSON( "json/tutorials.json", function( data ) {
+		var tutorialIndex = 0;
 		var relevantTutorial = data[tutorialIndex].Tutorials;
 
 		if (isInDirectory)
@@ -13,14 +15,14 @@ function loadContent()
 			{
 				var a = document.createElement("a");
 
-				a.href = "ChartingTutorial.html?index=" + relevantTutorial[i].Index;
+				a.href = "Tutorial.html?index=" + relevantTutorial[i].Index;
 				a.innerHTML = padIndexNumber(relevantTutorial[i].Index) + " - " + relevantTutorial[i].Title + "<br><br>";
 				a.className += " lead";
 
-				document.getElementById("tutorialChartingDirectory").appendChild(a);
+				document.getElementById("tutorialDirectory").appendChild(a);
 			}
 
-			document.getElementById("tutorialChartingDirectory").style.display = "block";
+			document.getElementById("tutorialDirectory").style.display = "block";
 		}
 		else
 		{
@@ -34,8 +36,8 @@ function loadContent()
 		  	document.getElementById("descriptionRef").innerHTML = relevantTutorial[index].Summary;
 			document.getElementById("tutorialIframeDiv").appendChild(iframe);
 
-			document.getElementById("buttonPrev").href = "ChartingTutorial.html?index=" + parseInt(index);
-			document.getElementById("buttonNext").href = "ChartingTutorial.html?index=" + parseInt(index + 2);
+			document.getElementById("buttonPrev").href = "Tutorial.html?index=" + parseInt(index);
+			document.getElementById("buttonNext").href = "Tutorial.html?index=" + parseInt(index + 2);
 
 			if (index == 0)
 			{
@@ -51,12 +53,15 @@ function loadContent()
 			document.getElementById("tutorialChartDiv").style.display = "block";			
 		}
 	});
-	*/
 }
 
 function checkParamsPresent()
 {
 	return document.location.toString().indexOf('?') !== -1;
+}
+
+function padIndexNumber(number) {
+    return Array(Math.max(3 - String(number).length + 1, 0)).join(0) + number;
 }
 
 window.addEventListener('load', loadContent(), true);
@@ -69,9 +74,24 @@ window.addEventListener('load', loadContent(), true);
 <div class="row">
   <div class="col-md-12">
       <div class="jumbotron">
-        <h2 id="titleRef" class="h2-responsive">SQAB Tutorial</h2>
-        <p id="descriptionRef" class="lead">...</p>
+        <h2 id="titleRef" class="h1-responsive">SQAB Pre-eminent Tutorials</h2>
+        <p id="descriptionRef" class="lead">SQAB is committed to simplifying the transition to quantitative analysis for students as well as advanced researchers. These informal videos of live ABA presentations are at various levels and are appropriate for classroom, seminar, and individual use. Videos can be accessed by clicking on the appropriate links below (Note to iTunes users: if an "Unresponsive Script" pops up, click "Ignore Script" to continue). All videos are available on <a href='https://www.youtube.com/c/SocietyfortheQuantitativeAnalysesofBehavior'>YouTube</a> and <a href='https://itunes.apple.com/us/itunes-u/society-for-quantitative-analyses/id423811716?mt=10'>iTunes</a>
+        <br><br>
+		Videos are also available as normal resolution NTSC DVDs, PAL DVDs, and VHS tapes for a nominal fee through the Tutorial Coordinator:
+        <br><br>
+		William Palya>: <a href="mailto:palya@jsu.edu">palya@jsu.edu</a><br>
+		Society for Quantitative Analyses of Behavior<br>
+		Department of Psychology<br>
+		700 Pelham Road North<br>
+		Jacksonville State University, Jacksonville, AL 36265</p>
+        <!--
+
+		Stubbed for now: TODO build json directory
+
         <script src="https://apis.google.com/js/platform.js"></script>
+
+        <div class="g-ytsubscribe" data-channelid="UCJnW5Q1CWJIRufVTl-b5kyw" data-layout="full" data-count="default"></div>
+    	-->
       </div>
   </div>
 </div>
@@ -80,7 +100,7 @@ window.addEventListener('load', loadContent(), true);
 <!--List row-->
 <div class="row">
   <div class="col-md-12">
-      <div id="tutorialChartingDirectory" class="well" style="display: none;">
+      <div id="tutorialDirectory" class="well" style="display: none;">
       </div>
 
       <div id="tutorialChartDiv" class="well" style="display: none;">
@@ -88,6 +108,11 @@ window.addEventListener('load', loadContent(), true);
         </div>
 
         <hr class="extra-margin">
+
+        <div class="read-more">
+            <a id="buttonPrev" href="Tutorial.html?index=1" class="btn btn-info btn-raised">Previous Video</a>
+            <a id="buttonNext" href="Tutorial.html?index=1" class="btn btn-info btn-raised pull-right">Next Video</a>
+        </div>
       </div>
   </div>
 </div>
