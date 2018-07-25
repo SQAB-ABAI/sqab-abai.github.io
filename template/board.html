@@ -1,3 +1,66 @@
+<script type="text/javascript">
+$(document).ready(function()
+{
+    $.getJSON( "json/board.json", function( data ) {
+        var persons = data.Officers;
+
+        for (var i = 0; i < persons.length; i++)
+        {
+            var a = document.createElement("a");
+
+            a.href = "mailto:" + persons[i].Contact;
+            a.innerHTML = persons[i].Name + " (" + 
+            persons[i].Role + ")<br><br>";
+            a.className += " lead";
+
+            document.getElementById("boardDiv").appendChild(a);
+        }
+
+        persons = data.Students;
+
+        for (var i = 0; i < persons.length; i++)
+        {
+            var a = document.createElement("a");
+
+            a.href = "mailto:" + persons[i].Contact;
+            a.innerHTML = persons[i].Name + " (" + 
+            persons[i].Role + ")<br><br>";
+            a.className += " lead";
+
+            document.getElementById("studentDiv").appendChild(a);
+        }
+
+        persons = data.PastDirectors;
+
+        for (var i = 0; i < persons.length; i++)
+        {
+            var p = document.createElement("p");
+
+            p.innerHTML = persons[i].Name + " (" + 
+            persons[i].Role + ")<br>";
+
+            p.className += " lead";
+
+            document.getElementById("prevBoardDiv").appendChild(p);
+        }
+
+        persons = data.PastPresident;
+
+        for (var i = 0; i < persons.length; i++)
+        {
+            var p = document.createElement("p");
+
+            p.innerHTML = persons[i].Name + "<br>";
+
+            p.className += " lead";
+
+            document.getElementById("prevPresidentsDiv").appendChild(p);
+        }
+
+    });
+});
+</script>
+
 <!--Main layout-->
 <div class="container">
 
@@ -5,23 +68,60 @@
 <div class="row">
     <div class="col-md-12">
         <div class="jumbotron">
-            <h2 class="h2-responsive">SQAB Executive Board</h2>
-            <p class="lead">...</p>
+            <h2 class="h2-responsive">Leadership and Executive Board (2018-2019)</h2><br>
+            <p class="lead">The Society for the Quantitative Analysis of Behavior is led by a yearly-appointed board of executive directors. The contact information for all board members, as well as student appointees, is provided below.</p>
         </div>
     </div>
 </div>
 <!--/.Header row-->
 
+<!-- Summary row-->
+<div class="row">
+  <div class="col-sm-12">
+     <h2 class="h2-responsive text-center">Current Leadership</h2><br>
+  </div>
+</div>
+<!--/.Summary row-->
+
 <!--Information row-->
 <div class="row">
     <div class="col-md-6">
-        <img src="http://via.placeholder.com/700x700" class="img-responsive" alt=""/>
+        <div id="boardDiv" class="well">
+            <h2 class="h2-responsive">Current Board</h2><br>
+            
+        </div>
     </div>
 
     <div class="col-md-6">
-        <div class="well">
-            <h2 class="h2-responsive">...</h2>
-            <p class="lead">...</p>
+        <div id="studentDiv" class="well">
+            <h2 class="h2-responsive">Current Student Positions</h2><br>
+            
+        </div>
+    </div>
+</div>
+<!--/.Information row-->
+
+<!-- Summary row-->
+<div class="row">
+  <div class="col-sm-12">
+     <h2 class="h2-responsive text-center">Past Leadership</h2><br>
+  </div>
+</div>
+<!--/.Summary row-->
+
+<!--Information row-->
+<div class="row">
+    <div class="col-md-6">
+        <div id="prevBoardDiv" class="well">
+            <h2 class="h2-responsive">Past Board</h2><br>
+            
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div id="prevPresidentsDiv" class="well">
+            <h2 class="h2-responsive">Past Presidents</h2><br>
+            
         </div>
     </div>
 </div>
