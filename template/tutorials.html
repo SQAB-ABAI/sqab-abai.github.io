@@ -3,11 +3,8 @@ function loadContent()
 {
 	var isInDirectory = !checkParamsPresent();
 
-	console.log("go");
-
 	$.getJSON( "json/tutorials.json", function( data ) {
-		var tutorialIndex = 0;
-		var relevantTutorial = data[tutorialIndex].Tutorials;
+		var relevantTutorial = data.Tutorials;
 
 		if (isInDirectory)
 		{
@@ -16,7 +13,7 @@ function loadContent()
 				var a = document.createElement("a");
 
 				a.href = "Tutorial.html?index=" + relevantTutorial[i].Index;
-				a.innerHTML = padIndexNumber(relevantTutorial[i].Index) + " - " + relevantTutorial[i].Title + "<br><br>";
+				a.innerHTML = relevantTutorial[i].Title + "<br><br>";
 				a.className += " lead";
 
 				document.getElementById("tutorialDirectory").appendChild(a);
@@ -27,7 +24,7 @@ function loadContent()
 		else
 		{
 			var paramString = document.location.toString().split("?")[1];
-			var index = parseInt(paramString.split("=")[1]) - 1;
+			var index = parseInt(paramString.split("=")[1]);
 
 			var iframe = document.createElement('iframe');
 			iframe.src = relevantTutorial[index].Video;
@@ -50,7 +47,7 @@ function loadContent()
 				document.getElementById("buttonNext").className += " invisible";
 			}
 
-			document.getElementById("tutorialChartDiv").style.display = "block";			
+			document.getElementById("tutorialChartDiv").style.display = "block";	
 		}
 	});
 }
@@ -58,10 +55,6 @@ function loadContent()
 function checkParamsPresent()
 {
 	return document.location.toString().indexOf('?') !== -1;
-}
-
-function padIndexNumber(number) {
-    return Array(Math.max(3 - String(number).length + 1, 0)).join(0) + number;
 }
 
 window.addEventListener('load', loadContent(), true);
@@ -90,7 +83,7 @@ window.addEventListener('load', loadContent(), true);
 
         <script src="https://apis.google.com/js/platform.js"></script>
 
-        <div class="g-ytsubscribe" data-channelid="UCJnW5Q1CWJIRufVTl-b5kyw" data-layout="full" data-count="default"></div>
+        <div class="g-ytsubscribe" data-channelid="UCuGL7WQjJIn_KhO6BtqHgDg" data-layout="full" data-count="default"></div>
     	-->
       </div>
   </div>
