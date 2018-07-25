@@ -1,3 +1,30 @@
+<script type="text/javascript">
+$(document).ready(function()
+{
+    $.getJSON( "json/specialissues.json", function( data ) {
+        var programs = data.Specials;
+
+        for (var i = 0; i < programs.length; i++)
+        {
+            var a = document.createElement("a");
+
+            a.href = "http://www.sciencedirect.com/science/journal/03766357/" + programs[i].Volume +
+                     "/" + programs[i].Issue + "/";
+
+            a.innerHTML = "Proceedings of SQAB " + programs[i].Year + ": " +
+            programs[i].Title + 
+            ", <i>Behavioural Processes, " + programs[i].Volume + "(" +
+            programs[i].Issue + ")</i>, " +
+            programs[i].Pages +
+            "<br><br>";
+            a.className += " lead";
+
+            document.getElementById("issuesDiv").appendChild(a);
+        }
+    });
+});
+</script>
+
 <!--Main layout-->
 <div class="container">
 
@@ -5,8 +32,8 @@
 <div class="row">
     <div class="col-md-12">
         <div class="jumbotron">
-            <h2 class="h2-responsive">Behavioral Processes</h2>
-            <p class="lead">...</p>
+            <h2 class="h2-responsive">Special Issues from The Society for the Quantitative Analyses of Behavior</h2>
+            <p class="lead">Special Issues are available through Open Access complements of Elsevier for six months following​ conference proceedings</p>
         </div>
     </div>
 </div>
@@ -14,14 +41,9 @@
 
 <!--Information row-->
 <div class="row">
-    <div class="col-md-6">
-        <img src="http://via.placeholder.com/700x700" class="img-responsive" alt=""/>
-    </div>
-
-    <div class="col-md-6">
-        <div class="well">
-            <h2 class="h2-responsive">...</h2>
-            <p class="lead">...</p>
+    <div class="col-md-12">
+        <div id="issuesDiv" class="well">
+            <h2 class="h2-responsive">Previous Special Issues</h2><br>
         </div>
     </div>
 </div>
