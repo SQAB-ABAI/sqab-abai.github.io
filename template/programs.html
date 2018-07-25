@@ -1,3 +1,42 @@
+<script type="text/javascript">
+$(document).ready(function()
+{
+    $.getJSON( "json/programs.json", function( data ) {
+        var programs = data.Programs;
+
+        for (var i = 0; i < programs.length; i++)
+        {
+            var a = document.createElement("a");
+
+            a.href = programs[i].Path;
+            a.innerHTML = programs[i].Year + " SQAB Program<br><br>";
+            a.className += " lead";
+
+            document.getElementById("programDiv").appendChild(a);
+        }
+
+        var newsletters = data.Newsletters;
+        for (var i = 0; i < newsletters.length; i++)
+        {
+            var a = document.createElement("a");
+
+            a.href = newsletters[i].Path;
+            a.innerHTML = newsletters[i].Year + " SQAB Newsletter<br><br>";
+            a.className += " lead";
+
+            document.getElementById("newsletterDiv").appendChild(a);
+        }
+
+    });
+
+
+
+/*
+
+*/
+});
+</script>
+
 <!--Main layout-->
 <div class="container">
 
@@ -15,13 +54,15 @@
 <!--Information row-->
 <div class="row">
     <div class="col-md-6">
-        <img src="http://via.placeholder.com/700x700" class="img-responsive" alt="">
+        <div id="programDiv" class="well">
+            <h2 class="h2-responsive">Previous Programs</h2><br>
+            
+        </div>
     </div>
 
     <div class="col-md-6">
-        <div class="well">
-            <h2 class="h2-responsive">...</h2>
-            <p class="lead">...</p>
+        <div id="newsletterDiv" class="well">
+            <h2 class="h2-responsive">Previous Newsletters</h2><br>
         </div>
     </div>
 </div>
