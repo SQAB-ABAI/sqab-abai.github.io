@@ -1,3 +1,98 @@
+<script type="text/javascript">
+$(document).ready(function()
+{
+    $.getJSON( "json/resources.json", function( data ) {
+        var obj = data.Labs;
+
+        for (var i = 0; i < obj.length; i++)
+        {
+            var p = document.createElement("p");
+            p.innerHTML = obj[i].Name + "; " + obj[i].University + " (" +
+                obj[i].PI + ") ";
+            p.className += " lead";
+
+            var a = document.createElement("a");
+            a.href = obj[i].Location;
+            a.innerHTML = "[Link]<br>";
+
+            p.appendChild(a);
+
+            document.getElementById("labsDiv").appendChild(p);
+        }
+
+        obj = data.Tools;
+        for (var i = 0; i < obj.length; i++)
+        {
+            var p = document.createElement("p");
+            p.innerHTML = obj[i].Name + " (" + obj[i].Type + ") ";
+            p.className += " lead";
+
+            var a = document.createElement("a");
+            a.href = obj[i].Location;
+            a.innerHTML = " [Link]<br>";
+
+            p.appendChild(a);
+
+            document.getElementById("toolsDiv").appendChild(p);
+        }
+
+        obj = data.Books;
+        for (var i = 0; i < obj.length; i++)
+        {
+            var p = document.createElement("p");
+            p.innerHTML = obj[i].Name + " ";
+            p.className += " lead";
+
+            var a = document.createElement("a");
+            a.href = obj[i].Location;
+            a.innerHTML = "[Link]<br>";
+
+            p.appendChild(a);
+
+            document.getElementById("bookIssuesDiv").appendChild(p);
+        }
+
+        obj = data.SpecialIssues;
+        for (var i = 0; i < obj.length; i++)
+        {
+            var p = document.createElement("p");
+            p.innerHTML = obj[i].Name + " ";
+            p.className += " lead";
+
+            var a = document.createElement("a");
+            a.href = obj[i].Location;
+            a.innerHTML = "[Link]<br>";
+
+            p.appendChild(a);
+
+            document.getElementById("bookIssuesDiv").appendChild(p);
+        }
+
+        obj = data.Software;
+        for (var i = 0; i < obj.length; i++)
+        {
+            var p = document.createElement("p");
+            p.innerHTML = obj[i].Name + " ";
+            p.className += " lead";
+
+            var a = document.createElement("a");
+            a.href = obj[i].Location;
+            a.innerHTML = "[Install]";
+
+            p.appendChild(a);
+
+            var a2 = document.createElement("a");
+            a2.href = obj[i].Source;
+            a2.innerHTML = " [Source]<br>";
+
+            p.appendChild(a2);
+
+            document.getElementById("softwareDiv").appendChild(p);
+        }
+    });
+});
+</script>
+
 <!--Main layout-->
 <div class="container">
 
@@ -6,7 +101,7 @@
     <div class="col-md-12">
         <div class="jumbotron">
             <h2 class="h2-responsive">SQAB Resources</h2><br>
-            <p class="lead">...</p>
+            <p class="lead">As an aide in disseminating experimental research, the SQAB board has curated information and materials from a range of Laboratories and research outlets.</p>
         </div>
     </div>
 </div>
@@ -15,13 +110,33 @@
 <!--Information row-->
 <div class="row">
     <div class="col-md-6">
-        <img src="http://via.placeholder.com/700x700" class="img-responsive" alt="">
+        <div id="labsDiv" class="well">
+            <h2 class="h2-responsive">Current Labs</h2><br>
+            
+        </div>
     </div>
 
     <div class="col-md-6">
-        <div class="well">
-            <h2 class="h2-responsive">...</h2><br>
-            <p class="lead">...</p>
+        <div id="toolsDiv" class="well">
+            <h2 class="h2-responsive">Peer-reviewed Tools</h2><br>
+        </div>
+    </div>
+</div>
+<!--/.Information row-->
+
+<hr class="extra-margin"><br>
+
+<!--Information row-->
+<div class="row">
+    <div class="col-md-6">
+        <div id="bookIssuesDiv" class="well">
+            <h2 class="h2-responsive">Books, Special Issues</h2><br>            
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div id="softwareDiv" class="well">
+            <h2 class="h2-responsive">Computer Software</h2><br>
         </div>
     </div>
 </div>
