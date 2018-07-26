@@ -1,0 +1,171 @@
+  <!-- 
+
+   Copyright 2017 Shawn Gilroy
+
+   This file is part of Discounting Model Selector, web port.
+
+   Discounting Model Selector is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, version 3.
+
+   Discounting Model Selector is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Discounting Model Selector.  If not, see http://www.gnu.org/licenses/.
+
+-->
+
+<!--Main layout-->
+<div class="container">
+
+<!--Header row-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1 class="h1-responsive">Demand Curve Analyzer</h1>
+            <p class="lead">The Demand Curve Analyzer is designed to assist clinicians and researchers in conducting behavior economic analyses while also providing more accessible options for these calculations. Demand Curve Analyzer fits respective parameters using differential evolution, a robust metaheuristic process for optimizing model performance. All methods are performed "behind the scenes", faciliating multiple forms of model fitting while retaining a simple, spreadsheet-based interface with visual guidance. This project is fully open-sourced under a GPL-license (v3) and all source code is completely available.</p>
+            <p class="lead"><strong>Accepted:</strong><br>Gilroy, S. P., Kaplan, B. A., Reed, D. D., Koffarnus, M. N. & Hantula, D. A. (In Press). The Demand Curve Analyzer: Behavioral economic software for applied researchers. <i>Journal of the Experimental Analysis of Behavior</i>.</p>
+        </div>
+    </div>
+</div>
+<!--/.Header row-->
+
+<!--First row-->
+<div class="row">
+  <!--Info Panel-->
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Demand Curve Analyzer</h3>
+      </div>
+      <div class="panel-body">
+        <h3 class="post-title">Demand Curve Analysis</h3>
+
+        <p class="lead">This web-app automates the fitting of the Exponential and Exponentiated models of operant demand (with the Exponential model as the default).</p>
+        <p class="lead">Demand curve analysis is performed by providing least 3 pairs (x and y) of Pricing and Consumption data in the control below. At least three pairs of data are necessary to perform any type of modeling (at the extreme minimum).</p>
+        <p class="lead">Prices (x) and Consumption (y) values can be any positive real number (i.e., greater or equal to 0).</p>
+
+        <br/>
+
+        <div class="read-more">
+          <a id="loadSampleBtn" class="btn btn-primary btn-block btn-raised">Load Sample Data</a>
+        </div>
+
+        <br/>
+
+        <div id='sheet'></div>
+
+        <div class="form-group">
+          <label for="selectModel" class="lead">Select Model:</label>
+          <select class="form-control" id="selectModel" style="height: 100%;">
+            <option selected="selected">Exponential Model</option>
+            <option>Exponentiated Model</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="selectX" class="lead">Manage Prices at Zero:</label>
+          <select class="form-control" id="selectX" style="height: 100%;">
+            <option>Drop</option>
+            <option selected="selected">Keep</option>
+            <option>Modify Custom</option>
+          </select>
+        </div>
+
+        <div id="customXvalue" class="form-group row hidden">
+          <label for="customX" class="col-2 col-form-label">Replace Zero Price with:</label>
+          <div class="col-10">
+            <input class="form-control" type="text" value="0.01" id="customX">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="selectY" class="lead">Manage Consumption values at Zero:</label>
+          <select class="form-control" id="selectY" style="height: 100%;">
+            <option selected="selected">Drop</option>
+            <option>Keep</option>
+            <option>Modify to 0.1</option>
+            <option>Modify to 0.01</option>
+            <option>Modify Custom</option>
+          </select>
+        </div>
+
+        <div id="customYvalue" class="form-group row hidden">
+          <label for="customY" class="col-2 col-form-label">Replace Zero Consumption with:</label>
+          <div class="col-10">
+            <input class="form-control" type="text" value="0.01" id="customY">
+          </div>
+        </div>
+
+        <div id="kSelectDiv" class="form-group">
+          <label for="selectK" class="lead">Scaling parameter (K) Value?:</label>
+          <select class="form-control" id="selectK" style="height: 100%;">
+            <option selected="selected">Log range</option>
+            <option>Fit as parameter</option>
+            <option>Set Custom</option>
+          </select>
+        </div>
+
+        <div id="customKvalue" class="form-group row hidden">
+          <label for="customK" class="col-2 col-form-label">Set Scaling Parameter:</label>
+          <div class="col-10">
+            <input class="form-control" type="text" value="1.0" id="customK">
+          </div>
+        </div>
+
+        <br/>
+
+        <a id="scoreBtn" class="btn btn-primary btn-block btn-raised">Fit Models</a>
+
+        <br/>
+
+        <p class="lead">The <a href="https://github.com/miyamot0/miyamot0.github.io">Demand Curve Analyzer (Web)</a> uses the following tools to function:</p>
+
+        <p class="lead">Differential Evolution - <a href="https://github.com/milsto/differential-evolution">Github</a></p>
+
+        <p class="lead">
+          Random.js (<a href="https://raw.githubusercontent.com/ckknight/random-js/master/LICENSE">MIT Licensed</a>) - 
+          <a href="https://github.com/ckknight/random-js">Github</a></p>
+
+        <p class="lead"><a href="http://www.mathjs.org/">Math.js</a> (<a href="https://raw.githubusercontent.com/josdejong/mathjs/master/LICENSE">Apache 2.0 Licensed</a>) -
+          <a href="https://github.com/josdejong/mathjs">Github</a></p>
+
+        <p class="lead"><a href="https://www.jquery.com/">Jquery</a> (<a href="https://raw.githubusercontent.com/jquery/jquery/master/LICENSE.txt">MIT Licensed</a>) -
+          <a href="https://github.com/jquery/jquery">Github</a>
+        </p>
+
+        <p class="lead"><a href="https://www.Handsontable.com/">Handsontable</a> (<a href="https://raw.githubusercontent.com/handsontable/handsontable/master/LICENSE">MIT Licensed</a>)
+          <a href="https://github.com/handsontable/handsontable">Github</a></p>
+
+        <p class="lead"><a href="https://www.chartjs.org/">Chart.js</a> (<a href="https://raw.githubusercontent.com/chartjs/Chart.js/master/LICENSE.md">MIT Licensed</a>) - <a href="https://github.com/chartjs/Chart.js">Github</a></p>
+        </div>
+      </div>
+    </div>
+    <!--/.Info Panel-->
+
+    <!--Results Panel-->
+    <div class="col-md-6">
+        <div class="well">
+          <canvas id="chart" width="400" height="400" style="width: 400px; height: 400px; max-height: 400px;"></canvas>
+
+          <h3 id="resultsTitle"></h3>
+          <h3 id="resultsBody" class="lead"></h3>
+
+        </div>
+    </div>
+    <!--/.Results Panel-->
+</div>
+<!--/.First row-->
+
+<!-- Core Chart components -->
+<script src="js/Chart.min.js"></script>  
+
+<!-- Core Spreadsheet components -->
+<link href="css/handsontable.full.min.css" rel="stylesheet">
+<script src="js/handsontable.full.min.js"></script>
+
+<!-- UI logic components -->
+<script src="js/ui_demand.js" type="text/javascript"></script>

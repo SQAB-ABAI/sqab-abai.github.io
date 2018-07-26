@@ -531,7 +531,7 @@ function handleWorkerOutput(obj)
     }
     else
     {
-        console.log(obj.data);
+
     }
 }
 
