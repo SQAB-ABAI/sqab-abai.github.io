@@ -22,9 +22,6 @@ The SQAB website uses the following open source projects to function properly:
 * ...
 
 ### Todos
-* Content, img assets
-* Integration of tutorials
-* Statistical calculators
 * Open source collaborations
 
 ### License
