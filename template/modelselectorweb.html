@@ -1,0 +1,136 @@
+  <!-- 
+
+   Copyright 2017 Shawn Gilroy
+
+   This file is part of Discounting Model Selector, web port.
+
+   Discounting Model Selector is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, version 3.
+
+   Discounting Model Selector is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Discounting Model Selector.  If not, see http://www.gnu.org/licenses/.
+
+-->
+
+<!--Main layout-->
+<div class="container">
+
+<!--Header row-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h2 class="h2-responsive">Discounting Model Selector </h2>
+            <p class="lead">The Discounting Model Selector (Web) is a web-based tool for applying approximate Bayesian model selection for delay discounting applications. This program allows researchers and clinicians with to perform an empirical comparison of Discounting models for individual series of data. This method has been simplified by Discounting Model Selector through the use of an easy-to-use interface resembling common spreadsheet software.</p>
+            <p class="lead"><strong>Published:</strong><br>Gilroy, S. P. & Hantula, D. A. (2018). Discounting model selection with area-based measures: A case for numerical integration. <i>Journal of the Experimental Analysis of Behavior</i>. <a href="https://doi.org/10.1002/jeab.318">https://doi.org/10.1002/jeab.318</a></p>
+            <p class="lead">Gilroy, S. P., Franck, C. T. & Hantula, D. A. (2017). The discounting model selector: Statistical software for delay discounting applications. <i>Journal of the Experimental Analysis of Behavior, 107(3)</i>, 388-401. <a href="https://doi.org/10.1002/jeab.257">https://doi.org/10.1002/jeab.257</a></p>
+            <p class="lead">Franck, C. T., Koffarnus, M. N., House, L. L., & Bickel, W. K. (2015). Accurate characterization of delay discounting: a multiple model approach using approximate Bayesian model selection and a unified discounting measure. <i>Journal of the Experimental Analysis of Behavior, 103(1)</i>, 218-233. <a href="https://doi.org/10.1002/jeab.128">https://doi.org/10.1002/jeab.128</a></p>
+        </div>
+    </div>
+</div>
+<!--/.Header row-->
+
+<!--First row-->
+<div class="row">
+  <!--Info Panel-->
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Discounting Model Selection</h3>
+      </div>
+      <div class="panel-body">
+        <p class="lead">This tool automates discounting model fitting, Approximate Bayesian Model Selection, model selection, and calculation of the Effective Delay 50 (ED50).</p>
+        <p class="lead">To perform model selection, input at least 3 pairs (x and y) of discounting data. At least three pairs of data are necessary to proceed.</p>
+        <p class="lead">Delay values (x) can be any number, though values must be between 0-1. This should be calculated as a proportion (i.e., the Y value divided by the Maximum Value). Any higher numbers will prevent you from proceeding.</p>
+
+        <br/>
+
+        <div class="read-more">
+          <a id="loadSampleBtn" class="btn btn-primary btn-block btn-raised">Load Sample Data</a>
+        </div>
+
+        <br/>
+
+        <div id='sheet'></div>
+
+        <div class="form-group">
+          <label for="selectAcq" class="lead">Select Rachlin Behavior:</label>
+          <select class="form-control" id="selectBound" style="height: 100%;">
+            <option selected="selected">Do not Bound</option>
+            <option>Drop if s is greater than 1</option>
+          </select>
+        </div>
+
+        <a id="scoreBtn" class="btn btn-primary btn-block btn-raised">Fit Models</a>
+
+        <br/>
+
+        <p class="lead">The <a href="https://github.com/miyamot0/miyamot0.github.io">Discounting Model Selector (Web)</a> uses the following tools to function:</p>
+
+        <p class="lead">Differential Evolution - <a href="https://github.com/milsto/differential-evolution">Github</a></p>
+
+        <p class="lead">
+          Random.js (<a href="https://raw.githubusercontent.com/ckknight/random-js/master/LICENSE">MIT Licensed</a>) - 
+          <a href="https://github.com/ckknight/random-js">Github</a></p>
+
+        <p class="lead"><a href="http://www.mathjs.org/">Math.js</a> (<a href="https://raw.githubusercontent.com/josdejong/mathjs/master/LICENSE">Apache 2.0 Licensed</a>) -
+          <a href="https://github.com/josdejong/mathjs">Github</a></p>
+
+        <p class="lead"><a href="https://www.jquery.com/">Jquery</a> (<a href="https://raw.githubusercontent.com/jquery/jquery/master/LICENSE.txt">MIT Licensed</a>) -
+          <a href="https://github.com/jquery/jquery">Github</a>
+        </p>
+
+        <p class="lead"><a href="https://www.Handsontable.com/">Handsontable</a> (<a href="https://raw.githubusercontent.com/handsontable/handsontable/master/LICENSE">MIT Licensed</a>)
+          <a href="https://github.com/handsontable/handsontable">Github</a></p>
+
+        <p class="lead"><a href="https://www.chartjs.org/">Chart.js</a> (<a href="https://raw.githubusercontent.com/chartjs/Chart.js/master/LICENSE.md">MIT Licensed</a>) - <a href="https://github.com/chartjs/Chart.js">Github</a></p>
+
+        </div>
+      </div>
+    </div>
+    <!--/.Info Panel-->
+
+    <!--Results Panel-->
+    <div class="col-md-6">
+        <div class="well">
+          <canvas id="chart" width="400" height="400" style="width: 400px; height: 400px; max-height: 400px;"></canvas>
+
+          <h3 class="hiddenTitles" style="display: none;">Most Probable Model</h3>
+          <p id="modelRank0" class="card-text clearHelper"></p>
+          <h3 class="hiddenTitles" style="display: none;">Second Most Probable Model</h3>
+          <p id="modelRank1" class="card-text clearHelper"></p>
+          <h3 class="hiddenTitles" style="display: none;">Third Most Probable Model</h3>
+          <p id="modelRank2" class="card-text clearHelper"></p>
+          <h3 class="hiddenTitles" style="display: none;">Fourth Most Probable Model</h3>
+          <p id="modelRank3" class="card-text clearHelper"></p>
+          <h3 class="hiddenTitles" style="display: none;">Fifth Most Probable Model</h3>
+          <p id="modelRank4" class="card-text clearHelper"></p>
+          <h3 class="hiddenTitles" style="display: none;">Sixth Most Probable Model</h3>
+          <p id="modelRank5" class="card-text clearHelper"></p>
+          <h3 class="hiddenTitles" style="display: none;">Seventh Most Probable Model</h3>
+          <p id="modelRank6" class="card-text clearHelper"></p>
+          <h3 class="hiddenTitles" style="display: none;">Eighth Most Probable Model</h3>
+          <p id="modelRank7" class="card-text clearHelper"></p>
+          <h3 class="hiddenTitles" style="display: none;">Ninth Most Probable Model</h3>
+          <p id="modelRank8" class="card-text clearHelper"></p>
+
+        </div>
+    </div>
+    <!--/.Results Panel-->
+</div>
+<!--/.First row-->
+
+<!-- Core Chart components -->
+<script src="js/Chart.min.js"></script>  
+
+<!-- Core Spreadsheet components -->
+<link href="css/handsontable.full.min.css" rel="stylesheet">
+<script src="js/handsontable.full.min.js"></script>
+
+<!-- UI logic components -->
+<script src="js/ui_discounting.js" type="text/javascript"></script>
