@@ -33,8 +33,8 @@ function loadContent()
 		  	document.getElementById("descriptionRef").innerHTML = relevantTutorial[index].Summary;
 			document.getElementById("tutorialIframeDiv").appendChild(iframe);
 
-			document.getElementById("buttonPrev").href = "Tutorial.html?index=" + parseInt(index);
-			document.getElementById("buttonNext").href = "Tutorial.html?index=" + parseInt(index + 2);
+			document.getElementById("buttonPrev").href = "Tutorial.html?index=" + parseInt(index - 1);
+			document.getElementById("buttonNext").href = "Tutorial.html?index=" + parseInt(index + 1);
 
 			if (index == 0)
 			{
