@@ -1,8 +1,13 @@
 <script type="text/javascript">
+
+const sortDescending = function(a, b) { return b.Year - a.Year; }
+
 $(document).ready(function()
 {
     $.getJSON( "json/programs.json", function( data ) {
         var programs = data.Programs;
+
+        programs.sort(sortDescending);
 
         for (var i = 0; i < programs.length; i++)
         {
@@ -16,6 +21,9 @@ $(document).ready(function()
         }
 
         var newsletters = data.Newsletters;
+
+        newsletters.sort(sortDescending);
+        
         for (var i = 0; i < newsletters.length; i++)
         {
             var a = document.createElement("a");
