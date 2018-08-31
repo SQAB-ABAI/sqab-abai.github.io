@@ -1,4 +1,4 @@
-# Society for the Quantitative Analysis of Behavior (SQAB)
+# Society for the Quantitative Analyses of Behavior (SQAB)
 
 The SQAB repository is an openly-shared collection of information and software designed to support dissemination and replication of applied and experimental research.
 
