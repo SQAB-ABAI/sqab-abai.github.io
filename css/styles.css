@@ -100,3 +100,9 @@ footer ul {
   background-color: #515151;
   padding: 1em 0 1em 0;
 }
+
+.panel.noshadow {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
