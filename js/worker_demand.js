@@ -46,7 +46,7 @@ function beginLooper(obj)
 	    	}
 	    	else if (obj.KLogRange)
 	    	{
-	    		setK = Math.log10(hiP) - 
+	    		setK = Math.log10(hiP) -
 	    			   Math.log10(loP) + 0.5;
 	    	}
 
@@ -74,7 +74,7 @@ function beginLooper(obj)
 	    	}
 	    	else if (obj.KLogRange)
 	    	{
-	    		setK = Math.log10(hiP) - 
+	    		setK = Math.log10(hiP) -
 	    			   Math.log10(loP) + 0.5;
 	    	}
 
@@ -85,7 +85,7 @@ function beginLooper(obj)
     	}
     }
 
-    returnObj = 
+    returnObj =
     {
         Model: getModelTag(obj),
         FitK: obj.KFit,

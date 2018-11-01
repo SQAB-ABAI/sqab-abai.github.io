@@ -197,7 +197,7 @@ function beginLooper(obj)
         CalculateProbabilities(returnArray[i], bfSum);
     }
 
-    returnArray.sort(SortResults);  
+    returnArray.sort(SortResults);
 
     var loX = Math.min(...xValues.map(Number))
     var hiX = Math.max(...xValues.map(Number))

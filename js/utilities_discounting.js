@@ -52,7 +52,7 @@ function restoreBeleichrodt(result)
 }
 
 /* Sort by model probability */
-function SortResults(a, b) 
+function SortResults(a, b)
 {
   if (a.Probability < b.Probability)
     return 1;
@@ -121,26 +121,26 @@ function CalculateED50(obj, lowerX, upperX)
 }
 
 /* Manual Hueristic for determining ED50 */
-function empiricalED50Process(fitFunction, params, upperX) 
+function empiricalED50Process(fitFunction, params, upperX)
 {
     var lowDelay = 0;
     var highDelay = upperX * 100;
     var i = 0;
 
-    while ( (highDelay - lowDelay) > 0.001 && i < 100) 
+    while ( (highDelay - lowDelay) > 0.001 && i < 100)
     {
         var lowEst  = fitFunction( params, lowDelay);
         var midEst  = fitFunction( params, (lowDelay + highDelay) / 2);
         var highEst = fitFunction( params, highDelay);
 
-        if ( lowEst > 0.5 && midEst > 0.5) 
+        if ( lowEst > 0.5 && midEst > 0.5)
         {
             //Above 50% mark range
             lowDelay  = (lowDelay+highDelay)/2;
             highDelay = highDelay;
 
-        } 
-        else if ( highEst < 0.5 && midEst < 0.5) 
+        }
+        else if ( highEst < 0.5 && midEst < 0.5)
         {
             //Below 50% mark range
             lowDelay  = lowDelay;
@@ -154,13 +154,13 @@ function empiricalED50Process(fitFunction, params, upperX)
 }
 
 /* Math.js */
-function integrate(func, start, end, stepSize) 
+function integrate(func, start, end, stepSize)
 {
   var area = 0;
 
   stepSize = stepSize || 0.01;
 
-  for (var x = start; x < end; x += stepSize) 
+  for (var x = start; x < end; x += stepSize)
     area += func(x + stepSize / 2) * stepSize;
 
   return area;

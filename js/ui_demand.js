@@ -71,10 +71,10 @@ function constructExponentialChart()
                   type: 'logarithmic',
                   position: 'bottom',
                   scaleLineColor: "black",
-                  gridLines: { 
+                  gridLines: {
                     display:false
                   },
-                  ticks: {      
+                  ticks: {
                     maxRotation: 90,
                     minRotation: 90,
                     callback: function(value, index, values) {
@@ -91,7 +91,7 @@ function constructExponentialChart()
                       else
                       {
                         return null;
-                      }                          
+                      }
                     }
                   }
               }],
@@ -119,27 +119,27 @@ function constructExponentialChart()
                       else
                       {
                         return null;
-                      }                          
+                      }
                     }
                 },
                 scaleLineColor: "black",
-                gridLines: { 
+                gridLines: {
                   display:false
                 }
             }]
-          },            
+          },
           showTooltips: false,
-          elements: { 
-            point: { 
-              radius: 0 
+          elements: {
+            point: {
+              radius: 0
             },
             line: {
               borderWidth: 0
-            } 
+            }
           },
           maintainAspectRatio: false
       }
-  });    
+  });
 }
 
 function constructExponentiatedChart()
@@ -180,7 +180,7 @@ function constructExponentiatedChart()
                   type: 'logarithmic',
                   position: 'bottom',
                   scaleLineColor: "black",
-                  gridLines: { 
+                  gridLines: {
                     display:false
                   },
                   ticks: {
@@ -201,7 +201,7 @@ function constructExponentiatedChart()
                       else
                       {
                         return null;
-                      }                          
+                      }
                     }
                   }
               }],
@@ -217,28 +217,28 @@ function constructExponentiatedChart()
                     fontColor: "black"
                 },
                 scaleLineColor: "black",
-                gridLines: { 
+                gridLines: {
                   display:false
                 }
             }]
-          },            
+          },
           showTooltips: false,
-          elements: { 
-            point: { 
-              radius: 0 
+          elements: {
+            point: {
+              radius: 0
             },
             line: {
               borderWidth: 0
-            } 
+            }
           },
           maintainAspectRatio: false
       }
-  });    
+  });
 }
 
 function clearChart()
 {
-    window.myChart.data.datasets = 
+    window.myChart.data.datasets =
     [
     {
       label: 'Demand Curve',
@@ -302,7 +302,7 @@ function clearChart()
     ];
 
     window.myChart.options.scales.xAxes["0"].gridLines.display = true;
-    window.myChart.options.scales.yAxes["0"].gridLines.display = true;       
+    window.myChart.options.scales.yAxes["0"].gridLines.display = true;
 
     window.myChart.update(50, true);
 }
@@ -328,14 +328,14 @@ function performMethods()
 
            return;
         }
-        
+
         mX.push(temp[0]);
         mY.push(temp[1]);
       }
     }
 
     $('p.clearHelper').empty();
-    $('h4.hiddenTitles').hide();       
+    $('h4.hiddenTitles').hide();
 
     $('#scoreBtn').attr("disabled","disabled");
     $('#scoreBtn').text("Please Wait...");
@@ -374,7 +374,7 @@ function performMethods()
         SetK: kText
     });
 
-    if (typeof ga !== 'undefined') 
+    if (typeof ga !== 'undefined')
     {
       ga('send', {
         hitType: 'event',
@@ -413,7 +413,7 @@ function handleWorkerOutput(obj)
           mPrice = (mPrice <= 0) ? 0.01 : mPrice;
 
           window.myChart.data.datasets[2].data.push({
-              x: mPrice, 
+              x: mPrice,
               y: parseFloat(mConsumption[i])
           });
         }
@@ -428,15 +428,15 @@ function handleWorkerOutput(obj)
           {
             window.myChart.data.datasets[0].data.push(
             {
-              x: i, 
+              x: i,
               y: getExponentialProjection(i, obj.data.results)
             });
 
             window.myChart.data.datasets[1].data.push(
             {
-              x: i, 
-              y: getExponentialProjection(i, obj.data.results) * i 
-            });                
+              x: i,
+              y: getExponentialProjection(i, obj.data.results) * i
+            });
 
             getExponentialProjection(i, obj.data.results);
           }
@@ -444,13 +444,13 @@ function handleWorkerOutput(obj)
           {
             window.myChart.data.datasets[0].data.push(
             {
-              x: i, 
+              x: i,
               y: getExponentiatedProjection(i, obj.data.results)
             });
 
             window.myChart.data.datasets[1].data.push(
             {
-              x: i, 
+              x: i,
               y: getExponentiatedProjection(i, obj.data.results) * i
             });
           }
@@ -548,7 +548,7 @@ function getFittings(obj)
 
 function initWorker()
 {
-    if (!window.Worker) 
+    if (!window.Worker)
     {
         alert("Please use a modern web-broswer with Web-Worker support");
 
@@ -564,7 +564,7 @@ function initWorker()
     clearChart();
 }
 
-function modelIndexChanged(e) 
+function modelIndexChanged(e)
 {
     var mIndex = $("#selectModel").prop('selectedIndex');
 
@@ -615,10 +615,10 @@ function beginCalculation()
         alert('Not enough data was entered');
 
         return;
-    }      
+    }
 
     $('p.clearHelper').empty();
-    $('h4.hiddenTitles').hide();       
+    $('h4.hiddenTitles').hide();
 
     $('#scoreBtn').text("Please Wait...");
     $('#scoreBtn').attr("disabled","disabled");
@@ -659,7 +659,7 @@ function loadUpResources()
 
     Chart.defaults.global.defaultFontColor='black';
 
-    window.myChart = new Chart(ctx, 
+    window.myChart = new Chart(ctx,
     {
         type: 'line',
         data: {
@@ -692,10 +692,10 @@ function loadUpResources()
                     type: 'logarithmic',
                     position: 'bottom',
                     scaleLineColor: "black",
-                    gridLines: { 
-                      color: "#000000" 
+                    gridLines: {
+                      color: "#000000"
                     },
-                    ticks: {      
+                    ticks: {
                       maxRotation: 90,
                       minRotation: 90,
                       callback: function(value, index, values) {
@@ -710,7 +710,7 @@ function loadUpResources()
                         else
                         {
                           return null;
-                        }                          
+                        }
                       }
                     }
                 }],
@@ -728,19 +728,19 @@ function loadUpResources()
                       max: 1
                   },
                   scaleLineColor: "black",
-                  gridLines: { 
-                    color: "#000000" 
+                  gridLines: {
+                    color: "#000000"
                   }
               }]
-            },            
+            },
             showTooltips: false,
-            elements: { 
-              point: { 
-                radius: 0 
+            elements: {
+              point: {
+                radius: 0
               },
               line: {
                 borderWidth: 0
-              } 
+              }
             },
             maintainAspectRatio: false
         }
@@ -756,22 +756,22 @@ function loadUpResources()
 
     $( "#selectX" ).change(function(e) {
         if ($("#selectX").prop('selectedIndex') == 2)
-          $("#customXvalue").removeClass("hidden");      
-        else 
+          $("#customXvalue").removeClass("hidden");
+        else
           $("#customXvalue").addClass("hidden");
     });
 
     $( "#selectY" ).change(function(e) {
         if ($("#selectY").prop('selectedIndex') == 4)
-          $("#customYvalue").removeClass("hidden");      
-        else 
+          $("#customYvalue").removeClass("hidden");
+        else
           $("#customYvalue").addClass("hidden");
     });
 
     $( "#selectK" ).change(function(e) {
         if ($("#selectK").prop('selectedIndex') == 2)
-          $("#customKvalue").removeClass("hidden");      
-        else 
+          $("#customKvalue").removeClass("hidden");
+        else
           $("#customKvalue").addClass("hidden");
     });
 

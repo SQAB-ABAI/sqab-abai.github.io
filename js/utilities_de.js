@@ -22,12 +22,12 @@ var random;
 /* Const for BIC/AIC */
 var M_PI = 3.14159265358979323846;
 
-/* DE Heuristics */ 
+/* DE Heuristics */
 var populationSize = 1000;
 var populationAgents = [];
 var populationAgentsCost = [];
 
-/* DE Parameters */ 
+/* DE Parameters */
 var mutationFactor = 0.8;
 var crossoverRate = 0.9;
 
@@ -147,7 +147,7 @@ function ProcessGeneration(costFunc, nParams)
         var b = x;
         var c = x;
 
-        while (a == x || b == x || c == x || 
+        while (a == x || b == x || c == x ||
         	   a == b || a == c || b == c)
         {
             a = random.integer(0, populationSize - 1);
