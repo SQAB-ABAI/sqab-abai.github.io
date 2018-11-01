@@ -176,7 +176,7 @@ function getRodriguezLogue(obj, isTop)
     mReturn += "<b>Loewenstein & Prelec Area (Log10 Scale): " + obj.AUClog10.toFixed(6) + "</b><br>";
   }
 
-  return mReturn;
+  return mReturn;    
 }
 
 function getEbertPrelec(obj, isTop)
@@ -197,7 +197,7 @@ function getEbertPrelec(obj, isTop)
     mReturn += "<b>Ebert & Prelec Area (Log10 Scale): " + obj.AUClog10.toFixed(6) + "</b><br>";
   }
 
-  return mReturn;
+  return mReturn;    
 }
 
 function getBleichrodt(obj, isTop)
@@ -268,7 +268,7 @@ function getHeadingContent(obj, i)
 
 function clearChart()
 {
-    window.myChart.data.datasets =
+    window.myChart.data.datasets = 
     [
     {
             label: 'Noise',
@@ -458,7 +458,7 @@ function clearChart()
     ];
 
     window.myChart.options.scales.xAxes["0"].gridLines.display = false;
-    window.myChart.options.scales.yAxes["0"].gridLines.display = false;
+    window.myChart.options.scales.yAxes["0"].gridLines.display = false;       
 
     window.myChart.update(50, true);
 }
@@ -484,7 +484,7 @@ function performMethods()
 
            return;
         }
-
+        
         if (parseFloat(temp[1]) > 1)
         {
            alert('Please enter value points within 0-1.');
@@ -510,7 +510,7 @@ function performMethods()
         y: mY
     });
 
-    if (typeof ga !== 'undefined')
+    if (typeof ga !== 'undefined') 
     {
       ga('send', {
         hitType: 'event',
@@ -520,7 +520,7 @@ function performMethods()
     }
 }
 
-function getElementByModel(arr, value)
+function getElementByModel(arr, value) 
 {
 
   var result  = arr.filter(function(o){return o.Model == value;} );
@@ -562,7 +562,7 @@ function handleWorkerOutput(obj)
         {
             window.myChart.data.datasets[0].data.push(
             {
-                x: i,
+                x: i, 
                 y: parseFloat(noiseElement.Params[0])
             });
 
@@ -570,7 +570,7 @@ function handleWorkerOutput(obj)
             {
                 window.myChart.data.datasets[1].data.push(
                 {
-                    x: i,
+                    x: i, 
                     y: getExponentialProjection(i, expElement.Params)
                 });
             }
@@ -579,16 +579,16 @@ function handleWorkerOutput(obj)
             {
                 window.myChart.data.datasets[2].data.push(
                 {
-                    x: i,
+                    x: i, 
                     y: getHyperbolicProjection(i, hypElement.Params)
-                });
+                });            
             }
 
             if (bdElement)
             {
                 window.myChart.data.datasets[3].data.push(
                 {
-                    x: i,
+                    x: i, 
                     y: getQuasiHyperbolicProjection(i, bdElement.Params)
                 });
 
@@ -598,34 +598,34 @@ function handleWorkerOutput(obj)
             {
                 window.myChart.data.datasets[4].data.push(
                 {
-                    x: i,
+                    x: i, 
                     y: getMyersonProjection(i, mgElement.Params)
-                });
+                });            
             }
 
             if (rachElement)
             {
                 window.myChart.data.datasets[5].data.push(
                 {
-                    x: i,
+                    x: i, 
                     y: getRachlinProjection(i, rachElement.Params)
-                });
+                });            
             }
 
             if (lpElement)
             {
                 window.myChart.data.datasets[6].data.push(
                 {
-                    x: i,
+                    x: i, 
                     y: getRodriguezLogueProjection(i, lpElement.Params)
-                });
+                });              
             }
 
             if (epElement)
             {
                 window.myChart.data.datasets[7].data.push(
                 {
-                    x: i,
+                    x: i, 
                     y: getEbertPrelecProjection(i, epElement.Params)
                 });
             }
@@ -634,9 +634,9 @@ function handleWorkerOutput(obj)
             {
                 window.myChart.data.datasets[8].data.push(
                 {
-                    x: i,
+                    x: i, 
                     y: getbleichrodtProjection(i, belElement.Params)
-                });
+                });              
             }
 
             if      (i > 0 && i <= 10) i = i + 1;
@@ -675,7 +675,7 @@ function handleWorkerOutput(obj)
 
 function initWorker()
 {
-    if (!window.Worker)
+    if (!window.Worker) 
     {
         alert("Please use a modern web-broswer with Web-Worker support");
 
@@ -697,7 +697,7 @@ function loadUpResources()
 
     Chart.defaults.global.defaultFontColor='black';
 
-    window.myChart = new Chart(ctx,
+    window.myChart = new Chart(ctx, 
     {
         type: 'line',
         data: {
@@ -730,10 +730,10 @@ function loadUpResources()
                     type: 'logarithmic',
                     position: 'bottom',
                     scaleLineColor: "black",
-                    gridLines: {
-                      color: "#000000"
+                    gridLines: { 
+                      color: "#000000" 
                     },
-                    ticks: {
+                    ticks: {      
                       maxRotation: 90,
                       minRotation: 90,
                       callback: function(value, index, values) {
@@ -748,7 +748,7 @@ function loadUpResources()
                         else
                         {
                           return null;
-                        }
+                        }                          
                       }
                     }
                 }],
@@ -766,19 +766,19 @@ function loadUpResources()
                       max: 1
                   },
                   scaleLineColor: "black",
-                  gridLines: {
-                    color: "#000000"
+                  gridLines: { 
+                    color: "#000000" 
                   }
               }]
-            },
+            },            
             showTooltips: false,
-            elements: {
-              point: {
-                radius: 0
+            elements: { 
+              point: { 
+                radius: 0 
               },
               line: {
                 borderWidth: 0
-              }
+              } 
             },
             maintainAspectRatio: false
         }
@@ -808,7 +808,7 @@ function loadUpResources()
                    alert('Please enter positive delay points.');
                    return;
                 }
-
+                
                 if (parseFloat(temp[1]) > 1)
                 {
                    alert('Please enter value points within 0-1.');
@@ -830,10 +830,10 @@ function loadUpResources()
             alert('Not enough data was entered');
 
             return;
-        }
+        }      
 
         $('p.clearHelper').empty();
-        $('h4.hiddenTitles').hide();
+        $('h4.hiddenTitles').hide();       
 
         $('#scoreBtn').text("Please Wait...");
         $('#scoreBtn').attr("disabled","disabled");

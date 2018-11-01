@@ -21,7 +21,7 @@ function isValidNumber(num)
   A (float) : Fitted alpha
   K (float) : Fitted/derived constant K
 */
-function renderOriginalPmax(Q, A, K)
+function renderOriginalPmax(Q, A, K) 
 {
   return (1/(Q * A * (Math.pow(K, 1.5)))) * (0.083 * K + 0.65);
 }
@@ -216,7 +216,7 @@ function gsl_sf_lambert_W0_e(x) {
   }
   else {
     const MAX_ITERS = 100;
-
+    
     var w;
 
     if (x < 1.0) {
