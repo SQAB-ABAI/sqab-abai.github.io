@@ -2,52 +2,42 @@
    "Officers":[
       {
          "Name":"Chris Podlesnik",
-         "Contact":"cpodlesnik@fit.edu",
          "Role":"Board Director & President"
       },
       {
          "Name":"Suzanne Mitchell",
-         "Contact":"mitchesu@ohsu.edu",
          "Role":"Board Director, Program Chair & President-Elect"
       },
       {
          "Name":"Brian Greer",
-         "Contact":"brian.greer@unmc.edu",
          "Role":"Board Director, Exec. Director"
       },
       {
          "Name":"Adam Fox",
-         "Contact":"afox@stlawu.edu",
          "Role":"Board Director & Secretary"
       },
       {
          "Name":"Carla Lagorio",
-         "Contact":"LAGORICH@uwec.edu",
          "Role":"Board Director & Treasurer"
       },
       {
          "Name":"Jason Bourret",
-         "Contact":"jbourret@necc.org",
          "Role":"Board Director"
       },
       {
          "Name":"Sarah Cowie",
-         "Contact":"sarah.cowie@auckland.ac.nz",
          "Role":"Board Director"
       },
       {
          "Name":"Mark Reilly",
-         "Contact":"reill1mp@cmich.edu",
          "Role":"Board Director"
       },
       {
          "Name":"Derek Reed",
-         "Contact":"dreed@ku.edu",
          "Role":"Board Director"
       },
       {
          "Name":"Todd McKerchar",
-         "Contact":"tmckerchar@jsu.edu",
          "Role":"Tutorial Coordinator"
       },
       {
@@ -59,17 +49,14 @@
    "Students":[
       {
          "Name":"Ryan T. Kimball",
-         "Contact":"ryan.kimball@unmc.edu",
          "Role":"Student Council Representative"
       },
       {
          "Name":"Allyson Salzer",
-         "Contact":"asalzer@ku.edu",
          "Role":"Membership Coordinator"
       },
       {
          "Name":"Gabriela E. López-Tolsa",
-         "Contact":"gabrielaeugenia.89@gmail.com",
          "Role":"Social Media Coordinator"
       }
    ],

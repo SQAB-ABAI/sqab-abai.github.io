@@ -6,28 +6,38 @@ $(document).ready(function()
 
         for (var i = 0; i < persons.length; i++)
         {
-            var a = document.createElement("a");
+            if (persons[i].Role == "Webmaster")
+            {
+                var a = document.createElement("a");
 
-            a.href = "mailto:" + persons[i].Contact;
-            a.innerHTML = persons[i].Name + " (" + 
-            persons[i].Role + ")<br><br>";
-            a.className += " lead";
+                a.href = "mailto:" + persons[i].Contact;
+                a.innerHTML = persons[i].Name + " (" + 
+                persons[i].Role + ")<br><br>";
+                a.className += " lead";
 
-            document.getElementById("boardDiv").appendChild(a);
+                document.getElementById("boardDiv").appendChild(a);
+            }
+            else
+            {
+                var p = document.createElement("p");
+                p.innerHTML = persons[i].Name + " (" + 
+                persons[i].Role + ")<br>";
+                p.className += " lead";
+
+                document.getElementById("boardDiv").appendChild(p);                
+            }
         }
 
         persons = data.Students;
 
         for (var i = 0; i < persons.length; i++)
         {
-            var a = document.createElement("a");
+            var p = document.createElement("p");
+            p.innerHTML = persons[i].Name + " (" + 
+            persons[i].Role + ")<br>";
+            p.className += " lead";
 
-            a.href = "mailto:" + persons[i].Contact;
-            a.innerHTML = persons[i].Name + " (" + 
-            persons[i].Role + ")<br><br>";
-            a.className += " lead";
-
-            document.getElementById("studentDiv").appendChild(a);
+            document.getElementById("studentDiv").appendChild(p);    
         }
 
         persons = data.PastDirectors;
