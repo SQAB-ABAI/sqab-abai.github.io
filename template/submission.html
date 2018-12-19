@@ -5,7 +5,8 @@
 <div class="row">
     <div class="col-md-12">
         <div class="jumbotron">
-            <h2 class="h2-responsive">Submissions for Annual Conference</h2><br>
+            <h2 class="h2-responsive">Submissions for Annual Conference</h2>
+            <br/>
             <p class="lead">Submissions for the annual conference (e.g., posters, papers) can be submitted through an online portal. Information specific to submitting each type of work is provided below.</p>
         </div>
     </div>
@@ -29,11 +30,11 @@
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
-                        <div class="item active"><img class="d-block w-100" src="img/symp-1.jpeg" alt=""></div>
-                        <div class="item"><img class="d-block w-100" src="img/symp-2.jpeg" alt="Second slide"></div>
-                        <div class="item"><img class="d-block w-100" src="img/symp-3.jpeg" alt="Second slide"></div>
-                        <div class="item"><img class="d-block w-100" src="img/symp-4.jpeg" alt="Second slide"></div>
-                        <div class="item"><img class="d-block w-100" src="img/symp-5.jpeg" alt="Second slide"></div>
+                        <div class="item active"><img class="d-block w-100" src="img/symp-1.jpeg" alt=""/></div>
+                        <div class="item"><img class="d-block w-100" src="img/symp-2.jpeg" alt="Second slide"/></div>
+                        <div class="item"><img class="d-block w-100" src="img/symp-3.jpeg" alt="Second slide"/></div>
+                        <div class="item"><img class="d-block w-100" src="img/symp-4.jpeg" alt="Second slide"/></div>
+                        <div class="item"><img class="d-block w-100" src="img/symp-5.jpeg" alt="Second slide"/></div>
                     </div>
 
                     <!-- Left and right controls -->
@@ -101,6 +102,19 @@
 </div>
 
 <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAoIBtOT5wcVNP3ujWILYbsWfvvzWYgth0",
+    authDomain: "sqabbackend.firebaseapp.com",
+    databaseURL: "https://sqabbackend.firebaseio.com",
+    projectId: "sqabbackend",
+    storageBucket: "sqabbackend.appspot.com",
+    messagingSenderId: "680112495974"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script>
 
 function validateEmail(emailAddressString) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -149,7 +163,15 @@ function uploadPoster() {
         time:     datetime
     };
 
-    console.log("uploadPoster() called");
+    const dbRef = firebase.database().ref();
+    const postersRef = dbRef.child('SQAB2019');
+
+    console.log(data);
+
+    postersRef.push(data, function(e){
+        console.log(e);
+        console.log("data has been inserted");
+    });
 }
 
 </script>
