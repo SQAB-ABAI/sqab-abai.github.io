@@ -48,13 +48,108 @@
         </div>
         <!--Featured images-->
 
-    <div class="col-md-6">
-        <div class="well">
-            <h2 class="h2-responsive">Submission for SQAB 2019</h2><br>
-            <p class="lead">The portal for SQAB submissions is currently closed. Please revisit this page at a later time.</p>
+        <div class="col-md-6">
+            <div class="well">
+                <h2 class="h2-responsive">Submission for SQAB 2019</h2>
+                <form onsubmit="uploadPoster(this)">
+                    <div class="form-group">
+                        <label htmlFor="submittingAuthor" class="bmd-label-floating">Submitting Author:</label>
+                        <input name="submittingAuthor" type="text"
+                            class="form-control"
+                            placeholder="Firstname Lastname" />
+                    </div>
+
+                    <div class="form-group">
+                        <label htmlFor="posterTitle" class="bmd-label-floating">Poster Title:</label>
+                        <input name="posterTitle" type="text"
+                            class="form-control"
+                            placeholder="Experimental comparison of..." />
+                    </div>
+
+                    <div class="form-group">
+                        <label htmlFor="authorEmail" class="bmd-label-floating">Corresponding Email:</label>
+                        <input name="authorEmail" type="text"
+                            placeholder="presenter@company.com"
+                            class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label htmlFor="abstractText" class="bmd-label-floating">Abstract (Maximum 300 words):</label>
+                        <textarea name="abstractText"
+                            placeholder="In this study..."
+                            class="form-control"
+                            rows="10" />
+                    </div>
+
+                    <div class="form-group">
+                        <label htmlFor="authorList" class="bmd-label-floating">Full Author List, with Affiliation (One per line, please):</label>
+                        <textarea name="authorList"
+                            placeholder="Firstname Lastname (XYZ University)"
+                            class="form-control"
+                            rows="5" />
+                    </div>
+
+                    <a href="javascript: uploadPoster()"
+                       id="submitBtn"
+                       class="btn btn-primary btn-block btn-raised">Submit</a>
+                </form>
+            </div>
         </div>
-    </div>
 </div>
 <!--/.Information row-->
 
 </div>
+
+<script>
+
+function validateEmail(emailAddressString) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(emailAddressString.toLowerCase());
+}
+
+function uploadPoster() {
+    var submittingAuthor = document.getElementsByName("submittingAuthor")[0].value;
+    var authorEmail = document.getElementsByName("authorEmail")[0].value;
+    var posterTitle = document.getElementsByName("posterTitle")[0].value;
+    var abstractText = document.getElementsByName("abstractText")[0].value;
+    var authorList = document.getElementsByName("authorList")[0].value;
+
+    if ((submittingAuthor.split( /\w\w+/ ).length - 1 ) < 2 ) {
+        alert( 'Please enter a full name!' );
+        return;
+    }
+    else if ((posterTitle.split( /\w\w+/ ).length - 1 ) < 2 ) {
+        alert( 'Please enter a full title!' );
+        return;
+    }
+    else if (!validateEmail(authorEmail)) {
+        alert( 'Check email address in form!' );
+        return;
+    }
+    else if ((abstractText.split( /\w\w+/ ).length - 1 ) > 300 ) {
+        alert( 'Abstract is over 300 words!' );
+        return;
+    }
+
+    var currentdate = new Date();
+    var datetime = ""
+        + ( currentdate.getMonth() + 1 ) + "/"
+        + currentdate.getDate() + "/"
+        + currentdate.getFullYear() + " @ "
+        + currentdate.getHours() + ":"
+        + currentdate.getMinutes() + ":"
+        + currentdate.getSeconds();
+
+    var data = {
+        name:     submittingAuthor,
+        title:    posterTitle,
+        email:    authorEmail,
+        abstract: abstractText,
+        list:     authorList,
+        time:     datetime
+    };
+
+    console.log("uploadPoster() called");
+}
+
+</script>
