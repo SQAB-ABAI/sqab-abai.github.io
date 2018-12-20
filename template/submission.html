@@ -1,20 +1,19 @@
 <!--Main layout-->
 <div class="container">
-
-<!--Header row-->
-<div class="row">
-    <div class="col-md-12">
-        <div class="jumbotron">
-            <h2 class="h2-responsive">Submissions for Annual Conference</h2>
-            <br/>
-            <p class="lead">Submissions for the annual conference (e.g., posters, papers) can be submitted through an online portal. Information specific to submitting each type of work is provided below.</p>
+    <!--Header row-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h2 class="h2-responsive">Submissions for Annual Conference</h2>
+                <br/>
+                <p class="lead">Submissions for the annual conference (e.g., posters, papers) can be submitted through an online portal. Information specific to submitting each type of work is provided below.</p>
+            </div>
         </div>
     </div>
-</div>
-<!--/.Header row-->
+    <!--/.Header row-->
 
-<!--Information row-->
-<div class="row">
+    <!--Information row-->
+    <div class="row">
         <!--Featured images-->
         <div class="col-md-6">
             <div class="well">
@@ -52,7 +51,7 @@
         <div class="col-md-6">
             <div class="well">
                 <h2 class="h2-responsive">Submission for SQAB 2019</h2>
-                <form onsubmit="uploadPoster(this)">
+                <form>
                     <div class="form-group">
                         <label htmlFor="submittingAuthor" class="bmd-label-floating">Submitting Author:</label>
                         <input name="submittingAuthor" type="text"
@@ -96,13 +95,11 @@
                 </form>
             </div>
         </div>
-</div>
-<!--/.Information row-->
-
+    </div>
+    <!--/.Information row-->
 </div>
 
 <script>
-  // Initialize Firebase
   var config = {
     apiKey: "AIzaSyAoIBtOT5wcVNP3ujWILYbsWfvvzWYgth0",
     authDomain: "sqabbackend.firebaseapp.com",
@@ -115,7 +112,6 @@
 </script>
 
 <script>
-
 function validateEmail(emailAddressString) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(emailAddressString.toLowerCase());
@@ -129,19 +125,19 @@ function uploadPoster() {
     var authorList = document.getElementsByName("authorList")[0].value;
 
     if ((submittingAuthor.split( /\w\w+/ ).length - 1 ) < 2 ) {
-        alert( 'Please enter a full name!' );
+        alert( 'Please enter a full name (i.e., First and Last)!' );
         return;
     }
     else if ((posterTitle.split( /\w\w+/ ).length - 1 ) < 2 ) {
-        alert( 'Please enter a full title!' );
+        alert( 'Please enter a full title (i.e., 3+ Words)!' );
         return;
     }
     else if (!validateEmail(authorEmail)) {
-        alert( 'Check email address in form!' );
+        alert( 'Check email address in form (i.e., ***@***.***)!' );
         return;
     }
     else if ((abstractText.split( /\w\w+/ ).length - 1 ) > 300 ) {
-        alert( 'Abstract is over 300 words!' );
+        alert( 'Abstract is too long (i.e., over 300 words)!' );
         return;
     }
 
@@ -166,12 +162,17 @@ function uploadPoster() {
     const dbRef = firebase.database().ref();
     const postersRef = dbRef.child('SQAB2019');
 
-    console.log(data);
+    postersRef.push(data, function(error) {
+        if (error) {
+            alert( 'Your submission could not be completed. Please try again later.' );
 
-    postersRef.push(data, function(e){
-        console.log(e);
-        console.log("data has been inserted");
+        } else {
+            document.getElementById("submitBtn").href = "#";
+            document.getElementById("submitBtn").text = "Successfully Submitted";
+            document.getElementById("submitBtn").className += " disabled";
+
+            alert( 'Successfully Submitted!' );
+        }
     });
 }
-
 </script>
