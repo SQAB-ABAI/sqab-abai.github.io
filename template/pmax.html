@@ -1,0 +1,333 @@
+  <!-- 
+
+   Copyright 2017 Shawn Gilroy
+
+   This file is part of AnalyticPmax, web port.
+
+   Discounting Model Selector is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, version 3.
+
+   Discounting Model Selector is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Discounting Model Selector.  If not, see http://www.gnu.org/licenses/.
+
+-->
+
+<!--Main layout-->
+<div class="container">
+
+<!--Header row-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1 class="h1-responsive">Analytical <i>P<sub>MAX</sub></i> Calculator</h1>
+            <p class="lead">The Analytical <i>P<sub>MAX</sub></i> Calculator is a web-based tool for examining the elasticity of demand for reinforcers. This calculator streamlines the determination of unit elasticity (i.e., slope = -1) using a simplified interface. Both Approximate and Exact (Analytic) <i>P<sub>MAX</sub></i> measures are provided.</p>
+
+            <p class="lead"><strong>Accepted:</strong><br>Gilroy, S. P., Kaplan, B. A., Reed, D. D., Hantula, D. A., & Hursh, S. R. (In Press). An Exact Solution for Unit Elasticity in the Exponential Model of Demand. Journal of Experimental and Clinical Psychopharmacology.</p>
+        </div>
+    </div>
+</div>
+<!--/.Header row-->
+
+<!--First row-->
+<div class="row">
+  <!--Info Panel-->
+  <div class="col-md-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i>P<sub>MAX</sub></i> Calculator</h3>
+      </div>
+      <div class="panel-body">
+        <p class="lead">This calculator uses several methods to evaluate models of operant demand (see <a href="https://www.ncbi.nlm.nih.gov/pubmed/26280591">Hursh &amp; Silberberg, 2008</a>) to determine a point where one log-unit increase in price corresponds to a one log-unit decrease in consumption, <i>P<sub>MAX</sub></i>. This can be done using numerical approximations or through more computationally-exhaustive iterative methods, using the first order derivative.</p>
+
+        <p class="lead">To calculate <i>P<sub>MAX</sub></i> here, you must paste the fitted Q<sub>0</sub>, alpha, and K parameters from the model of demand into the spreadsheet component (in their respective columns). Once entered, simply press the "Calculate" button to apply calculation the Analytical <i>P<sub>MAX</sub></i>. Additionally, the Approxiate <i>P<sub>MAX</sub></i> will also be outputted in the spreadsheet component, in its respective column.</p>
+
+        <p class="lead">Optionally, you may preview a sample of a exemplary data by pressing the "Load Sample Data" button and then pressing "Calculate". This will let you view the differences between the Approximate and Analytical <i>P<sub>MAX</sub></i>.</p>
+
+        <br/>
+
+        <div class="read-more">
+          <a id="loadSampleBtn" class="btn btn-primary btn-block btn-raised" disabled>Load Sample Data</a>
+        </div>
+
+        <br/>
+
+        <div id='sheet'></div>
+
+        <br/>
+
+        <a id="scoreBtn" class="btn btn-primary btn-block btn-raised" disabled>Calculate</a>
+
+        <br/>
+
+        </div>
+      </div>
+  </div>
+  <!--/.Info Panel-->
+
+  <!--Results Panel-->
+  <div class="col-md-6">
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i>P<sub>MAX</sub></i> Output Logs</h3>
+          </div>
+          <div class="panel-body">
+            <div id="fittingOutput"></div>
+
+            <p class="lead">The <i>P<sub>MAX</sub></i> Calculator uses the following tools to function:</p>
+
+            <p class="lead"><a href="https://github.com/protobi/lambertw">LambertW Port</a> - <a href="https://github.com/protobi/lambertw/blob/master/LICENSE">GPLv3 Licensed</a></p>
+
+            <p class="lead"><a href="https://www.jquery.com/">Jquery</a> - <a href="https://raw.githubusercontent.com/jquery/jquery/master/LICENSE.txt">MIT Licensed</a></p>
+
+            <p class="lead"><a href="https://www.Handsontable.com/">Handsontable</a> - <a href="https://handsontable.com/static/licenses/v1/open-source-license.pdf?_ga=2.259947018.127668181.1494398112-1144048465.1493642801">MIT Licensed</a></p>
+          </div>
+      </div>
+  </div>
+  <!--/.Results Panel-->
+</div>
+<!--/.First row-->
+
+<!-- Core Jquery 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+-->
+
+<!-- Core Spreadsheet components -->
+<link href="css/handsontable.full.min.css" rel="stylesheet">
+<script src="js/handsontable.full.min.js" type="text/javascript"></script>
+
+<script>
+/*
+   Copyright 2017 Shawn Gilroy
+
+   This file is part of Demand Curve Analyzer, web port.
+
+   Demand Curve Analyzer is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, version 3.
+
+   Demand Curve Analyzer is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Demand Curve Analyzer.  If not, see http://www.gnu.org/licenses/.
+*/
+
+var dedicatedWorker = null;
+var tempData = null;
+var Q, A, K;
+
+/*
+  Q (float) : Fitted Q0
+  A (float) : Fitted alpha
+  K (float) : Fitted/derived constant K
+  x (float) : Unit Price for projection
+*/
+function renderExponentialDemand(Q, A, K, x) 
+{
+  return parseFloat((Math.log(Q)/Math.log(10)) + 
+    K * (Math.exp(-A * Q * Math.pow(10,x)) - 1));
+}
+
+/*
+  i (float) : row index
+  lambertRes (object) : Lambert W result from GSL
+  pmaxOld (float) : Hursh and Silberburg Pmax Approximation
+  Q (float) : Fitted Q0
+  A (float) : Fitted alpha
+  K (float) : Fitted/derived constant K
+  x (float) : Unit Price for projection
+*/
+function outputExactSolutionString(i, pmaxNew, pmaxOld, Q, A, K) 
+{
+    // 1 percent change in unit price
+    var pDelta = 0.01;
+
+    // Scale prices into log units
+    P1 = Math.log10(pmaxNew - pDelta);
+    P2 = Math.log10(pmaxNew + pDelta * (1 + pDelta));
+
+    // Get consumption values (already in log units)
+    Q1 = renderExponentialDemand(Q, A, K, P1);
+    Q2 = renderExponentialDemand(Q, A, K, P2);
+
+    // Calculate deltas
+    QD = Q2-Q1;
+    PD = P2-P1;    
+
+    return "<p><b>Row #" + (i+1) +": </b><br/>" +
+    "Analytical <i>P<sub>MAX</sub></i> = " + pmaxNew + " <br/>" +
+    "Approximate <i>P<sub>MAX</sub></i> = " + pmaxOld + " <br/>" +    
+    "&Delta;Q/&Delta;P (Log/Log) +/- %1 Unit Price" + " = " + QD.toFixed(5) + "/" + PD.toFixed(5) + " = " + (QD.toFixed(5) / PD.toFixed(5)).toFixed(5) + " <br/>" +
+    //"Note: Determined through exact solution using Lambert W function." + 
+    "</p>";   
+}
+
+/*
+  Obj (object) : has various fields messaged from worker
+*/
+function handleWorkerOutput(obj)
+{
+    // Clean up things, thread dies off
+    if (obj.data.done)
+    {
+      $('#fittingOutput').append("<br/>");
+      $("#scoreBtn").removeClass("btn-danger")
+                    .addClass("btn-primary")
+                    .text("Calculate");
+
+      dedicatedWorker = null;
+
+      return;
+    }
+
+    if (obj.data.passed)
+    {
+      $('#sheet').handsontable('setDataAtCell', obj.data.row, 3, obj.data.lambertConverge ? obj.data.exact.toFixed(8) : '---');
+      $('#sheet').handsontable('setDataAtCell', obj.data.row, 4, obj.data.approx.toFixed(8));
+      $('#fittingOutput').append(outputExactSolutionString(
+        obj.data.row,             // Row iterator
+        obj.data.exact,           // Analytic Pmax fit
+        obj.data.approx,          // Approximate Pmax
+        obj.data.Q,               // Q0
+        obj.data.A,               // Alpha
+        obj.data.K));             // K
+    }
+    else
+    {
+      $('#sheet').handsontable('setDataAtCell', obj.data.row, 3, '');
+      $('#sheet').handsontable('setDataAtCell', obj.data.row, 4, '');
+    }
+}
+
+/*
+  Load sample data
+*/
+function loadSampleData()
+{
+    $('#sheet').handsontable('setDataAtCell', 0, 0, "4.1849");
+    $('#sheet').handsontable('setDataAtCell', 1, 0, "6.20081");
+    $('#sheet').handsontable('setDataAtCell', 2, 0, "3.91589");
+    $('#sheet').handsontable('setDataAtCell', 3, 0, "6.19246");
+    $('#sheet').handsontable('setDataAtCell', 4, 0, "6.50739");
+    $('#sheet').handsontable('setDataAtCell', 5, 0, "8.32759");
+    $('#sheet').handsontable('setDataAtCell', 6, 0, "7.14605");
+    $('#sheet').handsontable('setDataAtCell', 7, 0, "10.8495");
+    $('#sheet').handsontable('setDataAtCell', 8, 0, "5.69435");
+    $('#sheet').handsontable('setDataAtCell', 9, 0, "4.92234");
+
+    $('#sheet').handsontable('setDataAtCell', 0, 1, "0.00518467");
+    $('#sheet').handsontable('setDataAtCell', 1, 1, "0.00315093");
+    $('#sheet').handsontable('setDataAtCell', 2, 1, "0.00290809");
+    $('#sheet').handsontable('setDataAtCell', 3, 1, "0.00259647");
+    $('#sheet').handsontable('setDataAtCell', 4, 1, "0.00252394");
+    $('#sheet').handsontable('setDataAtCell', 5, 1, "0.00294164");
+    $('#sheet').handsontable('setDataAtCell', 6, 1, "0.00245646");
+    $('#sheet').handsontable('setDataAtCell', 7, 1, "0.00260554");
+    $('#sheet').handsontable('setDataAtCell', 8, 1, "0.00250289");
+    $('#sheet').handsontable('setDataAtCell', 9, 1, "0.00239768");
+
+    $('#sheet').handsontable('setDataAtCell', 0, 2, "5.31159");
+    $('#sheet').handsontable('setDataAtCell', 1, 2, "5.31159");
+    $('#sheet').handsontable('setDataAtCell', 2, 2, "5.31159");
+    $('#sheet').handsontable('setDataAtCell', 3, 2, "5.31159");
+    $('#sheet').handsontable('setDataAtCell', 4, 2, "5.31159");
+    $('#sheet').handsontable('setDataAtCell', 5, 2, "5.31159");
+    $('#sheet').handsontable('setDataAtCell', 6, 2, "5.31159");
+    $('#sheet').handsontable('setDataAtCell', 7, 2, "5.31159");
+    $('#sheet').handsontable('setDataAtCell', 8, 2, "5.31159");
+    $('#sheet').handsontable('setDataAtCell', 9, 2, "5.31159");
+}
+
+/*
+  Initial loading of resources
+*/
+function loadUpResources() 
+{
+  $(document).ready(function () 
+  {
+    $('#scoreBtn').removeAttr('disabled');
+    $('#loadSampleBtn').removeAttr('disabled');
+
+    $( "#scoreBtn" ).on('click', function()
+    {
+      if (window.Worker)
+      {
+        $('#fittingOutput').empty();
+        $('#scoreBtn').text("Cancel Calculations")
+                      .removeClass("btn-primary")
+                      .addClass("btn-danger");
+
+        // Hack, if its live let it be
+        if (dedicatedWorker != null)
+        {
+          return;
+        }
+
+        dedicatedWorker = new Worker('js/worker_pmax.js');
+        dedicatedWorker.onmessage = handleWorkerOutput;
+        dedicatedWorker.postMessage({data: $('#sheet').handsontable('getData')});
+
+        if (ga != null)
+        {
+          ga('send', 
+          {
+            hitType: 'event',
+            eventCategory: 'PMAX',
+            eventAction: 'Analytic Pmax Calculations'
+          });
+        }
+      }
+      else
+      {
+        alert("This tool requires a HTML5-compatible browser!");
+
+        if (ga != null)
+        {
+          ga('send', 
+          {
+            hitType: 'event',
+            eventCategory: 'PMAX',
+            eventAction: 'Unsupported browser'
+          });
+        }
+      }
+    });
+
+    // Sample table
+    $( "#loadSampleBtn" ).on('click', loadSampleData);
+
+    // Initialize table
+    $('#sheet').handsontable(
+    {
+        data: [["",""],["",""],["",""],["",""],["",""],
+               ["",""],["",""],["",""],["",""],["",""],
+               ["",""],["",""],["",""],["",""],["",""]],
+        colHeaders: ['Q0', 'Alpha', 'K', 'Analytical', 'Approximate'],
+        rowHeaders: true,
+        stretchH: 'all',
+        columnSorting: false,
+        columns: [
+          {data: 0, type: 'text'},
+          {data: 1, type: 'text'},
+          {data: 2, type: 'text'},
+          {data: 3, type: 'text'},
+          {data: 4, type: 'text'}
+        ],
+        contextMenu: true
+    });
+  });
+}
+
+/*
+  Event load
+*/
+window.addEventListener('load', loadUpResources(), true);
+</script>
