@@ -4,6 +4,8 @@ var currentRow = 0;
 var lastRow = 0;
 var looper = 0;
 
+var limit = Math.E/Math.log(10);
+
 var sheetData = null;
 var tempData = null;
 
@@ -39,27 +41,50 @@ function beginLooper()
 		A = parseFloat(tempData[1]);
 		K = parseFloat(tempData[2]);
 
-		if (isValidNumber(Q) && isValidNumber(A) && isValidNumber(K))
+
+
+		if (isValidNumber(Q) && isValidNumber(A) && isValidNumber(K) && K <= limit)
 		{
 			// Hursh approx
 			oldPmax = renderOriginalPmax(Q, A, K);
 
 			// Gilroy et al, (In testing)
-			lambertResult = gsl_sf_lambert_W0_e(-1/Math.log(Math.pow(10,K)));
+			//lambertResult = gsl_sf_lambert_W0_e(-1/Math.log(Math.pow(10,K)));
 
 			postMessage({
 				row: currentRow,
 				passed: true,
 				approx: oldPmax,
-				lambertConverge: lambertResult.success,
-				lambertValue: -lambertResult.val,
+				lambertConverge: false,
+				lambertValue: null,
 				Q: Q,
 				A: A,
 				K: K,
-				exact: (-lambertResult.val/(A*Q)),
+				exact: null,
 				done: false
 			});
 		}
+    else if (isValidNumber(Q) && isValidNumber(A) && isValidNumber(K))
+    {
+      // Hursh approx
+      oldPmax = renderOriginalPmax(Q, A, K);
+
+      // Gilroy et al, (In testing)
+      lambertResult = gsl_sf_lambert_W0_e(-1/Math.log(Math.pow(10,K)));
+
+      postMessage({
+        row: currentRow,
+        passed: true,
+        approx: oldPmax,
+        lambertConverge: lambertResult.success,
+        lambertValue: -lambertResult.val,
+        Q: Q,
+        A: A,
+        K: K,
+        exact: (-lambertResult.val/(A*Q)),
+        done: false
+      });
+    }
 		else
 		{
 			postMessage({

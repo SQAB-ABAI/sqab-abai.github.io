@@ -26,9 +26,9 @@
     <div class="col-md-12">
         <div class="jumbotron">
             <h1 class="h1-responsive">Analytical <i>P<sub>MAX</sub></i> Calculator</h1>
-            <p class="lead">The Analytical <i>P<sub>MAX</sub></i> Calculator is a web-based tool for examining the elasticity of demand for reinforcers. This calculator streamlines the determination of unit elasticity (i.e., slope = -1) using a simplified interface. Both Approximate and Exact (Analytic) <i>P<sub>MAX</sub></i> measures are provided.</p>
+            <p class="lead">The Analytical <i>P<sub>MAX</sub></i> Calculator is a web-based tool for determining the point of unit elasticity. This calculator streamlines the determination of an exact (Analytic) unit elasticity (i.e., slope = -1) using a simple, copy-paste interface. Both the Approximate and Exact (Analytic) <i>P<sub>MAX</sub></i> measures are provided here, though only the Analytic method is considered exact.</p>
 
-            <p class="lead"><strong>Accepted:</strong><br>Gilroy, S. P., Kaplan, B. A., Reed, D. D., Hantula, D. A., & Hursh, S. R. (In Press). An Exact Solution for Unit Elasticity in the Exponential Model of Demand. Journal of Experimental and Clinical Psychopharmacology.</p>
+            <p class="lead"><strong>Accepted:</strong><br>Gilroy, S. P., Kaplan, B. A., Reed, D. D., Hantula, D. A., & Hursh, S. R. (In Press). An Exact Solution for Unit Elasticity in the Exponential Model of Demand. <i>Journal of Experimental and Clinical Psychopharmacology</i>.</p>
         </div>
     </div>
 </div>
@@ -93,10 +93,6 @@
 </div>
 <!--/.First row-->
 
-<!-- Core Jquery 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
--->
-
 <!-- Core Spreadsheet components -->
 <link href="css/handsontable.full.min.css" rel="stylesheet">
 <script src="js/handsontable.full.min.js" type="text/javascript"></script>
@@ -147,27 +143,31 @@ function renderExponentialDemand(Q, A, K, x)
 */
 function outputExactSolutionString(i, pmaxNew, pmaxOld, Q, A, K) 
 {
-    // 1 percent change in unit price
-    var pDelta = 0.01;
+    if (K > (Math.E/Math.log(10))) {
+       // 1 percent change in unit price
+       var pDelta = 0.01;
 
-    // Scale prices into log units
-    P1 = Math.log10(pmaxNew - pDelta);
-    P2 = Math.log10(pmaxNew + pDelta * (1 + pDelta));
+       // Scale prices into log units
+       P1 = Math.log10(pmaxNew - pDelta);
+       P2 = Math.log10(pmaxNew + pDelta * (1 + pDelta));
 
-    // Get consumption values (already in log units)
-    Q1 = renderExponentialDemand(Q, A, K, P1);
-    Q2 = renderExponentialDemand(Q, A, K, P2);
+       // Get consumption values (already in log units)
+       Q1 = renderExponentialDemand(Q, A, K, P1);
+       Q2 = renderExponentialDemand(Q, A, K, P2);
 
-    // Calculate deltas
-    QD = Q2-Q1;
-    PD = P2-P1;    
+       // Calculate deltas
+       QD = Q2-Q1;
+       PD = P2-P1;
 
-    return "<p><b>Row #" + (i+1) +": </b><br/>" +
-    "Analytical <i>P<sub>MAX</sub></i> = " + pmaxNew + " <br/>" +
-    "Approximate <i>P<sub>MAX</sub></i> = " + pmaxOld + " <br/>" +    
-    "&Delta;Q/&Delta;P (Log/Log) +/- %1 Unit Price" + " = " + QD.toFixed(5) + "/" + PD.toFixed(5) + " = " + (QD.toFixed(5) / PD.toFixed(5)).toFixed(5) + " <br/>" +
-    //"Note: Determined through exact solution using Lambert W function." + 
-    "</p>";   
+       return "<p><b>Row #" + (i+1) +": </b><br/>" +
+       "Analytical <i>P<sub>MAX</sub></i> = " + pmaxNew + " <br/>" +
+       "Approximate <i>P<sub>MAX</sub></i> = " + pmaxOld + " <br/>" +
+       "&Delta;Q/&Delta;P (Log/Log) +/- %1 Unit Price" + " = " + QD.toFixed(5) + "/" + PD.toFixed(5) + " = " + (QD.toFixed(5) / PD.toFixed(5)).toFixed(5) + " (Analytic) <br/>" + "</p>";
+    } else {
+       return "<p><b>Row #" + (i+1) +": </b><br/>" +
+       "Analytical <i>P<sub>MAX</sub></i> = " + pmaxNew + " <br/>" +
+       "Approximate <i>P<sub>MAX</sub></i> = " + pmaxOld + "</p>";
+    }
 }
 
 /*
@@ -190,11 +190,14 @@ function handleWorkerOutput(obj)
 
     if (obj.data.passed)
     {
+
+      var exactResult = (obj.data.exact == null) ? "K value below limit" : obj.data.exact;
+
       $('#sheet').handsontable('setDataAtCell', obj.data.row, 3, obj.data.lambertConverge ? obj.data.exact.toFixed(8) : '---');
       $('#sheet').handsontable('setDataAtCell', obj.data.row, 4, obj.data.approx.toFixed(8));
       $('#fittingOutput').append(outputExactSolutionString(
         obj.data.row,             // Row iterator
-        obj.data.exact,           // Analytic Pmax fit
+        exactResult,              // Analytic Pmax fit
         obj.data.approx,          // Approximate Pmax
         obj.data.Q,               // Q0
         obj.data.A,               // Alpha
@@ -274,30 +277,10 @@ function loadUpResources()
         dedicatedWorker = new Worker('js/worker_pmax.js');
         dedicatedWorker.onmessage = handleWorkerOutput;
         dedicatedWorker.postMessage({data: $('#sheet').handsontable('getData')});
-
-        if (ga != null)
-        {
-          ga('send', 
-          {
-            hitType: 'event',
-            eventCategory: 'PMAX',
-            eventAction: 'Analytic Pmax Calculations'
-          });
-        }
       }
       else
       {
         alert("This tool requires a HTML5-compatible browser!");
-
-        if (ga != null)
-        {
-          ga('send', 
-          {
-            hitType: 'event',
-            eventCategory: 'PMAX',
-            eventAction: 'Unsupported browser'
-          });
-        }
       }
     });
 
