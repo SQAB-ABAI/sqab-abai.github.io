@@ -141,33 +141,31 @@ function renderExponentialDemand(Q, A, K, x)
   K (float) : Fitted/derived constant K
   x (float) : Unit Price for projection
 */
-function outputExactSolutionString(i, pmaxNew, pmaxOld, Q, A, K) 
+function outputExactSolutionString(i, pmaxNew, pmaxOld, Q, A, K, status) 
 {
-    if (K > (Math.E/Math.log(10))) {
-       // 1 percent change in unit price
-       var pDelta = 0.01;
+    // 1 percent change in unit price
+    var pDelta = 0.01;
 
-       // Scale prices into log units
-       P1 = Math.log10(pmaxNew - pDelta);
-       P2 = Math.log10(pmaxNew + pDelta * (1 + pDelta));
+    // Scale prices into log units
+    P1 = Math.log10(pmaxNew - pDelta);
+    P2 = Math.log10(pmaxNew + pDelta * (1 + pDelta));
 
-       // Get consumption values (already in log units)
-       Q1 = renderExponentialDemand(Q, A, K, P1);
-       Q2 = renderExponentialDemand(Q, A, K, P2);
+    // Get consumption values (already in log units)
+    Q1 = renderExponentialDemand(Q, A, K, P1);
+    Q2 = renderExponentialDemand(Q, A, K, P2);
 
-       // Calculate deltas
-       QD = Q2-Q1;
-       PD = P2-P1;
+    // Calculate deltas
+    QD = Q2-Q1;
+    PD = P2-P1;
 
-       return "<p><b>Row #" + (i+1) +": </b><br/>" +
-       "Analytical <i>P<sub>MAX</sub></i> = " + pmaxNew + " <br/>" +
-       "Approximate <i>P<sub>MAX</sub></i> = " + pmaxOld + " <br/>" +
-       "&Delta;Q/&Delta;P (Log/Log) +/- %1 Unit Price" + " = " + QD.toFixed(5) + "/" + PD.toFixed(5) + " = " + (QD.toFixed(5) / PD.toFixed(5)).toFixed(5) + " (Analytic) <br/>" + "</p>";
-    } else {
-       return "<p><b>Row #" + (i+1) +": </b><br/>" +
-       "Analytical <i>P<sub>MAX</sub></i> = " + pmaxNew + " <br/>" +
-       "Approximate <i>P<sub>MAX</sub></i> = " + pmaxOld + "</p>";
-    }
+    var noteString = (status) ? "Note: Determined through exact solution using Lambert W function." : "Note: Solved directly using first order derivative.";
+
+    return "<p><b>Row #" + (i+1) +": </b><br/>" +
+    "Analytical <i>P<sub>MAX</sub></i> = " + pmaxNew + " <br/>" +
+    "Approximate <i>P<sub>MAX</sub></i> = " + pmaxOld + " <br/>" +    
+    "&Delta;Q/&Delta;P (Log/Log) +/- %1 Unit Price" + " = " + QD.toFixed(5) + "/" + PD.toFixed(5) + " = " + (QD.toFixed(5) / PD.toFixed(5)).toFixed(5) + " <br/>" +
+    noteString +
+    "</p>";
 }
 
 /*
@@ -201,7 +199,8 @@ function handleWorkerOutput(obj)
         obj.data.approx,          // Approximate Pmax
         obj.data.Q,               // Q0
         obj.data.A,               // Alpha
-        obj.data.K));             // K
+        obj.data.K,               // K
+        obj.data.lambertConverge));
     }
     else
     {

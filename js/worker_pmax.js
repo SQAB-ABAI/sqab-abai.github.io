@@ -9,6 +9,18 @@ var limit = Math.E/Math.log(10);
 var sheetData = null;
 var tempData = null;
 
+var lambda = null;
+var etol = 1e-20;
+var startingParam = 0.01;
+var gradient = undefined;
+var cb = undefined;
+var opts = undefined;      
+var result = null;
+
+var maxIts = 1000;
+
+importScripts("https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js");
+
 var Q, A, K, oldPmax;
 
 // num (object)  : value in cell
@@ -41,28 +53,36 @@ function beginLooper()
 		A = parseFloat(tempData[1]);
 		K = parseFloat(tempData[2]);
 
-
-
 		if (isValidNumber(Q) && isValidNumber(A) && isValidNumber(K) && K <= limit)
 		{
 			// Hursh approx
 			oldPmax = renderOriginalPmax(Q, A, K);
 
-			// Gilroy et al, (In testing)
-			//lambertResult = gsl_sf_lambert_W0_e(-1/Math.log(Math.pow(10,K)));
+      lamba = function(x) 
+      { 
+        return Math.abs((Math.log((Math.pow(10, K))) * (-A * Q * x * Math.exp(-A * Q * x))) + 1);
+      };
 
-			postMessage({
-				row: currentRow,
-				passed: true,
-				approx: oldPmax,
-				lambertConverge: false,
-				lambertValue: null,
-				Q: Q,
-				A: A,
-				K: K,
-				exact: null,
-				done: false
-			});
+      result = numeric.uncmin(lamba, 
+        [startingParam], 
+        etol,
+        gradient, 
+        maxIts,
+        cb,
+        opts);
+
+      postMessage({
+        row: currentRow,
+        passed: true,
+        approx: oldPmax,
+        lambertConverge: undefined,
+        lambertValue: null,
+        Q: Q,
+        A: A,
+        K: K,
+        exact: (result.solution[0]),
+        done: false
+      });
 		}
     else if (isValidNumber(Q) && isValidNumber(A) && isValidNumber(K))
     {
