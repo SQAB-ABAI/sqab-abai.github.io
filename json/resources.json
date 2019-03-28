@@ -55,6 +55,12 @@
       "Location": "http:\/\/www.behavioraleconlab.com\/",
       "University": "University of Kansas, Department of Applied Behavioral Science",
       "PI": "Derek Reed, PhD"
+    },
+    {
+      "Name": "Behavioral Engineering Lab",
+      "Location": "https:\/\/www.lsu.edu\/hss\/psychology\/faculty\/school\/gilroy.php",
+      "University": "Louisiana State University, Department of Psychology",
+      "PI": "Shawn Patrick Gilroy, PhD"
     }
   ],
   "Books": [
@@ -117,6 +123,18 @@
       "Location": "https:\/\/github.com\/miyamot0\/ModelSelectorQt\/releases",
       "Type": "Discounting",
       "Source": "https:\/\/github.com\/miyamot0\/ModelSelectorQt"
+    },
+    {
+      "Name": "Kaplan, B. A. (2018). Beezdemand R package",
+      "Location": "https:\/\/github.com\/brentkaplan\/beezdemand",
+      "Type": "Discounting",
+      "Source": "https:\/\/github.com\/brentkaplan\/beezdemand"
+    },
+    {
+      "Name": "Gilroy, S. P. (2018). Demand Curve Analyzer",
+      "Location": "https:\/\/github.com\/miyamot0\/DemandCalculatorQT\/releases",
+      "Type": "Demand",
+      "Source": "https:\/\/github.com\/miyamot0\/DemandCalculatorQT"
     }
   ]
 }
