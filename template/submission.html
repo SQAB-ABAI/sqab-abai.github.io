@@ -51,7 +51,7 @@
         <!--Featured images-->
 
         <div class="col-md-6">
-            <div class="well">
+            <div id="submitPanel" class="well">
                 <h2 class="h2-responsive">Submission for SQAB 2019</h2>
                 <form>
                     <div class="form-group">
@@ -114,11 +114,17 @@
   firebase.initializeApp(config);
 
   setInterval(function() { 
+    if (isSubmissionPortalClosed) {
+        document.getElementById("countdownTimer").innerText = "---";
+
+        return;
+    }
+
     var t = Date.parse('April 5 2019 23:59:59 GMT-0700') - Date.parse(new Date());
     var seconds = Math.floor( (t/1000) % 60 );
     var minutes = Math.floor( (t/1000/60) % 60 );
-    var hours = Math.floor( (t/(1000*60*60)) % 24 );
-    var days = Math.floor( t/(1000*60*60*24) );
+    var hours =   Math.floor( (t/(1000*60*60)) % 24 );
+    var days =    Math.floor(  t/(1000*60*60*24) );
 
     var strOutput = "Time Remaining: " + days + " days, " + 
                                          hours + " hours, " + 
@@ -126,7 +132,44 @@
                                          seconds + " seconds";
  
     document.getElementById("countdownTimer").innerText = strOutput;
+
+    checkTime();
   }, 1000);
+
+  function checkTime() {
+    if (isSubmissionPortalClosed) {
+        return;
+    }
+
+    var pstOffset = -7;
+    var currLocationDate = new Date();
+    var utcDate = currLocationDate.getTime() + (currLocationDate.getTimezoneOffset() * 60000);
+    var offsetDate = new Date(utcDate + (3600000*pstOffset));
+
+    if (offsetDate.getMonth() + 1 >= 4 &&
+        offsetDate.getDate() >= 6 &&
+        offsetDate.getFullYear() >= 2019) {
+
+        var subPanel = document.getElementById("submitPanel");
+        subPanel.innerHTML = "";      
+
+        var closedElement = document.createElement("h2");
+        closedElement.innerText = "Submission for SQAB 2019";
+        closedElement.className = "h2-responsive";
+        subPanel.appendChild(closedElement);
+
+        var closedTag = document.createElement("p");
+        closedTag.innerText = "The window for submissions to SQAB 2019 have closed.";
+        closedTag.className = "lead";
+        subPanel.appendChild(closedTag);
+
+        isSubmissionPortalClosed = true;
+    }
+  }
+
+  var isSubmissionPortalClosed = null;
+
+  checkTime();
 </script>
 
 <script>
