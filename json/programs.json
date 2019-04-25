@@ -59,6 +59,10 @@
     {
       "Year": 2018,
       "Path": "programs\/2018.pdf"
+    },
+    {
+      "Year": 2019,
+      "Path": "programs\/2019.pdf"
     }
   ],
   "Newsletters": [
@@ -112,7 +116,7 @@
     },
     {
       "Year": 2018,
-      "Path": "newsletters\/2018.pdf"
+      "Path": "newsletters\/2018.docx"
     }
   ]
 }
