@@ -13,15 +13,19 @@
          "Role":"Board Director, Exec. Director"
       },
       {
-         "Name":"Adam Fox",
-         "Role":"Board Director & Secretary"
-      },
-      {
          "Name":"Carla Lagorio",
          "Role":"Board Director & Treasurer"
       },
       {
+         "Name":"Shrinidhi Subramaniam",
+         "Role":"Board Director & Secretary"
+      },
+      {
          "Name":"Jason Bourret",
+         "Role":"Board Director"
+      },
+      {
+         "Name":"Andy Craig",
          "Role":"Board Director"
       },
       {
@@ -48,15 +52,15 @@
    ],
    "Students":[
       {
-         "Name":"Ryan T. Kimball",
+         "Name":"Tadd Schneider",
          "Role":"Student Council Representative"
       },
       {
-         "Name":"Allyson Salzer",
+         "Name":"Cristina Dos Santos",
          "Role":"Membership Coordinator"
       },
       {
-         "Name":"Gabriela E. López-Tolsa",
+         "Name":"Brett Gelino",
          "Role":"Social Media Coordinator"
       }
    ],
@@ -100,6 +104,10 @@
       {
          "Name":"Darlene Crone-Todd",
          "Role":"Past Board Director, Exec. Director"
+      },
+      {
+         "Name":"Adam Fox",
+         "Role":"Board Director & Secretary"
       }
    ],
    "PastPresident":[
