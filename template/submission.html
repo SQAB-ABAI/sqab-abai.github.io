@@ -6,7 +6,12 @@
             <div class="jumbotron">
                 <h2 class="h2-responsive">Submissions for Annual Conference</h2>
                 <br/>
-                <p class="lead">Submissions for the 2020 annual conference (i.e., posters) can be submitted through our online form. The information necessary to submit is provided below. Once all areas are completed, please press the Submit button once to finalize the submission.</p>
+                <p class="lead">Submissions for the 2020 annual conference (i.e., posters) can be submitted through our online form. The information necessary to submit is provided below.</p>
+
+                <p>Students may choose to be considered for inclusion as a <b>SQAB 2020 Tony Nevin Student Presenter</b>. If interested, you will need to (1) confirm this in your submission and (2) upload your CV and a letter of recommendation that will be included in the confirmation email.</p>
+
+                <p>Once all areas are completed, please press the Submit button once to finalize the submission.</p>
+
                 <p class="lead"><strong>Poster submissions are due before Friday April 5, 2020 (midnight, Pacific).</strong></p>
                 <p class="lead" id="countdownTimer" style="font-weight: bold;">Time Remaining: ...</p>
             </div>
@@ -31,11 +36,11 @@
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
-                        <div class="item active"><img class="d-block w-100" src="img/symp-1.jpeg" alt=""/></div>
-                        <div class="item"><img class="d-block w-100" src="img/symp-2.jpeg" alt="Second slide"/></div>
-                        <div class="item"><img class="d-block w-100" src="img/symp-3.jpeg" alt="Second slide"/></div>
-                        <div class="item"><img class="d-block w-100" src="img/symp-4.jpeg" alt="Second slide"/></div>
-                        <div class="item"><img class="d-block w-100" src="img/symp-5.jpeg" alt="Second slide"/></div>
+                        <div class="item active"><img class="d-block w-100" src="img/symp-5.jpeg" alt=""></div>
+                        <div class="item"><img class="d-block w-100" src="img/symp-2.jpeg" alt="Second slide"></div>
+                        <div class="item"><img class="d-block w-100" src="img/symp-3.jpeg" alt="Second slide"></div>
+                        <div class="item"><img class="d-block w-100" src="img/symp-4.jpeg" alt="Second slide"></div>
+                        <div class="item"><img class="d-block w-100" src="img/symp-1.jpeg" alt="Second slide"></div>
                     </div>
 
                     <!-- Left and right controls -->
@@ -91,6 +96,11 @@
                             rows="5" />
                     </div>
 
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="studentPresenter">
+                        <label class="form-check-label" for="studentPresenter">I am interested in being a Tony Nevin Student Presenter.</label>
+                    </div>
+
                     <a href="javascript: uploadPoster()"
                        id="submitBtn"
                        class="btn btn-primary btn-block btn-raised">Submit</a>
@@ -113,6 +123,8 @@
 
   firebase.initializeApp(config);
 
+  $('#studentPresenter').prop('checked', true);
+
   setInterval(function() { 
     if (isSubmissionPortalClosed) {
         document.getElementById("countdownTimer").innerText = "---";
@@ -120,7 +132,7 @@
         return;
     }
 
-    var t = Date.parse('April 5 2019 23:59:59 GMT-0700') - Date.parse(new Date());
+    var t = Date.parse('April 5 2020 23:59:59 GMT-0700') - Date.parse(new Date());
     var seconds = Math.floor( (t/1000) % 60 );
     var minutes = Math.floor( (t/1000/60) % 60 );
     var hours =   Math.floor( (t/(1000*60*60)) % 24 );
@@ -148,7 +160,7 @@
 
     if (offsetDate.getMonth() + 1 >= 4 &&
         offsetDate.getDate() >= 6 &&
-        offsetDate.getFullYear() >= 2019) {
+        offsetDate.getFullYear() >= 2020) {
 
         var subPanel = document.getElementById("submitPanel");
         subPanel.innerHTML = "";      
@@ -159,7 +171,7 @@
         subPanel.appendChild(closedElement);
 
         var closedTag = document.createElement("p");
-        closedTag.innerText = "The window for submissions to SQAB 2020 have not yet opened.";
+        closedTag.innerText = "The window for submissions to SQAB 2020 have closed.";
         closedTag.className = "lead";
         subPanel.appendChild(closedTag);
 
@@ -167,7 +179,7 @@
     }
   }
 
-  var isSubmissionPortalClosed = null;
+  var isSubmissionPortalClosed = false;
 
   checkTime();
 </script>
@@ -211,22 +223,24 @@ function uploadPoster() {
         + currentdate.getMinutes() + ":"
         + currentdate.getSeconds();
 
+    var willingPresenter = $('#studentPresenter').prop('checked') == true;
+
     var data = {
-        name:     submittingAuthor,
-        title:    posterTitle,
-        email:    authorEmail,
-        abstract: abstractText,
-        list:     authorList,
-        time:     datetime
-    };
+        name:      submittingAuthor,
+        title:     posterTitle,
+        email:     authorEmail,
+        abstract:  abstractText,
+        list:      authorList,
+        time:      datetime,
+        presenter: willingPresenter
+    }; 
 
     const dbRef = firebase.database().ref();
-    const postersRef = dbRef.child('SQAB2019');
+    const postersRef = dbRef.child('SQAB2020');
 
     postersRef.push(data, function(error) {
         if (error) {
             alert( 'Your submission could not be completed. Please try again later.' );
-
         } else {
             document.getElementById("submitBtn").href = "#";
             document.getElementById("submitBtn").text = "Successfully Submitted";
