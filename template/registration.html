@@ -1,4 +1,13 @@
+<script>
 
+$(document).ready(() => {
+   document.getElementById('codeConductCheck').addEventListener('change', (event) => {
+      document.getElementById('codeConductCheck').disabled = true;
+      document.getElementById('ppButton').disabled = false;
+   });
+});
+
+</script>
 
 <!--Main layout-->
 <div class="container">
@@ -34,7 +43,7 @@
                   <tbody>
                      <tr>
                         <td class="summary-heading">Type</td>
-                        <td class="summary-content">Fee (not including membership)</td>
+                        <td class="summary-content">Fee (not including $20 membership)</td>
                      </tr>
                      <tr>
                         <td class="summary-heading">Students</td>
@@ -45,11 +54,12 @@
                         <td>$75</td>
                      </tr>
                      <tr>
-                        <td class="summary-heading">Full/Other**</td>
+                        <td class="summary-heading">Full/Other*</td>
                         <td>$100</td>
                      </tr>
                   </tbody>
                </table>
+               *Appropriate for faculty/professionals or others not falling into the other categories
             </div>
          </div>
       </div>
@@ -59,7 +69,12 @@
             <h2 class="h2-responsive">Conference Registration</h2><br>
             <div class="panel panel-default noshadow">
 
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <div class="form-check">
+               <input type="checkbox" class="form-check-input" id="codeConductCheck">
+               <label class="form-check-label" for="codeConductCheck">I agree to abide by the SQAB Code of Conduct.</label>
+            </div>
+
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="ppForm">
                <input type="hidden" name="cmd" value="_s-xclick">
                <input type="hidden" name="hosted_button_id" value="2QX2FTK9TB564">
                <table>
@@ -80,8 +95,10 @@
                       src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" 
                       border="0" 
                       name="submit"
+                      disabled
                       style="display: block; margin: 0 auto;"  
-                      alt="PayPal - The safer, easier way to pay online!">
+                      alt="PayPal - The safer, easier way to pay online!"
+                      id="ppButton">
                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
                </form>
             </div>
