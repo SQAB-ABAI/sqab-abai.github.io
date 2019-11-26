@@ -3,7 +3,7 @@
 $(document).ready(() => {
    document.getElementById('codeConductCheck').addEventListener('change', (event) => {
       document.getElementById('codeConductCheck').disabled = true;
-      document.getElementById('ppButton').disabled = false;
+      document.getElementById('registerBtn').disabled = false;
    });
 });
 
@@ -89,18 +89,12 @@ $(document).ready(() => {
                   <option value="Electronic">Electronic </option>
                   <option value="Paper">Paper </option>
                </select> </td></tr>
+               <tr><td><input type="hidden" name="on2" value="Name/Affiliation for Name Tag">Name/Affiliation for Name Tag</td></tr><tr><td><input type="text" name="os2" maxlength="200"></td></tr>
                </table>
                <input type="hidden" name="currency_code" value="USD">
-               <input type="image" 
-                      src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" 
-                      border="0" 
-                      name="submit"
-                      disabled
-                      style="display: block; margin: 0 auto;"  
-                      alt="PayPal - The safer, easier way to pay online!"
-                      id="ppButton">
+               <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" id='registerBtn' disabled>
                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-               </form>
+            </form>
             </div>
          </div>
       </div>
