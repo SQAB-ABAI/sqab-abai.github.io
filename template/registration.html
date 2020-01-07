@@ -1,18 +1,27 @@
 <script>
 
+const bodyContent = 'The Society for the Quantitative Analyses of Behavior (SQAB) encourages diversity, inclusiveness, and freedom from discriminatory behavior in the field of behavioral science broadly, and within the organization specifically. Diversity refers to differences in race, ethnicity, sexual orientation, gender identity, age, country of origin, religious or spiritual beliefs, ability, and social and economic class. <br/><br/>Terms of Registration <br/><br/>All attendees at SQAB events are expected to abide by SQAB’s Ethics and Diversity policies. Discriminatory and derogatory language and behavior, as well as harassment of any kind, will not be tolerated at the SQAB conference. <br/><br/>Anyone registering for the SQAB conference is required to accepting the following:<br/><br/>Your registration is acceptance of responsibility. By registering for the SQAB conference, you agree to abide by SQAB’s Ethics and Diversity policies and understand that discriminatory and derogatory language and behavior, as well as harassment of any kind, will not be tolerated at SQAB. Failure to comply with the policy could result in suspension of membership to SQAB, revocation of rights to attend or submit future work to SQAB, and/or removal from the event, pursuant to Board consensus in consideration of the violation. <br/><br/>SQAB’s Ethics and Diversity Policy and its Terms of Registration were approved by the SQAB Executive Board in 2018 and were based on those developed by ABAI with the approval of ABAI.';
+
 $(document).ready(() => {
    document.getElementById('codeConductCheck').addEventListener('change', (event) => {
       $.confirm({
          title: 'Commitment to Ethics and Diversity', 
-         content: 'The Society for the Quantitative Analyses of Behavior (SQAB) encourages diversity, inclusiveness, and freedom from discriminatory behavior in the field of behavioral science broadly, and within the organization specifically. Diversity refers to differences in race, ethnicity, sexual orientation, gender identity, age, country of origin, religious or spiritual beliefs, ability, and social and economic class. The ethics and diversity policy was approved by the SQAB Executive Board in 2018 and was based on those developed by ABAI with the approval of ABAI.',
+         boxWidth: '30%',
+         useBootstrap: false,
+         content: bodyContent,
          buttons: {
-            Agree: function(okBtn) {
-               document.getElementById('codeConductCheck').disabled = true;
-               document.getElementById('registerBtn').disabled = false;
+            Agree: {
+               text: 'I Agree',
+               action: function(okBtn) {
+                  document.getElementById('codeConductCheck').disabled = true;
+                  document.getElementById('registerBtn').disabled = false;
+               }
             },
-            Disagree: function(noBtn) {
-               alert('You must agree to these terms to register.');
-               $('#codeConductCheck').prop('checked', false);
+            Disagree: {
+               text: 'I Disagree',
+               action: function(noBtn) {
+                  $('#codeConductCheck').prop('checked', false);
+               }
             }
          }
       });
