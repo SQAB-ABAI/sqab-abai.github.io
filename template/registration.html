@@ -2,8 +2,20 @@
 
 $(document).ready(() => {
    document.getElementById('codeConductCheck').addEventListener('change', (event) => {
-      document.getElementById('codeConductCheck').disabled = true;
-      document.getElementById('registerBtn').disabled = false;
+      $.confirm({
+         title: 'Commitment to Ethics and Diversity', 
+         content: 'The Society for the Quantitative Analyses of Behavior (SQAB) encourages diversity, inclusiveness, and freedom from discriminatory behavior in the field of behavioral science broadly, and within the organization specifically. Diversity refers to differences in race, ethnicity, sexual orientation, gender identity, age, country of origin, religious or spiritual beliefs, ability, and social and economic class. The ethics and diversity policy was approved by the SQAB Executive Board in 2018 and was based on those developed by ABAI with the approval of ABAI.',
+         buttons: {
+            Agree: function(okBtn) {
+               document.getElementById('codeConductCheck').disabled = true;
+               document.getElementById('registerBtn').disabled = false;
+            },
+            Disagree: function(noBtn) {
+               alert('You must agree to these terms to register.');
+               $('#codeConductCheck').prop('checked', false);
+            }
+         }
+      });
    });
 });
 
@@ -241,3 +253,6 @@ $(document).ready(() => {
    </div>
 <!--/.Information row-->
 </div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
