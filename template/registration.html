@@ -1,6 +1,117 @@
 <script>
 
+var config = {
+    apiKey: "AIzaSyAoIBtOT5wcVNP3ujWILYbsWfvvzWYgth0",
+    authDomain: "sqabbackend.firebaseapp.com",
+    databaseURL: "https://sqabbackend.firebaseio.com",
+    projectId: "sqabbackend",
+    storageBucket: "sqabbackend.appspot.com",
+    messagingSenderId: "680112495974"
+  };
+
+firebase.initializeApp(config);
+
 const bodyContent = 'The Society for the Quantitative Analyses of Behavior (SQAB) encourages diversity, inclusiveness, and freedom from discriminatory behavior in the field of behavioral science broadly, and within the organization specifically. Diversity refers to differences in race, ethnicity, sexual orientation, gender identity, age, country of origin, religious or spiritual beliefs, ability, and social and economic class. <br/><br/>Terms of Registration <br/><br/>All attendees at SQAB events are expected to abide by SQAB’s Ethics and Diversity policies. Discriminatory and derogatory language and behavior, as well as harassment of any kind, will not be tolerated at the SQAB conference. <br/><br/>Anyone registering for the SQAB conference is required to accepting the following:<br/><br/>Your registration is acceptance of responsibility. By registering for the SQAB conference, you agree to abide by SQAB’s Ethics and Diversity policies and understand that discriminatory and derogatory language and behavior, as well as harassment of any kind, will not be tolerated at SQAB. Failure to comply with the policy could result in suspension of membership to SQAB, revocation of rights to attend or submit future work to SQAB, and/or removal from the event, pursuant to Board consensus in consideration of the violation. <br/><br/>SQAB’s Ethics and Diversity Policy and its Terms of Registration were approved by the SQAB Executive Board in 2018 and were based on those developed by ABAI with the approval of ABAI.';
+
+function validateEmail(emailAddressString) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(emailAddressString.toLowerCase());
+}
+
+function isBlankOrEmpty(text) {
+   return(text.trim().length == 0)
+}
+
+function revealLinks() {
+
+   var name       = document.getElementsByName("diversityName")[0].value;
+   var email      = document.getElementsByName("diversityEmail")[0].value;
+   var category   = document.getElementById("diversityMemberCategory").value;
+   var years      = document.getElementById("diversityMemberDuration").value;
+   var gender     = document.getElementById("diversityMemberGender").value;
+   var age        = document.getElementById("diversityMemberAge").value;
+
+   var racesArr = [];
+
+   $.each($("input[name='diversitySelect']:checked"), function(){            
+      racesArr.push($(this).val());
+   });
+
+   var races = racesArr.join(',');
+
+   if ((name.split( /\w\w+/ ).length - 1 ) < 2 ) {
+      alert( 'Please enter a full name (i.e., First and Last)!' );
+      return;
+   }
+   else if (!validateEmail(email)) {
+      alert( 'Check email address in form (i.e., ***@***.***)!' );
+      return;
+   }
+   else if (isBlankOrEmpty(category)) {
+      alert( 'Please select a category of membership!' );
+      return;
+   }
+   else if (isBlankOrEmpty(years)) {
+      alert( 'Please indicate membership duration!' );
+      return;
+   }
+   else if (isBlankOrEmpty(gender)) {
+      alert( 'Please indicate gender!' );
+      return;
+   }
+   else if (isBlankOrEmpty(age)) {
+      alert( 'Please indicate age!' );
+      return;
+   } 
+   else if (isBlankOrEmpty(races)) {
+      alert( 'Please indicate race(s)/ethnicity(ies)!' );
+      return;
+   } else if(!$('#codeConductCheck').prop('checked')) {
+      alert( 'You must agree to abide by the SQAB code of conduct to continue.' );
+      return;
+   }
+
+   var currentdate = new Date();
+    var datetime = ""
+        + ( currentdate.getMonth() + 1 ) + "/"
+        + currentdate.getDate() + "/"
+        + currentdate.getFullYear() + " @ "
+        + currentdate.getHours() + ":"
+        + currentdate.getMinutes() + ":"
+        + currentdate.getSeconds();
+
+   var diversityFree = $('#diversityFree').prop('checked');
+
+    var data = {
+        Name:      name,
+        Email:     email,
+        Type:      category,
+        Duration:  years,
+        Gender:    gender,
+        Age:       age,
+        Race:      races,
+        WaiveRate: diversityFree
+    }; 
+
+   const dbRef = firebase.database().ref();
+   const memberRef = dbRef.child('SQABMember2021');
+
+   memberRef.push(data, function(error) {
+        if (error) {
+            alert( 'Your registration information was not successfully recorded. Please try again later.' );
+        } else {
+            document.getElementById("submitBtn").href = "#";
+            document.getElementById("submitBtn").text = "Successfully Submitted";
+            document.getElementById("submitBtn").className += " disabled";
+
+            document.getElementById("membershipShow1").style.display = "block";
+            document.getElementById("membershipShow2").style.display = "block";
+            document.getElementById("membershipShow3").style.display = "block";
+
+            alert( 'Your information has been successfully recorded! Please follow the information posted below.' );
+        }
+    });
+}
 
 $(document).ready(() => {
    document.getElementById('codeConductCheck').addEventListener('change', (event) => {
@@ -14,7 +125,7 @@ $(document).ready(() => {
                text: 'I Agree',
                action: function(okBtn) {
                   document.getElementById('codeConductCheck').disabled = true;
-                  document.getElementById('registerBtn').disabled = false;
+                  //document.getElementById('registerBtn').disabled = false;
                }
             },
             Disagree: {
@@ -36,7 +147,7 @@ $(document).ready(() => {
    <div class="row">
       <div class="col-md-12">
          <div class="jumbotron">
-            <h2 class="h2-responsive">SQAB Membership and Registration (2020)</h2><br>
+            <h2 class="h2-responsive">SQAB Membership and Registration (2021)</h2><br>
             <p class="lead">Membership is $20 and is payable through PayPal or surface mail. The membership fee is separate from registration fees. Membership includes six months of free electronic access to the Special Issue of Behavioural Processes, containing the proceedings of last year's SQAB meeting, beginning on the date of our conference.</p>
          </div>
       </div>
@@ -76,7 +187,7 @@ $(document).ready(() => {
    <!--Online Registration Fees row-->
    <div class="row">
       <div class="col-sm-12">
-         <h2 class="h2-responsive text-center">Online Registration Options</h2><br>
+         <h2 class="h2-responsive text-center">Online Membership and Registration</h2><br>
       </div>
    </div>
    <!--/.Online Registration Fees row-->
@@ -84,181 +195,179 @@ $(document).ready(() => {
 
    <!--Online Fees row-->
    <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-12">
          <div class="well">
             <h2 class="h2-responsive">Conference Registration</h2><br>
             <div class="panel panel-default noshadow">
-               <table class="table table-borderless">
-                  <tbody>
-                     <tr>
-                        <td class="summary-heading">Type</td>
-                        <td class="summary-content">Fee (not including $20 membership)</td>
-                     </tr>
-                     <tr>
-                        <td class="summary-heading">Students</td>
-                        <td>$25</td>
-                     </tr>
-                     <tr>
-                        <td class="summary-heading">Post-docs</td>
-                        <td>$75</td>
-                     </tr>
-                     <tr>
-                        <td class="summary-heading">Full/Other*</td>
-                        <td>$100</td>
-                     </tr>
-                  </tbody>
-               </table>
-               *Appropriate for faculty/professionals or others not falling into the other categories
-            </div>
-         </div>
-      </div>
+               <form>
+                  <div class="form-group">
+                      <label htmlFor="diversityName" class="bmd-label-floating">Name:</label>
+                      <input name="diversityName" type="text"
+                          class="form-control"
+                          placeholder="Firstname Lastname" />
+                  </div>
 
-      <div class="col-sm-6">
-         <div class="well">
-            <h2 class="h2-responsive">Conference Registration</h2><br>
-            <div class="panel panel-default noshadow">
+                  <div class="form-group">
+                     <label htmlFor="diversityEmail" class="bmd-label-floating">Corresponding Email:</label>
+                     <input name="diversityEmail" type="text"
+                         placeholder="member@company.com"
+                         class="form-control" />
+                 </div>
 
-               <p class="lead">Registration is currently disabled. Please stay tuned for future updates.</p>
+                  <div class="form-group">
+                     <label for="diversityMemberCategory">SQAB Member Category:</label>
+                     <select class="form-control" id="diversityMemberCategory">
+                       <option hidden disabled selected value> -- select an option -- </option>
+                       <option>Student</option>
+                       <option>Post Doc</option>
+                       <option>Full</option>
+                       <option>Other</option>
+                     </select>
+                   </div>
 
-            <!--
-            <div class="form-check">
-               <input type="checkbox" class="form-check-input" id="codeConductCheck">
-               <label class="form-check-label" for="codeConductCheck">I agree to abide by the SQAB Code of Conduct.</label>
-            </div>
+                   <div class="form-group">
+                     <label for="diversityMemberDuration">How many years have you attended SQAB:</label>
+                     <select class="form-control" id="diversityMemberDuration">
+                       <option hidden disabled selected value> -- select an option -- </option>
+                       <option>0-1</option>
+                       <option>2-5</option>
+                       <option>6-10</option>
+                       <option>over 10</option>
+                     </select>
+                   </div>
 
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="ppForm">
-               <input type="hidden" name="cmd" value="_s-xclick">
-               <input type="hidden" name="hosted_button_id" value="2QX2FTK9TB564">
-               <table>
-               <tr><td><input type="hidden" name="on0" value="Conference Registration">Conference Registration</td></tr><tr><td><select name="os0">
-                  <option value="Student (+20 USD, Membership)">Student (+20 USD, Membership) $45.00 USD</option>
-                  <option value="Post-Doc (+20 USD, Membership)">Post-Doc (+20 USD, Membership) $95.00 USD</option>
-                  <option value="Post-Doc (+20 USD, Membership; +60 USD, CEU)">Post-Doc (+20 USD, Membership; +60 USD, CEU) $155.00 USD</option>
-                  <option value="Full/Other (+20 USD, Membership)">Full/Other (+20 USD, Membership) $120.00 USD</option>
-                  <option value="Full/Other (+20 USD, Membership; +60 USD, CEU)">Full/Other (+20 USD, Membership; +60 USD, CEU) $180.00 USD</option>
-               </select> </td></tr>
-               <tr><td><input type="hidden" name="on1" value="Paper or Electronic Program?">Paper or Electronic Program?</td></tr><tr><td><select name="os1">
-                  <option value="Electronic">Electronic </option>
-                  <option value="Paper">Paper </option>
-               </select> </td></tr>
-               <tr><td><input type="hidden" name="on2" value="Name/Affiliation for Name Tag">Name/Affiliation for Name Tag</td></tr><tr><td><input type="text" name="os2" maxlength="200"></td></tr>
-               </table>
-               <input type="hidden" name="currency_code" value="USD">
-               <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" id='registerBtn' disabled>
-               <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-            </form>
+                   <div class="form-group">
+                     <label for="diversityMemberGender">What is your gender:</label>
+                     <select class="form-control" id="diversityMemberGender">
+                       <option hidden disabled selected value> -- select an option -- </option>
+                       <option>Female</option>
+                       <option>Male</option>
+                       <option>Nonbinary</option>
+                       <option>Prefer not to answer</option>
+                       <option>Other</option>
+                     </select>
+                   </div>
 
-            -->
-            </div>
+                   <div class="form-group">
+                     <label for="diversityMemberAge">What is your age:</label>
+                     <select class="form-control" id="diversityMemberAge">
+                       <option hidden disabled selected value> -- select an option -- </option>
+                       <option>Less than 18 years</option>
+                       <option>18-20</option>
+                       <option>21-29</option>
+                       <option>30-39</option>
+                       <option>40-49</option>
+                       <option>50-59</option>
+                       <option>60-69</option>
+                       <option>70 or older</option>
+                       <option>Prefer not to answer</option>
+                     </select>
+                   </div>
+
+                  <div class="form-group">
+                      <label class="bmd-label-floating"  style="color: #7f007f">What is your race/ethnicity (Select all that apply):</label>
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" value="African American/Black" id="diversitySelect1" name="diversitySelect">
+                           <label class="form-check-label" for="diversitySelect1" style="color: black;">
+                              African American/Black
+                           </label>
+                        </div>
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" value="Asian" id="diversitySelect2" name="diversitySelect">
+                           <label class="form-check-label" for="diversitySelect2" style="color: black;">
+                              Asian
+                           </label>
+                        </div>
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" value="Caucasian/White" id="diversitySelect3" name="diversitySelect">
+                           <label class="form-check-label" for="diversitySelect3" style="color: black;">
+                              Caucasian/White
+                           </label>
+                        </div>
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" value="Hispanic/Latino" id="diversitySelect4" name="diversitySelect">
+                           <label class="form-check-label" for="diversitySelect4" style="color: black;">
+                              Hispanic/Latino
+                           </label>
+                        </div>
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" value="Middle Eastern/North African" id="diversitySelect5" name="diversitySelect">
+                           <label class="form-check-label" for="diversitySelect5" style="color: black;">
+                              Middle Eastern/North African
+                           </label>
+                        </div>
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" value="Native American/American Indian/Alaska Native" id="diversitySelect6" name="diversitySelect">
+                           <label class="form-check-label" for="diversitySelect6" style="color: black;">
+                              Native American/American Indian/Alaska Native
+                           </label>
+                        </div>
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" value="Native Hawaiian or Other Pacific Islander" id="diversitySelect7" name="diversitySelect">
+                           <label class="form-check-label" for="diversitySelect7" style="color: black;">
+                              Native Hawaiian or Other Pacific Islander
+                           </label>
+                        </div>
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" value="Mixed Race" id="diversitySelect8" name="diversitySelect">
+                           <label class="form-check-label" for="diversitySelect8" style="color: black;">
+                              Mixed Race
+                           </label>
+                        </div>
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" value="Prefer not to answer" id="diversitySelect9" name="diversitySelect">
+                           <label class="form-check-label" for="diversitySelect9" style="color: black;">
+                              Prefer not to answer
+                           </label>
+                        </div>
+                  </div>
+
+                  <div class="form-group">
+                     <label class="bmd-label-floating"  style="color: #7f007f">SQAB Code of Conduct:</label>
+
+                     <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="codeConductCheck">
+                        <label class="form-check-label" for="codeConductCheck" style="color: black;">I agree to abide by the SQAB Code of Conduct.</label>
+                     </div>                 
+                  </div>
+
+                  <div class="form-group">
+                     <label class="bmd-label-floating"  style="color: #7f007f">SQAB Free Membership Program:</label>
+
+                     <div class="form-check">
+                         <input type="checkbox" class="form-check-input" id="diversityFree">
+                         <label class="form-check-label" for="diversityFree" style="color: black;">I qualify for SQAB's free membership program.</label>
+                     </div>                     
+                  </div>
+
+                  <a href="javascript: revealLinks()"
+                     id="submitBtn"
+                     class="btn btn-primary btn-block btn-raised">Submit</a>
+              </form>
          </div>
       </div>
    </div>
    <!--/.Online Fees row-->
 
-   <!-- Not attending Row
-   <div class="row">
-      <div class="col-md-12">
-         <div class="well">
-
-          <iframe
-            id="JotFormIFrame-90035855253153"
-            onload="window.parent.scrollTo(0,0)"
-            allowtransparency="true"
-            allowfullscreen="true"
-            allow="geolocation; microphone; camera"
-            src="https://form.jotform.com/90035855253153"
-            frameborder="0"
-            style="width: 1px;
-            min-width: 100%;
-            height:1161px;
-            border:none;"
-            scrolling="no"
-          >
-          </iframe>
-          <script type="text/javascript">
-            var ifr = document.getElementById("JotFormIFrame-90035855253153");
-            if(window.location.href && window.location.href.indexOf("?") > -1) {
-              var get = window.location.href.substr(window.location.href.indexOf("?") + 1);
-              if(ifr && get.length > 0) {
-                var src = ifr.src;
-                src = src.indexOf("?") > -1 ? src + "&" + get : src  + "?" + get;
-                ifr.src = src;
-              }
-            }
-            window.handleIFrameMessage = function(e) {
-              if (typeof e.data === 'object') { return; }
-              var args = e.data.split(":");
-              if (args.length > 2) { iframe = document.getElementById("JotFormIFrame-" + args[(args.length - 1)]); } else { iframe = document.getElementById("JotFormIFrame"); }
-              if (!iframe) { return; }
-              switch (args[0]) {
-                case "scrollIntoView":
-                  iframe.scrollIntoView();
-                  break;
-                case "setHeight":
-                  iframe.style.height = args[1] + "px";
-                  break;
-                case "collapseErrorPage":
-                  if (iframe.clientHeight > window.innerHeight) {
-                    iframe.style.height = window.innerHeight + "px";
-                  }
-                  break;
-                case "reloadPage":
-                  window.location.reload();
-                  break;
-                case "loadScript":
-                  var src = args[1];
-                  if (args.length > 3) {
-                      src = args[1] + ':' + args[2];
-                  }
-                  var script = document.createElement('script');
-                  script.src = src;
-                  script.type = 'text/javascript';
-                  document.body.appendChild(script);
-                  break;
-                case "exitFullscreen":
-                  if      (window.document.exitFullscreen)        window.document.exitFullscreen();
-                  else if (window.document.mozCancelFullScreen)   window.document.mozCancelFullScreen();
-                  else if (window.document.mozCancelFullscreen)   window.document.mozCancelFullScreen();
-                  else if (window.document.webkitExitFullscreen)  window.document.webkitExitFullscreen();
-                  else if (window.document.msExitFullscreen)      window.document.msExitFullscreen();
-                  break;
-              }
-              var isJotForm = (e.origin.indexOf("jotform") > -1) ? true : false;
-              if(isJotForm && "contentWindow" in iframe && "postMessage" in iframe.contentWindow) {
-                var urls = {"docurl":encodeURIComponent(document.URL),"referrer":encodeURIComponent(document.referrer)};
-                iframe.contentWindow.postMessage(JSON.stringify({"type":"urls","value":urls}), "*");
-              }
-            };
-            if (window.addEventListener) {
-              window.addEventListener("message", handleIFrameMessage, false);
-            } else if (window.attachEvent) {
-              window.attachEvent("onmessage", handleIFrameMessage);
-            }
-            </script>
-         </div>
-      </div>
-   </div>
-   -->
-
    <!--Surface Registration Fees row-->
-   <div class="row">
+   <div class="row" style="display: none;" id = "membershipShow1">
       <div class="col-sm-12">
-         <h2 class="h2-responsive text-center">Other Registration Options</h2><br>
+         <h2 class="h2-responsive text-center">Membership Renewal</h2><br>
       </div>
    </div>
    <!--/.Surface Registration Fees row-->
 
-   <!--Not Attending Row -->
-   <div class="row">
+   <div class="row" style="display: none;" id = "membershipShow2">
       <div class="col-md-12">
          <div class="well">
-            <h2 class="h2-responsive">Not attending the annual symposium?</h2><br>
-            <p class="lead">If you would like to maintain your SQAB membership, you can pay your 2020 membership dues here.</p>
-            <p class="lead"><strong>2020 Membership without Registration is $20.</strong></p>
+            <h2 class="h2-responsive">Membership Fees</h2><br>
+            <p class="lead">You can pay your 2021 membership dues using the button below below. </p>
+
+            <p>Note: the <strong>2021 Membership is $20</strong> unless you qualify for SQAB's free membership program.</p>
 
             <form action="https://www.paypal.com/cgi-bin/webscr" 
                   method="post" 
-                  target="_top">
+                  target="_blank">
                <input type="hidden" name="cmd" value="_s-xclick">
                <input type="hidden" name="hosted_button_id" value="YBJL75DR42QJC">
                <input type="image" 
@@ -269,21 +378,22 @@ $(document).ready(() => {
                       alt="PayPal - The safer, easier way to pay online!">
                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
             </form>
+
+            <p class="lead">Once you have paid your 2021 membership dues, or if eligible to waive those fees, you should proceed to <a href="https://behaviorlive.com/sqab/home">BehaviorLive</a> to register for the 2021 annual conference. </p>
          </div>
       </div>
    </div>
-   <!--/.Not Attending Row-->
 
    <!--Information row-->
-   <div class="row">      
+   <div class="row" style="display: none;" id = "membershipShow3">      
       <div class="col-md-12">
          <div class="well">
-            <h2 class="h2-responsive">Surface Mail Registration</h2><br>
-            <p class="lead">If you wish to register and/or pay your membership fees using surface mail, please make checks payable to <strong>The Society for the Quantitative Analyses of Behavior</strong> or <strong>SQAB</strong>. Regarding payment information, please refer to the table listed above to determine the appropriate payment (i.e., Membership with/without Registration).</p>
+            <h2 class="h2-responsive">Surface Mail Membership</h2><br>
+            <p class="lead">If you wish to pay your membership fees using surface mail, please make checks payable to <strong>The Society for the Quantitative Analyses of Behavior</strong> or <strong>SQAB</strong>. Regarding payment information, please refer to the table listed above to determine the appropriate payment.</p>
 
-            <p class="lead">Please include the following along with your payment: Registration/membership type, name, current affiliation, mailing address, email address, and phone number.</p>
+            <p class="lead">Please include the following along with your payment: Membership type, name, current affiliation, mailing address, email address, and phone number.</p>
 
-            <p class="lead">2020 Membership/Registration can be sent to:<br><br>
+            <p class="lead">2021 Membership can be sent to:<br><br>
                Carla Lagorio<br>
                Psychology Department<br>
                University of Wisconsin-Eau Claire<br>
