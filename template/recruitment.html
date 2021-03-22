@@ -1,0 +1,89 @@
+<script type="text/javascript">
+
+    $(document).ready(function()
+    {
+        $.getJSON( "json/openings.json", function( data ) {
+
+            var recruitment = data.Recruitment;
+    
+            for (var i = 0; i < recruitment.length; i++)
+            {
+                var p = document.createElement("p");
+
+                p.className = "lead";
+
+                p.innerHTML = p.innerHTML + "<strong>Lab Name:</strong> "              + recruitment[i].LabName + "<br><strong>";
+                p.innerHTML = p.innerHTML + "<strong>Program:</strong> "               + recruitment[i].Program + "<br>";
+                p.innerHTML = p.innerHTML + "<strong>Level of Training</strong> "      + recruitment[i].Level + "<br>";
+                p.innerHTML = p.innerHTML + "<strong>Supervisor:</strong> "            + recruitment[i].Supervisor + "<br>";
+                p.innerHTML = p.innerHTML + "<strong>Description:</strong> "           + recruitment[i].Description + "<br>";
+                p.innerHTML = p.innerHTML + "<strong>Topics:</strong> "                + recruitment[i].Topics + "<br>";
+                p.innerHTML = p.innerHTML + "<strong>Academic Cycle:</strong> "        + recruitment[i].Year + "<br>";
+                p.innerHTML = p.innerHTML + "<strong>Funding Opportunities:</strong> " + recruitment[i].Funding + "<br>";
+                p.innerHTML = p.innerHTML + "<strong>Website:</strong> <a href='"      + recruitment[i].Website 
+                                          + "'>"                                       + recruitment[i].Website + "</a><br>";
+    
+                document.getElementById("studentDiv").appendChild(p);
+            }
+    
+            var facultyRecruitment = data.Openings;
+    
+            for (var i = 0; i < facultyRecruitment.length; i++)
+            {
+                var p = document.createElement("p");
+
+                p.className = "lead";
+
+                p.innerHTML = p.innerHTML + "<strong>Program:</strong> "               + facultyRecruitment[i].Program + "<br>";
+                p.innerHTML = p.innerHTML + "<strong>Supervisor:</strong> "            + facultyRecruitment[i].Supervisor + "<br>";
+                p.innerHTML = p.innerHTML + "<strong>Description:</strong> "           + facultyRecruitment[i].Description + "<br>";
+                p.innerHTML = p.innerHTML + "<strong>Academic Cycle:</strong> "        + facultyRecruitment[i].Year + "<br>";
+                p.innerHTML = p.innerHTML + "<strong>Website:</strong> <a href='"      + facultyRecruitment[i].Website 
+                                          + "'>"                                       + facultyRecruitment[i].Website + "</a><br>";
+
+                document.getElementById("facultyDiv").appendChild(p);
+            }
+        });
+    });
+    </script>
+    
+    <!--Main layout-->
+    <div class="container">
+    
+    <!--Header row-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h2 class="h2-responsive">Recruitment and Open Positions</h2><br>
+    
+                <p class="lead">A catalog of available positions is managed and curated by XXXXX. This resource provides information related to open positions available to both students (i.e., faculty recruiting students) and prospective faculty (i.e., programs recruiting faculty).</p>
+
+                <p class="lead">Faculty and programs who desire to add a position to this list (or update or remove such positions) should reach out to XXXXX.</p>
+            </div>
+        </div>
+    </div>
+    <!--/.Header row-->
+    
+    <!--Information row-->
+    <div class="row">
+        <div class="col-md-12">
+            <div id="studentDiv" class="well">
+                <h2 class="h2-responsive">Student Recruitment Opportunities</h2><br>
+                
+            </div>
+        </div>
+    
+    </div>
+    <!--/.Information row-->
+
+    <!--Information row-->
+    <div class="row">
+        <div class="col-md-12">
+            <div id="facultyDiv" class="well">
+                <h2 class="h2-responsive">Faculty Recruitment/Open Positions</h2><br>
+            </div>
+        </div>
+    </div>
+    <!--/.Information row-->
+    
+    </div>
