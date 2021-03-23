@@ -137,6 +137,15 @@ $(document).ready(() => {
          }
       });
    });
+
+   document.getElementById('diversityFree').addEventListener('change', (event) => {
+      if (event.target.checked) {
+         $.dialog({
+            title:   'Free SQAB Membership',
+            content: 'Those who qualify for SQAB\'s free membership program SHOULD NOT click on the PayPal button revealed once their information is saved. Eligible attendees should instead proceed directly to BehaviorLive to register for the SQAB events.',
+         });
+      }
+   });
 });
 
 </script>
@@ -194,7 +203,6 @@ $(document).ready(() => {
       </div>
    </div>
    <!--/.Online Registration Fees row-->
-
 
    <!--Online Fees row-->
    <div class="row">
