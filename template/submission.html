@@ -144,6 +144,7 @@
     }
 
     var t = Date.parse('May 3 2021 23:59:59 GMT-0700') - Date.parse(new Date());
+
     var seconds = Math.floor( (t/1000) % 60 );
     var minutes = Math.floor( (t/1000/60) % 60 );
     var hours =   Math.floor( (t/(1000*60*60)) % 24 );
@@ -169,9 +170,9 @@
     var utcDate = currLocationDate.getTime() + (currLocationDate.getTimezoneOffset() * 60000);
     var offsetDate = new Date(utcDate + (3600000*pstOffset));
 
-    if (offsetDate.getMonth() + 1 >= 4 &&
-        offsetDate.getDate() >= 6 &&
-        offsetDate.getFullYear() >= 2020) {
+    if (offsetDate.getMonth() + 1 >= 5 &&
+        offsetDate.getDate() >= 3 &&
+        offsetDate.getFullYear() >= 2021) {
 
         var subPanel = document.getElementById("submitPanel");
         subPanel.innerHTML = "";      
