@@ -91,7 +91,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label htmlFor="abstractText" class="bmd-label-floating">Abstract (Maximum 300 words):</label>
+                        <label htmlFor="abstractText" class="bmd-label-floating">Abstract (Maximum 120 words):</label>
                         <textarea name="abstractText"
                             placeholder="In this study..."
                             class="form-control"
@@ -221,8 +221,8 @@ function uploadPoster() {
         alert( 'Check email address in form (i.e., ***@***.***)!' );
         return;
     }
-    else if ((abstractText.split( /\w\w+/ ).length - 1 ) > 300 ) {
-        alert( 'Abstract is too long (i.e., over 300 words)!' );
+    else if ((abstractText.split( /\w\w+/ ).length - 1 ) > 120 ) {
+        alert( 'Abstract is too long (i.e., over 120 words)!' );
         return;
     }
 
