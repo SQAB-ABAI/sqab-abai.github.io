@@ -117,6 +117,10 @@
     {
       "Year": 2018,
       "Path": "newsletters\/2018.docx"
+    },
+    {
+      "Year": 2020,
+      "Path": "newsletters\/2020.pdf"
     }
   ]
 }
