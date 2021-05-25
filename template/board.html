@@ -20,8 +20,7 @@ $(document).ready(function()
             else
             {
                 var p = document.createElement("p");
-                p.innerHTML = persons[i].Name + " (" + 
-                persons[i].Role + ")<br>";
+                p.innerHTML = persons[i].Name + "<br>";
                 p.className += " lead";
 
                 document.getElementById("boardDiv").appendChild(p);
@@ -37,17 +36,20 @@ $(document).ready(function()
                 var a = document.createElement("a");
 
                 a.href = "mailto:" + persons[i].Contact;
-                a.innerHTML = persons[i].Name + " (" + 
-                persons[i].Role + ")<br><br>";
+                a.innerHTML = persons[i].Name + " (" + persons[i].Role + ")";
                 a.className += " lead";
 
                 document.getElementById("officerDiv").appendChild(a);
+
+                var p = document.createElement("p");
+                p.className += " lead";
+
+                document.getElementById("officerDiv").appendChild(p);
             }
             else 
             {
                 var p = document.createElement("p");
-                p.innerHTML = persons[i].Name + " (" + 
-                persons[i].Role + ")<br>";
+                p.innerHTML = persons[i].Name + " (" + persons[i].Role + ")<br>";
                 p.className += " lead";
 
                 document.getElementById("officerDiv").appendChild(p);
@@ -112,14 +114,14 @@ $(document).ready(function()
 <div class="row">
     <div class="col-md-6">
         <div id="boardDiv" class="well">
-            <h2 class="h2-responsive">Current Board Members</h2><br>
+            <h2 class="h2-responsive">Board Members/Board Directors</h2><br>
             
         </div>
     </div>
 
     <div class="col-md-6">
         <div id="officerDiv" class="well">
-            <h2 class="h2-responsive">Current Officers</h2><br>
+            <h2 class="h2-responsive">Board Officers</h2><br>
             
         </div>
     </div>
