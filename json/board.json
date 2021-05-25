@@ -175,37 +175,48 @@
    ],
    "PastPresident":[
       {
-         "Name":"William M. Baum"
+         "Name":"Richard J. Herrnstein",
+         "Term":"1983-1989"
       },
       {
-         "Name":"Lewis Bizo"
+         "Name":"John Anthony Nevin",
+         "Term":"1994-1999"
       },
       {
-         "Name":"Michael Lamport Commons"
+         "Name":"Peter Richard Killeen",
+         "Term":"2000-2002"
       },
       {
-         "Name":"Randolph Grace"
+         "Name":"Armando Machado",
+         "Term":"2003"
       },
       {
-         "Name":"Richard J. Herrnstein"
+         "Name":"William M. Baum",
+         "Term":"2004-2006"
       },
       {
-         "Name":"Peter Richard Killeen"
+         "Name":"Michael Lamport Commons",
+         "Term":"2007"
       },
       {
-         "Name":"Armando Machado"
+         "Name":"Randolph Grace",
+         "Term":"2007-2009"
       },
       {
-         "Name":"John Anthony Nevin"
+         "Name":"Alliston Reid",
+         "Term":"2010-2012"
       },
       {
-         "Name":"Chris Podlesnik"
+         "Name":"Timothy Shahan",
+         "Term":"2013-2015"
       },
       {
-         "Name":"Alliston Reid"
+         "Name":"Lewis Bizo",
+         "Term":"2016-2018"
       },
       {
-         "Name":"Timothy Shahan"
+         "Name":"Chris Podlesnik",
+         "Term":"2019-2021"
       }
    ]
 }
