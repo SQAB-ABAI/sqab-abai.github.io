@@ -1,31 +1,7 @@
 {
    "Board":[
       {
-         "Name":"Chris Podlesnik",
-         "Role":"Board Director"
-      },
-      {
-         "Name":"Suzanne Mitchell",
-         "Role":"Board Director"
-      },
-      {
-         "Name":"Brian Greer",
-         "Role":"Board Director"
-      },
-      {
-         "Name":"Carla Lagorio",
-         "Role":"Board Director"
-      },
-      {
-         "Name":"Shrinidhi Subramaniam",
-         "Role":"Board Director"
-      },
-      {
          "Name":"Jason Bourret",
-         "Role":"Board Director"
-      },
-      {
-         "Name":"Andy Craig",
          "Role":"Board Director"
       },
       {
@@ -33,38 +9,38 @@
          "Role":"Board Director"
       },
       {
+         "Name":"Andy Craig",
+         "Role":"Board Director"
+      },
+      {
+         "Name":"Brian Greer",
+         "Role":"Board Director"
+      },
+      {
+         "Name":"Carla Lagorio",
+         "Role":"Board Director"
+      },
+      {
+         "Name":"Suzanne Mitchell",
+         "Role":"Board Director"
+      },
+      {
+         "Name":"Chris Podlesnik",
+         "Role":"Board Director"
+      },
+      {
          "Name":"Derek Reed",
+         "Role":"Board Director"
+      },
+      {
+         "Name":"Shrinidhi Subramaniam",
          "Role":"Board Director"
       }
    ],
    "Officers":[
       {
-         "Name":"Chris Podlesnik",
-         "Role":"President"
-      },
-      {
-         "Name":"Suzanne Mitchell",
-         "Role":"Program Chair & President-Elect"
-      },
-      {
-         "Name":"Brian Greer",
-         "Role":"Executive Coordinator"
-      },
-      {
-         "Name":"Carla Lagorio",
-         "Role":"Treasurer"
-      },
-      {
-         "Name":"Shrinidhi Subramaniam",
-         "Role":"Secretary"
-      },
-      {
-         "Name":"Todd McKerchar",
-         "Role":"Tutorial Coordinator"
-      },
-      {
-         "Name":"Tadd Schneider",
-         "Role":"Student Council Representative"
+         "Name":"Jason Bourret",
+         "Role":"Resident Agent"
       },
       {
          "Name":"Cristina Dos Santos",
@@ -75,13 +51,37 @@
          "Role":"Social Media Coordinator"
       },
       {
-         "Name":"Jason Bourret",
-         "Role":"Resident Agent"
-      },
-      {
          "Name":"Shawn Gilroy",
          "Contact":"sgilroy1@lsu.edu",
          "Role":"Webmaster"
+      },
+      {
+         "Name":"Brian Greer",
+         "Role":"Executive Coordinator"
+      },
+      {
+         "Name":"Carla Lagorio",
+         "Role":"Treasurer"
+      },
+      {
+         "Name":"Todd McKerchar",
+         "Role":"Tutorial Coordinator"
+      },
+      {
+         "Name":"Suzanne Mitchell",
+         "Role":"Program Chair & President-Elect"
+      },
+      {
+         "Name":"Chris Podlesnik",
+         "Role":"President"
+      },
+      {
+         "Name":"Tadd Schneider",
+         "Role":"Student Council Representative"
+      },
+      {
+         "Name":"Shrinidhi Subramaniam",
+         "Role":"Secretary"
       }
    ],
    "PastDirectors":[
