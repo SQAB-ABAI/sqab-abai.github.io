@@ -2,7 +2,7 @@
 $(document).ready(function()
 {
     $.getJSON( "json/board.json", function( data ) {
-        var persons = data.Officers;
+        var persons = data.Board;
 
         for (var i = 0; i < persons.length; i++)
         {
@@ -24,20 +24,34 @@ $(document).ready(function()
                 persons[i].Role + ")<br>";
                 p.className += " lead";
 
-                document.getElementById("boardDiv").appendChild(p);                
+                document.getElementById("boardDiv").appendChild(p);
             }
         }
 
-        persons = data.Students;
+        persons = data.Officers;
 
         for (var i = 0; i < persons.length; i++)
         {
-            var p = document.createElement("p");
-            p.innerHTML = persons[i].Name + " (" + 
-            persons[i].Role + ")<br>";
-            p.className += " lead";
+            if (persons[i].Role == "Webmaster")
+            {
+                var a = document.createElement("a");
 
-            document.getElementById("studentDiv").appendChild(p);    
+                a.href = "mailto:" + persons[i].Contact;
+                a.innerHTML = persons[i].Name + " (" + 
+                persons[i].Role + ")<br><br>";
+                a.className += " lead";
+
+                document.getElementById("officerDiv").appendChild(a);
+            }
+            else 
+            {
+                var p = document.createElement("p");
+                p.innerHTML = persons[i].Name + " (" + 
+                persons[i].Role + ")<br>";
+                p.className += " lead";
+
+                document.getElementById("officerDiv").appendChild(p);
+            }
         }
 
         persons = data.PastDirectors;
@@ -46,8 +60,7 @@ $(document).ready(function()
         {
             var p = document.createElement("p");
 
-            p.innerHTML = persons[i].Name + " (" + 
-            persons[i].Role + ")<br>";
+            p.innerHTML = persons[i].Name;
 
             p.className += " lead";
 
@@ -99,14 +112,14 @@ $(document).ready(function()
 <div class="row">
     <div class="col-md-6">
         <div id="boardDiv" class="well">
-            <h2 class="h2-responsive">Current Board</h2><br>
+            <h2 class="h2-responsive">Current Board Members</h2><br>
             
         </div>
     </div>
 
     <div class="col-md-6">
-        <div id="studentDiv" class="well">
-            <h2 class="h2-responsive">Current Student Positions</h2><br>
+        <div id="officerDiv" class="well">
+            <h2 class="h2-responsive">Current Officers</h2><br>
             
         </div>
     </div>
@@ -125,7 +138,7 @@ $(document).ready(function()
 <div class="row">
     <div class="col-md-6">
         <div id="prevBoardDiv" class="well">
-            <h2 class="h2-responsive">Past Board</h2><br>
+            <h2 class="h2-responsive">Past Board Members</h2><br>
             
         </div>
     </div>

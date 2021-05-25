@@ -1,24 +1,24 @@
 {
-   "Officers":[
+   "Board":[
       {
          "Name":"Chris Podlesnik",
-         "Role":"Board Director & President"
+         "Role":"Board Director"
       },
       {
          "Name":"Suzanne Mitchell",
-         "Role":"Board Director, Program Chair & President-Elect"
+         "Role":"Board Director"
       },
       {
          "Name":"Brian Greer",
-         "Role":"Board Director, Exec. Director"
+         "Role":"Board Director"
       },
       {
          "Name":"Carla Lagorio",
-         "Role":"Board Director & Treasurer"
+         "Role":"Board Director"
       },
       {
          "Name":"Shrinidhi Subramaniam",
-         "Role":"Board Director & Secretary"
+         "Role":"Board Director"
       },
       {
          "Name":"Jason Bourret",
@@ -35,18 +35,33 @@
       {
          "Name":"Derek Reed",
          "Role":"Board Director"
+      }
+   ],
+   "Officers":[
+      {
+         "Name":"Chris Podlesnik",
+         "Role":"President"
+      },
+      {
+         "Name":"Suzanne Mitchell",
+         "Role":"Program Chair & President-Elect"
+      },
+      {
+         "Name":"Brian Greer",
+         "Role":"Executive Coordinator"
+      },
+      {
+         "Name":"Carla Lagorio",
+         "Role":"Treasurer"
+      },
+      {
+         "Name":"Shrinidhi Subramaniam",
+         "Role":"Secretary"
       },
       {
          "Name":"Todd McKerchar",
          "Role":"Tutorial Coordinator"
       },
-      {
-         "Name":"Shawn Gilroy",
-         "Contact":"sgilroy1@lsu.edu",
-         "Role":"Webmaster"
-      }
-   ],
-   "Students":[
       {
          "Name":"Tadd Schneider",
          "Role":"Student Council Representative"
@@ -58,88 +73,136 @@
       {
          "Name":"Brett Gelino",
          "Role":"Social Media Coordinator"
+      },
+      {
+         "Name":"Jason Bourret",
+         "Role":"Resident Agent"
+      },
+      {
+         "Name":"Shawn Gilroy",
+         "Contact":"sgilroy1@lsu.edu",
+         "Role":"Webmaster"
       }
    ],
    "PastDirectors":[
       {
-         "Name":"Federico Sanabria",
-         "Role":"Past Board Director"
+         "Name":"William Baum"
       },
-      {
-         "Name":"Derek Reed",
-         "Role":"Past Board Director, Exec. Director"
-      },
-      {
-         "Name":"Elizabeth Kyonka",
-         "Role":"Past Secretary, Board Director"
-      },
-      {
-         "Name":"Lavinia Tan",
-         "Role":"Past Treasurer, Board Director"
-      },
-      {
-         "Name":"Timothy D. Hackenberg",
-         "Role":"Past Board Director"
-      },
-      {
-         "Name":"Armando Machado",
-         "Role":"Past Board Director"
-      },
-      {
-         "Name":"Peter Richard Killeen",
-         "Role":"Past Board Director"
-      },
-      {
-         "Name":"John Anthony Nevin",
-         "Role":"Past Board Director"
-      },
-      {
-         "Name":"Cynthia Pietras",
-         "Role":"Past Board Director"
-      },
-      {
-         "Name":"Mark Reilly",
-         "Role":"Past Board Director"
-      },
-      {
-         "Name":"Darlene Crone-Todd",
-         "Role":"Past Board Director, Exec. Director"
-      },
-      {
-         "Name":"Adam Fox",
-         "Role":"Board Director & Secretary"
-      }
-   ],
-   "PastPresident":[
       {
          "Name":"Lewis Bizo"
       },
       {
-         "Name":"Timothy Shahan"
+         "Name":"Michael Commons"
       },
       {
-         "Name":"Alliston Reid"
+         "Name":"Darlene Crone-Todd"
       },
       {
-         "Name":"Randolph Grace"
+         "Name":"Michael Davison"
       },
       {
-         "Name":"Michael Lamport Commons"
+         "Name":"Edmund Fantino"
       },
       {
-         "Name":"William M. Baum"
+         "Name":"Adam Fox"
       },
       {
-         "Name":"Armando Machado"
+         "Name":"Gregory Galbicka"
+      },
+      {
+         "Name":"Randy Grace"
+      },
+      {
+         "Name":"Leonard Green"
+      },
+      {
+         "Name":"Timothy D. Hackenberg"
+      },
+      {
+         "Name":"Jennifer Higa"
       },
       {
          "Name":"Peter Richard Killeen"
       },
       {
+         "Name":"Elizabeth Kyonka"
+      },
+      {
+         "Name":"Armando Machado"
+      },
+      {
+         "Name":"Jack Marr"
+      },
+      {
+         "Name":"James Mazur"
+      },
+      {
+         "Name":"Diane McCarthy"
+      },
+      {
+         "Name":"Patrice Miller"
+      },
+      {
          "Name":"John Anthony Nevin"
       },
       {
+         "Name":"Cindy Pietras"
+      },
+      {
+         "Name":"Howard Rachlin"
+      },
+      {
+         "Name":"Derek Reed"
+      },
+      {
+         "Name":"Alliston Reid"
+      },
+      {
+         "Name":"Mark Reilly"
+      },
+      {
+         "Name":"Timothy Shahan"
+      },
+      {
+         "Name":"Federico Sanabria"
+      },
+      {
+         "Name":"Lavinia Tan"
+      },
+      {
+         "Name":"Allan Wagner"
+      }
+   ],
+   "PastPresident":[
+      {
+         "Name":"William M. Baum"
+      },
+      {
+         "Name":"Lewis Bizo"
+      },
+      {
+         "Name":"Michael Lamport Commons"
+      },
+      {
+         "Name":"Randolph Grace"
+      },
+      {
          "Name":"Richard J. Herrnstein"
+      },
+      {
+         "Name":"Peter Richard Killeen"
+      },
+      {
+         "Name":"Armando Machado"
+      },
+      {
+         "Name":"John Anthony Nevin"
+      },
+      {
+         "Name":"Alliston Reid"
+      },
+      {
+         "Name":"Timothy Shahan"
       }
    ]
 }
