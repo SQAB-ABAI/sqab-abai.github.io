@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+
+    <title>Management</title>
+
+    <script src="js/jquery.min.js"></script>
+
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" href="css/roboto.css" type="text/css" />
+    <link href="css/icon.css" rel="stylesheet" />
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Material Design -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/bootstrap-material-design.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="css/ripples.min.css" />
+
+    <!-- Template styles -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-firestore.js"></script>
+  </head>
+
+  <script>
+    var config = {
+      apiKey: "AIzaSyAoIBtOT5wcVNP3ujWILYbsWfvvzWYgth0",
+      authDomain: "sqabbackend.firebaseapp.com",
+      databaseURL: "https://sqabbackend.firebaseio.com",
+      projectId: "sqabbackend",
+      storageBucket: "sqabbackend.appspot.com",
+      messagingSenderId: "680112495974",
+    };
+
+    firebase.initializeApp(config);
+
+    var actionCodeSettings = {
+      // URL you want to redirect back to. The domain (www.example.com) for this
+      // URL must be in the authorized domains list in the Firebase Console.
+      url: "http://127.0.0.1:5500/Management.html",
+      // This must be true.
+      handleCodeInApp: true,
+    };
+
+    function attemptSignIn() {
+      var email = document.getElementById("loginEmail").value;
+
+      firebase
+        .auth()
+        .sendSignInLinkToEmail(email, actionCodeSettings)
+        .then(() => {
+          // The link was successfully sent. Inform the user.
+          // Save the email locally so you don't need to ask the user for it again
+          // if they open the link on the same device.
+          window.localStorage.setItem("emailForSignIn", email);
+
+          console.log("here");
+          // ...
+        })
+        .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+
+          console.log(errorCode);
+          console.log(errorMessage);
+          // ...
+        });
+    }
+  </script>
+  <body>
+    <div id="headerTag"></div>
+
+    <main>
+      <div id="bodyTag">
+        <!--Main layout-->
+        <div class="container">
+          <!--Form row-->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="well">
+                <h2 class="h2-responsive">Authentication</h2>
+
+                <form>
+                  <div class="form-group">
+                    <label htmlFor="emailAddress" class="bmd-label-floating"
+                      >Email Address:</label
+                    >
+                    <input
+                      name="emailAddress"
+                      type="email"
+                      id="loginEmail"
+                      class="form-control"
+                      placeholder="somebody@somewhere.com"
+                    />
+                  </div>
+
+                  <a
+                    href="javascript: attemptSignIn()"
+                    id="submitBtn"
+                    class="btn btn-primary btn-block btn-raised"
+                    >Submit</a
+                  >
+                </form>
+              </div>
+            </div>
+          </div>
+          <!--/.Form row-->
+        </div>
+      </div>
+    </main>
+
+    <div id="footerTag"></div>
+
+    <!-- Load templates, for brevity -->
+    <script>
+      $(function () {
+        $("#headerTag").load("html/header.html");
+        $("#footerTag").load("html/footer.html");
+      });
+    </script>
+  </body>
+</html>
