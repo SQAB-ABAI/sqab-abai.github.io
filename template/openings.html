@@ -1,0 +1,171 @@
+<script type="text/javascript">
+  var config = {
+    apiKey: "AIzaSyAoIBtOT5wcVNP3ujWILYbsWfvvzWYgth0",
+    authDomain: "sqabbackend.firebaseapp.com",
+    databaseURL: "https://sqabbackend.firebaseio.com",
+    projectId: "sqabbackend",
+    storageBucket: "sqabbackend.appspot.com",
+    messagingSenderId: "680112495974",
+  };
+
+  firebase.initializeApp(config);
+
+  const db = firebase.firestore();
+
+  db.collection("studentTraining").onSnapshot((snapshot) => {
+    const data = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    var tbl = document.getElementById("studentTable");
+    var tblBody = document.getElementById("studentTableBody");
+
+    while (tblBody.hasChildNodes()) {
+      tblBody.removeChild(tblBody.firstChild);
+    }
+
+    if (tbl.rows.length > 1) {
+      tblBody.innerHTML = tbl.rows[0].innerHTML;
+    }
+
+    for (var rowNum = 0; rowNum < data.length; rowNum++) {
+      var row = document.createElement("tr");
+
+      var cellTh = document.createElement("th");
+
+      var cellThLink = document.createElement("a");
+      cellThLink.setAttribute("href", data[rowNum].link);
+      cellThLink.innerText = "Link";
+      cellTh.appendChild(cellThLink);
+
+      var cellTd1 = document.createElement("td");
+      var cellTdText1 = document.createTextNode(data[rowNum].description);
+      cellTd1.appendChild(cellTdText1);
+
+      var cellTd2 = document.createElement("td");
+
+      var cellThLink2 = document.createElement("a");
+      cellThLink2.setAttribute("href", "mailto:" + data[rowNum].contact);
+      cellThLink2.innerText = "Email";
+      cellTd2.appendChild(cellThLink2);
+
+      row.appendChild(cellTh);
+      row.appendChild(cellTd1);
+      row.appendChild(cellTd2);
+
+      tblBody.appendChild(row);
+    }
+  });
+
+  db.collection("professionalOpportunities").onSnapshot((snapshot) => {
+    const data = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    var tbl2 = document.getElementById("proTable");
+    var tblBody2 = document.getElementById("proTableBody");
+
+    while (tblBody2.hasChildNodes()) {
+      tblBody2.removeChild(tblBody2.firstChild);
+    }
+
+    for (var rowNum = 0; rowNum < data.length; rowNum++) {
+      var row = document.createElement("tr");
+
+      var cellTh = document.createElement("th");
+
+      var cellThLink = document.createElement("a");
+      cellThLink.setAttribute("href", data[rowNum].link);
+      cellThLink.innerText = "Link";
+      cellTh.appendChild(cellThLink);
+
+      var cellTd1 = document.createElement("td");
+      var cellTdText1 = document.createTextNode(data[rowNum].description);
+      cellTd1.appendChild(cellTdText1);
+
+      var cellTd2 = document.createElement("td");
+
+      var cellThLink2 = document.createElement("a");
+      cellThLink2.setAttribute("href", "mailto:" + data[rowNum].contact);
+      cellThLink2.innerText = "Email";
+      cellTd2.appendChild(cellThLink2);
+
+      row.appendChild(cellTh);
+      row.appendChild(cellTd1);
+      row.appendChild(cellTd2);
+
+      tblBody2.appendChild(row);
+    }
+  });
+</script>
+
+<!--Main layout-->
+<div class="container">
+  <!--Header row-->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="jumbotron">
+        <h2 class="h2-responsive">
+          Current Openings in the Experimental Analysis of Behavior
+        </h2>
+        <br />
+        <p class="lead">...</p>
+      </div>
+    </div>
+  </div>
+  <!--/.Header row-->
+
+  <!-- Student Training Header row-->
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 class="h2-responsive text-center">Student Training Mentorship</h2>
+      <br />
+    </div>
+  </div>
+  <!--/.Student Training Header row-->
+
+  <!--Information row-->
+  <div class="row">
+    <div class="col-md-12">
+      <table id="studentTable" class="table">
+        <thead>
+          <tr>
+            <th scope="col">Link</th>
+            <th scope="col">Lab Description</th>
+            <th scope="col">Contact</th>
+          </tr>
+        </thead>
+        <tbody id="studentTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+  <!--/.Information row-->
+
+  <!-- Summary row-->
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 class="h2-responsive text-center">Professional Opportunities</h2>
+      <br />
+    </div>
+  </div>
+  <!--/.Summary row-->
+
+  <!--Information row-->
+  <div class="row">
+    <div class="col-md-12">
+      <table id="proTable" class="table">
+        <thead>
+          <tr>
+            <th scope="col">Link</th>
+            <th scope="col">Position Description</th>
+            <th scope="col">Contact</th>
+          </tr>
+        </thead>
+        <tbody id="proTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+  <!--/.Information row-->
+</div>
