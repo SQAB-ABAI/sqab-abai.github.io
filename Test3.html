@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+<script src="js/jquery.min.js"></script>
+</head>
+<body>
+<script src="https://apis.google.com/js/api.js"></script>
+<script type="text/javascript">
+
+var fileJson = {};
+fileJson.Labs = [];
+fileJson.Books = [];
+fileJson.SpecialIssues = [];
+fileJson.Tools = [];
+fileJson.Software = [];
+
+function addLab(_name, _location, _uni, _pi)
+{
+  fileJson.Labs.push(
+  {
+    Name: _name,
+    Location: _location,
+    University: _uni,
+    PI: _pi
+  });
+}
+
+function addBook(_name, _location)
+{
+  fileJson.Books.push(
+  {
+    Name: _name,
+    Location: _location
+  });
+}
+
+function addIssue(_name, _location)
+{
+  fileJson.SpecialIssues.push(
+  {
+    Name: _name,
+    Location: _location
+  });
+}
+
+function addTool(_name, _location, _type)
+{
+  fileJson.Tools.push(
+  {
+    Name: _name,
+    Location: _location,
+    Type: _type
+  });
+}
+
+function addSoftware(_name, _location, _type, _source)
+{
+  fileJson.Software.push(
+  {
+    Name: _name,
+    Location: _location,
+    Type: _type,
+    Source: _source
+  });
+}
+
+
+$(document).ready(function() {
+
+  addLab("Alcohol Lab", "http://alcohollab.pages.tcnj.edu/",
+    "The College of New Jersey, Department of Psychology", "Margaret Martinetti, PhD");
+
+  addLab("Behavioral Economics Lab", "http://psych.wustl.edu/lengreen/members.html", "Washington University in St. Louis, Department of Psychology", "Leonard Green, PhD");
+  addLab("Avian Visual Cognition Lab​", "http://pigeon.psy.tufts.edu/avc/toc.htm", "Tufts University, Department of Psychology", "Robert Cook, PhD");
+  addLab("Basic Behavioral Processes Lab​", "https://psychology.clas.asu.edu/research/labs/basic-behavioral-processes-lab-sanabria", "Arizona State University, Department of Psychology", "Federico Sanabria, PhD");
+  addLab("Quantitative Analysis of Behavior Laboratory", "http://qablab.weebly.com/", "West Virginia University, Department of Psychology", "Elizabeth Kyonka, PhD");
+  addLab("Behavioural Ecolocy Research Group", "http://users.ox.ac.uk/~kgroup/index.html", "University of Oxford, Department of Zoology", "Alex Kacelnik, PhD");
+  addLab("Experimental Analysis of Behaviour Research Group", "http://www.psych.auckland.ac.nz/en/about/our-research/research-groups/experimental-analysis-of-behaviour-research.html", "The University of Auckland, School of Psychology", "Michael Davison, PhD");
+  addLab("Operant Behavioral Research Lab", "http://asu.academia.edu/PeterKilleen", "Arizona State University, Department of Psychology", "Peter Killeen, PhD");
+  addLab("Applied Behavioral Economics Laboratory", "http://www.behavioraleconlab.com/", "University of Kansas, Department of Applied Behavioral Science", "Derek Reed, PhD");
+
+  addBook("Nevin, John A. (2015). Behavioral momentum: A scientific metaphor. Self-published.", "http://www.amazon.com/Behavioral-Momentum-Scientific-John-Nevin/dp/1512297690/ref=sr_1_1?ie=UTF8&qid=1442862677&sr=8-1&keywords=Behavioral+momentum+Nevin");
+
+  addIssue("Special issue of the Mexican Journal of Behavior Analysis (Persistence and Relapse)", "http://rmac-mx.org/tabla-de-contenidos/");
+
+  addTool("Hursh, S. R., & Roma, P. G. (2014). Exponential model of demand in GraphPad Prism", "http://www.ibrinc.org/index.php?id=175", "Demand");
+  addTool("Kaplan, B. A., & Reed, D. D. (2014). Essential value, pmax, and omax automated calculator", "http://hdl.handle.net/1808/14934", "Demand");
+  addTool("Stein, J. S., Koffarnus, M. N., Snider, S. E., Quisenberry, A. J., & Bickel, W. K. (2015). Nonsystematic Purchase Task Data Identification Tool: Supplement to Stein, Koffarnus, Snider, Quisenberry, & Bickel", "https://www.researchgate.net/publication/283513311_Nonsystematic_Purchase_Task_Data_Identification_Tool_Supplement_to_Stein_Koffarnus_Snider_Quisenberry__Bickel_%282015%29", "Demand");
+  addTool("Reed, D. D. (2015).Exponential demand simulation tool", "http://hdl.handle.net/1808/17909", "Demand");
+
+  addTool("Gray, J. C., Amlung, M. T., Palmer, A. A.; MacKillop, J. (2016). Syntax for Calculation of Discounting Indices from the Monetary Choice Questionnaire and Probability Discounting Questionnaire", "https://onlinelibrary.wiley.com/doi/abs/10.1002/jeab.221", "Discounting");
+  addTool("Kaplan, B. A., Lemley, S. M., Reed, D. D., & Jarmolowicz, D. P. (2014). ​21- and 27-item monetary choice questionnaire automated scorers", "https://kuscholarworks.ku.edu/handle/1808/15424", "Discounting")
+  addTool("Reed, D. D. (2015). Delay discounting visualization tool", "https://kuscholarworks.ku.edu/handle/1808/17907", "Discounting")
+
+  addTool("Reed, D. D. (2015). Matching law visualization tool", "https://kuscholarworks.ku.edu/handle/1808/17908", "Matching")
+
+  addSoftware("Gilroy, S. P. (2016). Discounting Model Selector", "https://github.com/miyamot0/ModelSelectorQt/releases", "https://github.com/miyamot0/ModelSelectorQt", "Discounting");
+
+  //console.log(fileJson)
+
+  //$("#mainDiv").text(JSON.stringify(fileJson));
+
+  $.getJSON( "json/tutorials.json", function( data ) {
+    //var items = [];
+    
+    var tutClone = data.Tutorials;
+   
+    var new1 = {
+      Index: 0,
+      Title: "Sarah Cowie, Using the Past to Predict the Future, SQAB",
+      Summary: "Chair: Michael Davison (The University of Auckland): Behavior analysis is on the cusp of a major change in the way we think about our most fundamental process: Reinforcement. Whereas the law of effect stipulates that reinforcers control behavior because of their special function in increasing a behavior’s strength, an alternative approach casts reinforcers as stimuli with current value to the organism, but no unique function in changing behavior. Under this approach, behavior is controlled by relations between stimuli, depending on the affordances and dispositions of the organism. This tutorial explores some of the data that has led us to change the way we understand control by current environmental conditions. First, the tutorial examines some of the evidence for prospective control, when reinforcers are absent, or temporally distant, or when reinforcer effects are inconsistent with strengthening. Next, I explore how quantitative models can provide a testable explanation of control by the likely future, as extrapolated from the past. Finally, the tutorial considers the implications of a shift from understanding control in terms of retrospective response-reinforcer pairings to prospection on the basis of the perceived structure of the environment, and argues that in conjunction with quantitative models, prospective control need not invoke an inner organism.",
+      Video: "https://www.youtube.com/embed/64n4sCGGb8w"
+    }; tutClone.unshift(new1);
+    
+    var new1 = {
+      Index: 0,
+      Title: "William DeHart & Jon Friedel, Multilevel Modeling for Single-Subject Designs and Model Fitting, SQAB",
+      Summary: "Chair: Shawn Gilroy (Louisiana State University); Application of basic statistical measures (e.g., t-tests, ANOVA) to single-subject designs have been a source of conflict in Behavior Analysis because, in part, these tests aggregate behavioral variability across subjects and time, eliminating much of the data that behavior analysts find important. Multilevel modeling (MLM) is a statistical technique that addresses these concerns and is commonly used when data are naturally clustered (e.g., student clusters in classrooms, which are also clustered in various schools across a district). With MLM, the value of a statistical parameter for a specific case depends on the levels of the each cluster for that case. A single subject can serve as a cluster of data and, therefore, MLM can provide subject-by-subject predictions. In a single-subject or small-n design, statistical comparisons based on the IVs of interest are enhanced when the models have already accounted for intrasubject variability. In theoretical modeling of behavior, subject-by-subject model parameters can be obtained while simultaneously accounting for group-level patterns in the data. This tutorial will demonstrate using MLM to analyze experimental data from a single subject design and also to conduct subject level model fitting. The analyses will be conducted in R, a popular, free software package for statistical analyses.",
+      Video: "https://www.youtube.com/embed/c0vaTEpf_i8"
+    }; tutClone.unshift(new1);
+
+    var new1 = {
+      Index: 0,
+      Title: "Caio Miguel, Stimulus Equivalence 101, SQAB",
+      Summary: "Chair: Anna I. Petursdottir (Texas Christian University); Researchers and clinicians rely heavily on the matching-to-sample procedure (MTS) to establish conditional discriminations. In an MTS trial, a visual or auditory sample is presented, followed by several comparisons (pictures or objects). The selection of the correct comparison leads to reinforcement while selection of the incorrect one leads to some form of correction. Clinically, MTS is used for teaching a variety of skills, including listener behavior, categorization, math, and reading. An important characteristic of MTS is that samples and comparisons become substitutable for each other (i.e., equivalent). Understanding the variables responsible for the development of equivalence classes has been the topic of investigation in the field of behavior analysis for almost 50 years, generating an enormous (and complicated) body of research. This research has led to the development of at least three theoretical accounts to explain meaning and symbolic behavior, as well as has informed clinicians on how to take advantage of the MTS procedure to produce a multitude of generative/novel performances. This talk will serve as a first introduction to the concept of stimulus equivalence and its ramifications for both research and practice.",
+      Video: "https://www.youtube.com/embed/O02rHbRQXD0"
+    }; tutClone.unshift(new1);
+
+    var new1 = {
+      Index: 0,
+      Title: "Paul Soto, Using Genetically Modified Organisms to Probe Neurobiological Bases of Behavior, SQAB",
+      Summary: "Chair: Jesse Dallery (University of Florida); This tutorial will provide a general introduction to some technologies available for manipulating gene expression in mice. Technologies for manipulating gene expression can be used to investigate the neurobiological contributors to behavior. Results obtained from studies in dopamine receptor knockout mice on the role of dopamine receptors in food’s reinforcing efficacy will be used as an example of use of a global knockout approach. Results obtained from studies in Alzheimer’s transgenic APPswe/PS1dE9 mice on the role of beta amyloid in cognitive decline will be used as an example of a transgene approach. Additionally, the tutorial will discuss emerging technologies that allow precise control over the timing and location of modification of genetic expression. These emerging technologies allow behavioral researchers to investigate the role of neurobiological variables on behavior from a developmental perspective and to address questions regarding the role of particular brain regions in behavior. Genetically modified organisms provide a promising avenue for fruitful collaborations between behavior analysts and geneticists, neuroscientists, and scientists in other complementary areas.",
+      Video: "https://www.youtube.com/embed/TWoLCVEzuhI"
+    }; tutClone.unshift(new1);
+
+    var index = 0;
+
+    $.each( tutClone, function( key, val ) {
+      val.Index = index;
+
+      console.log(val)
+      //items.push( "<li id='" + key + "'>" + val + "</li>" );
+
+      index++;
+    });
+
+    data.Tutorials = tutClone;
+
+    //$( "<ul/>", {
+    //  "class": "my-new-list",
+    //  html: items.join( "" )
+    //}).appendTo( "body" );
+
+    console.log(data);
+
+
+    $("#mainDiv").text(JSON.stringify(data));
+});
+
+});
+
+</script>
+
+<!--Main layout-->
+<div id="mainDiv" class="container">
+
+</div>
+<!--/.Main layout-->
+
+</body>
+</html>

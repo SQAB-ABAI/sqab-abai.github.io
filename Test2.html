@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+<script src="js/jquery.min.js"></script>
+</head>
+<body>
+<script src="https://apis.google.com/js/api.js"></script>
+<script type="text/javascript">
+
+var fileJson = {};
+fileJson.Officers = [];
+fileJson.Students = [];
+fileJson.PastDirectors = [];
+fileJson.PastPresident = [];
+
+function addMember(_name, _contact, _role)
+{
+  fileJson.Officers.push(
+  {
+    Name: _name,
+    Contact: _contact,
+    Role: _role
+  });
+}
+
+function addStudentMember(_name, _contact, _role)
+{
+  fileJson.Students.push(
+  {
+    Name: _name,
+    Contact: _contact,
+    Role: _role
+  });
+}
+
+function addPastMember(_name, _role)
+{
+  fileJson.PastDirectors.push(
+  {
+    Name: _name,
+    Role: _role
+  });
+}
+
+function addPastPresident(_name, _role)
+{
+  fileJson.PastPresident.push(
+  {
+    Name: _name,
+    Role: _role
+  });
+}
+
+$(document).ready(function() {
+
+  addMember("Chris Podlesnik",    "cpodlesnik@fit.edu",   "Board Director & President");
+  addMember("Suzanne Mitchell",   "mitchesu@ohsu.edu",    "Board Director, Program Chair & President-Elect");
+  addMember("Brian Greer",        "brian.greer@unmc.edu", "Board Director, Exec. Director");
+  addMember("Adam Fox",           "afox@stlawu.edu",      "Board Director & Secretary");
+  addMember("Carla Lagorio",      "LAGORICH@uwec.edu",    "Board Director & Treasurer");
+  addMember("Jason Bourret",      "jbourret@necc.org",    "Board Director");
+  addMember("Sarah Cowie",        "sarah.cowie@auckland.ac.nz", "Board Director");
+  addMember("Mark Reilly",        "reill1mp@cmich.edu",   "Board Director");
+  addMember("Derek Reed",         "dreed@ku.edu",         "Board Director");
+  addMember("Todd McKerchar",     "tmckerchar@jsu.edu",   "Tutorial Coordinator");
+  addMember("Shawn Gilroy",       "sgilroy1@lsu.edu",     "Webmaster");
+
+
+  addStudentMember("Ryan T. Kimball",  "ryan.kimball@unmc.edu",        "Student Council Representative");
+  addStudentMember("Allyson Salzer",   "asalzer@ku.edu",               "Membership Coordinator");
+  addStudentMember("Gabriela Eugenia", "gabrielaeugenia.89@gmail.com", "Social Media Coordinator");
+
+  addPastMember("Federico Sanabria",  "Past Board Director");
+  addPastMember("Derek Reed",  "Past Board Director, Exec. Director");
+  addPastMember("Elizabeth Kyonka",  "Past Secretary, Board Director");
+  addPastMember("Lavinia Tan",  "Past Treasurer, Board Director");
+  addPastMember("Timothy D. Hackenberg",  "Past Board Director");
+  addPastMember("Armando Machado",  "Past Board Director");
+  addPastMember("Peter Richard Killeen",  "Past Board Director");
+  addPastMember("John Anthony Nevin",  "Past Board Director");
+  addPastMember("Cynthia Pietras",  "Past Board Director");
+  addPastMember("Darlene Crone-Todd",  "Past Board Director, Exec. Director");
+
+  addPastPresident("Lewis Bizo");
+  addPastPresident("Timothy Shahan");
+  addPastPresident("Alliston Reid");
+  addPastPresident("Randolph Grace");
+  addPastPresident("Michael Lamport Commons");
+  addPastPresident("William M. Baum");
+  addPastPresident("Armando Machado");
+  addPastPresident("Peter Richard Killeen");
+  addPastPresident("John Anthony Nevin");
+  addPastPresident("Richard J. Herrnstein");
+
+
+  console.log(fileJson)
+
+  $("#mainDiv").text(JSON.stringify(fileJson));
+
+
+});
+
+</script>
+
+<!--Main layout-->
+<div id="mainDiv" class="container">
+
+</div>
+<!--/.Main layout-->
+
+</body>
+</html>
