@@ -1,53 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
 
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
 
     <title>Society for the Quantitative Analyses of Behavior</title>
 
     <script src="js/jquery.min.js" type="text/javascript"></script>
 
     <!-- Material Design fonts -->
-    <link rel="stylesheet" href="css/roboto.css" type="text/css">
-    <link rel="stylesheet" href="css/icon.css" type="text/css">
+    <link rel="stylesheet" href="css/roboto.css" type="text/css" />
+    <link rel="stylesheet" href="css/icon.css" type="text/css" />
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 
     <!-- Bootstrap Material Design -->
-    <link rel="stylesheet" href="css/bootstrap-material-design.min.css" type="text/css">
-    <link rel="stylesheet" href="css/ripples.min.css" type="text/css">
+    <link
+      rel="stylesheet"
+      href="css/bootstrap-material-design.min.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="css/ripples.min.css" type="text/css" />
 
     <!-- Template styles -->
-    <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css" />
+  </head>
+  <body>
+    <div id="headerTag"></div>
 
-</head>
-<body>
+    <main>
+      <div id="bodyTag"></div>
+    </main>
 
-<div id="headerTag"></div>
+    <div id="footerTag"></div>
 
-<main>
-
-<div id="bodyTag"></div>
-
-</main>
-
-<div id="footerTag"></div>
-
-<!-- Load templates, for brevity -->
-<script> 
-$(function()
-{
-	$("#headerTag").load("html/header.html");
-	$("#bodyTag").load("template/main.html");
-	$("#footerTag").load("html/footer.html");
-});
-</script> 
-
-</body>
+    <!-- Load templates, for brevity -->
+    <script>
+      $(function () {
+        $("#headerTag").load("html/header.html");
+        $("#bodyTag").load("template/main.html");
+        $("#footerTag").load("html/footer.html");
+      });
+    </script>
+  </body>
 </html>

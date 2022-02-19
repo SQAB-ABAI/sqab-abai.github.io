@@ -215,6 +215,10 @@
 
   firebase.initializeApp(config);
 
+  const firestore = firebase.firestore();
+  const settings = { timestampsInSnapshots: true };
+  firestore.settings(settings);
+
   $("#studentPresenter").prop("checked", true);
 
   setInterval(function () {
@@ -346,15 +350,41 @@
     const dbRef = firebase.database().ref();
     const postersRef = dbRef.child("SQAB2022");
 
+    const subj = "Thank you for submitting to SQAB 2022!";
+    const body =
+      "Dear " +
+      submittingAuthor +
+      ",\r\n\r\n" +
+      "Thank you for submitting your poster entitled: " +
+      posterTitle +
+      "\r\n\r\n" +
+      "If you are willing to serve as a Tony Nevin Student Presenter, please submit your CV and a letter of recommendation (both as PDF) here: <a href='https://www.dropbox.com/request/WDhx6wvfia2FNds3ucGI'>https://www.dropbox.com/request/WDhx6wvfia2FNds3ucGI</a>";
+
     postersRef.push(data, function (error) {
       if (error) {
         alert(
           "Your submission could not be completed. Please try again later."
         );
       } else {
-        document.getElementById("submitBtn").href = "#";
-        document.getElementById("submitBtn").text = "Successfully Submitted";
-        document.getElementById("submitBtn").className += " disabled";
+        firebase
+          .firestore()
+          .collection("sqab2022")
+          .add({
+            to: authorEmail,
+            message: {
+              subject: subj,
+              text: body,
+            },
+          })
+          .then(() => {
+            const dbRef = firebase.database().ref();
+            const postersRef = dbRef.child("SQAB2022");
+
+            document.getElementById("submitBtn").href = "#";
+            document.getElementById("submitBtn").text =
+              "Successfully Submitted";
+            document.getElementById("submitBtn").className += " disabled";
+          });
 
         alert(
           "Successfully Submitted! If interested in being a Tony Nevin student presenter, please upload your CV and a letter of recommendation using the link supplied in the confirmation email."
