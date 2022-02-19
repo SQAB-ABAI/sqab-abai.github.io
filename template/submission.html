@@ -6,8 +6,10 @@
       <div class="jumbotron">
         <h2 class="h2-responsive">Submissions for Annual Conference</h2>
         <br />
-        <p>Submissions are currently disabled for SQAB 2022.</p>
+
         <!--
+        <p>Submissions are currently disabled for SQAB 2022.</p>
+        -->
 
         <p class="lead">
           Submissions for the 2021 annual conference (i.e., posters) can be
@@ -37,8 +39,6 @@
         <p class="lead" id="countdownTimer" style="font-weight: bold">
           Time Remaining: ...
         </p>
-
-                        -->
       </div>
     </div>
   </div>
@@ -114,9 +114,9 @@
       <div id="submitPanel" class="well">
         <h2 class="h2-responsive">Submission for SQAB 2022</h2>
 
-        <p>Submissions are currently disabled for SQAB 2022.</p>
-
         <!--
+        <p>Submissions are currently disabled for SQAB 2022.</p>
+        -->
 
         <form>
           <div class="form-group">
@@ -197,8 +197,6 @@
             >Submit</a
           >
         </form>
-
-                        -->
       </div>
     </div>
   </div>
@@ -226,7 +224,8 @@
       return;
     }
 
-    var t = Date.parse("May 3 2021 23:59:59 GMT-0700") - Date.parse(new Date());
+    var t =
+      Date.parse("April 11 2022 23:59:59 GMT-0700") - Date.parse(new Date());
 
     var seconds = Math.floor((t / 1000) % 60);
     var minutes = Math.floor((t / 1000 / 60) % 60);
@@ -261,9 +260,9 @@
     var offsetDate = new Date(utcDate + 3600000 * pstOffset);
 
     if (
-      offsetDate.getMonth() + 1 >= 5 &&
-      offsetDate.getDate() >= 4 &&
-      offsetDate.getFullYear() >= 2021
+      offsetDate.getMonth() + 1 >= 4 &&
+      offsetDate.getDate() >= 11 &&
+      offsetDate.getFullYear() >= 2022
     ) {
       var subPanel = document.getElementById("submitPanel");
       subPanel.innerHTML = "";

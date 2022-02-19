@@ -50,10 +50,7 @@
     firebase.initializeApp(config);
 
     var actionCodeSettings = {
-      // URL you want to redirect back to. The domain (www.example.com) for this
-      // URL must be in the authorized domains list in the Firebase Console.
       url: "https://www.sqab.org/Management.html",
-      // This must be true.
       handleCodeInApp: true,
     };
 
@@ -70,16 +67,27 @@
           window.localStorage.setItem("emailForSignIn", email);
 
           console.log("here");
-          // ...
+
+          // TODO: Modal input
         })
         .catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-
-          console.log(errorCode);
-          console.log(errorMessage);
-          // ...
+          alert("There as an error in authentication.");
         });
+    }
+
+    function findGetParameter(parameterName) {
+      var result = null;
+      var tmp = [];
+
+      location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+          tmp = item.split("=");
+          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        });
+
+      return result;
     }
   </script>
   <body>
