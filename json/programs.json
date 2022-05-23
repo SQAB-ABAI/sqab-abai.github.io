@@ -67,6 +67,10 @@
     {
       "Year": 2021,
       "Path": "programs\/2021.pdf"
+    },
+    {
+      "Year": 2022,
+      "Path": "programs\/2022.pdf"
     }
   ],
   "Newsletters": [
@@ -124,11 +128,15 @@
     },
     {
       "Year": 2019,
-      "Path": "newsletters\/2020.pdf"
+      "Path": "newsletters\/2019.pdf"
     },
     {
       "Year": 2020,
       "Path": "newsletters\/2020.pdf"
+    },
+    {
+      "Year": 2022,
+      "Path": "newsletters\/2022.pdf"
     }
   ]
 }
