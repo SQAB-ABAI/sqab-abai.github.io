@@ -18,6 +18,7 @@ import Tutorial from './pages/tutorials/Tutorials'
 import Registration from './pages/registration/Registration'
 import Submission from './pages/submissions/Submission'
 import Records from './pages/records/Records'
+import BeProcInformation from './pages/bproc/BeProcInformation'
 
 const mainContainerStyle = {
   flexGrow: 1,
@@ -60,6 +61,9 @@ function App() {
                 </Route>
                 <Route path="/records">
                   <Records />
+                </Route>
+                <Route path="/behavioralprocesses">
+                  <BeProcInformation />
                 </Route>
               </Switch>
             </div>

@@ -113,7 +113,7 @@ export default function Header() {
                         </MDBNavbarItem>
 
                         <MDBNavbarItem>
-                            <MDBNavbarLink active aria-current='page' href='#' style={navbarTextStyle}>
+                            <MDBNavbarLink active aria-current='page' href='/behavioralprocesses' style={navbarTextStyle}>
                                 Behavioral Processes
                             </MDBNavbarLink>
                         </MDBNavbarItem>
