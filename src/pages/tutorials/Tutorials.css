@@ -1,0 +1,11 @@
+.tutorials-ul {
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none;
+}
+
+.tutorials-ul li,
+a {
+  padding-bottom: 10px;
+  color: rgb(127, 0, 127);
+}

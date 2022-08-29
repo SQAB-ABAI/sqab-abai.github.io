@@ -244,7 +244,7 @@ import './Home.css'
 export default function Home(): JSX.Element {
     return <>
 
-        <MDBRow className="d-flex justify-content-center" style={{ paddingTop: '20px', paddingBottom: '20px', }}>
+        <MDBRow className="d-flex justify-content-center" style={{ paddingBottom: '20px', }}>
             <Logo />
         </MDBRow>
 
@@ -294,7 +294,14 @@ export default function Home(): JSX.Element {
                                     <br /><br />
                                     SQAB 2022 will take place May 26 & 27 in Boston, MA.Additional information is be listed in the Annual Conference page.
                                 </MDBCardText>
-                                <MDBBtn className="float-right" tag='a' href='#'>Learn More</MDBBtn>
+                                <MDBBtn
+                                    noRipple
+                                    className="float-right"
+                                    tag='a'
+                                    href='/conference'
+                                >
+                                    Learn More
+                                </MDBBtn>
                             </MDBCardBody>
                         </MDBCol>
                     </MDBRow>
@@ -321,7 +328,14 @@ export default function Home(): JSX.Element {
                                 <MDBCardText>
                                     In addition to paper and poster sessions, SQAB arranges for experts in various areas of research to provide introductory tutorials. These are offered as a means for encouraging dissemination of novel methods and approaches.
                                 </MDBCardText>
-                                <MDBBtn className="float-right" tag='a' href='#'>Learn More</MDBBtn>
+                                <MDBBtn
+                                    noRipple
+                                    className="float-right"
+                                    tag='a'
+                                    href='/tutorials/-1'
+                                >
+                                    Learn More
+                                </MDBBtn>
                             </MDBCardBody>
                         </MDBCol>
                     </MDBRow>

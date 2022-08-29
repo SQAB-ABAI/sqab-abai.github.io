@@ -1,0 +1,225 @@
+{
+   "Board":[
+      {
+         "Name":"Jason Bourret",
+         "Role":"Board Director"
+      },
+      {
+         "Name":"Sarah Cowie",
+         "Role":"Board Director"
+      },
+      {
+         "Name":"Andy Craig",
+         "Role":"Board Director"
+      },
+      {
+         "Name":"Brian Greer",
+         "Role":"Board Director"
+      },
+      {
+         "Name":"Carla Lagorio",
+         "Role":"Board Director"
+      },
+      {
+         "Name":"Suzanne Mitchell",
+         "Role":"Board Director"
+      },
+      {
+         "Name":"Derek Reed",
+         "Role":"Board Director"
+      },
+      {
+         "Name":"Federico Sanabria",
+         "Role":"Board Director"
+      },
+      {
+         "Name":"Shrinidhi Subramaniam",
+         "Role":"Board Director"
+      }
+   ],
+   "Officers":[
+      {
+         "Name":"Jason Bourret",
+         "Role":"Resident Agent"
+      },
+      {
+         "Name":"Cristina Dos Santos",
+         "Role":"Membership Coordinator"
+      },
+      {
+         "Name":"Carla Martinez-Perez",
+         "Role":"Social Media Coordinator"
+      },
+      {
+         "Name":"Shawn Gilroy",
+         "Contact":"sgilroy1@lsu.edu",
+         "Role":"Webmaster"
+      },
+      {
+         "Name":"Brian Greer",
+         "Role":"Executive Coordinator"
+      },
+      {
+         "Name":"Carla Lagorio",
+         "Role":"Treasurer"
+      },
+      {
+         "Name":"Todd McKerchar",
+         "Role":"Tutorial Coordinator"
+      },
+      {
+         "Name":"Suzanne Mitchell",
+         "Role":"President"
+      },
+      {
+         "Name":"Federico Sanabria",
+         "Role":"Program Chair"
+      },
+      {
+         "Name":"Tadd Schneider",
+         "Role":"Student Council Representative"
+      },
+      {
+         "Name":"Shrinidhi Subramaniam",
+         "Role":"Secretary"
+      }
+   ],
+   "PastDirectors":[
+      {
+         "Name":"William Baum"
+      },
+      {
+         "Name":"Lewis Bizo"
+      },
+      {
+         "Name":"Michael Commons"
+      },
+      {
+         "Name":"Darlene Crone-Todd"
+      },
+      {
+         "Name":"Michael Davison"
+      },
+      {
+         "Name":"Edmund Fantino"
+      },
+      {
+         "Name":"Adam Fox"
+      },
+      {
+         "Name":"Gregory Galbicka"
+      },
+      {
+         "Name":"Randy Grace"
+      },
+      {
+         "Name":"Leonard Green"
+      },
+      {
+         "Name":"Timothy D. Hackenberg"
+      },
+      {
+         "Name":"Jennifer Higa"
+      },
+      {
+         "Name":"Peter Richard Killeen"
+      },
+      {
+         "Name":"Elizabeth Kyonka"
+      },
+      {
+         "Name":"Armando Machado"
+      },
+      {
+         "Name":"Jack Marr"
+      },
+      {
+         "Name":"James Mazur"
+      },
+      {
+         "Name":"Diane McCarthy"
+      },
+      {
+         "Name":"Patrice Miller"
+      },
+      {
+         "Name":"John Anthony Nevin"
+      },
+      {
+         "Name":"Cindy Pietras"
+      },
+      {
+         "Name":"Chris Podlesnik"
+      },
+      {
+         "Name":"Howard Rachlin"
+      },
+      {
+         "Name":"Derek Reed"
+      },
+      {
+         "Name":"Alliston Reid"
+      },
+      {
+         "Name":"Mark Reilly"
+      },
+      {
+         "Name":"Timothy Shahan"
+      },
+      {
+         "Name":"Federico Sanabria"
+      },
+      {
+         "Name":"Lavinia Tan"
+      },
+      {
+         "Name":"Allan Wagner"
+      }
+   ],
+   "PastPresident":[
+      {
+         "Name":"Richard J. Herrnstein",
+         "Term":"1983-1989"
+      },
+      {
+         "Name":"John Anthony Nevin",
+         "Term":"1994-1999"
+      },
+      {
+         "Name":"Peter Richard Killeen",
+         "Term":"2000-2002"
+      },
+      {
+         "Name":"Armando Machado",
+         "Term":"2003"
+      },
+      {
+         "Name":"William M. Baum",
+         "Term":"2004-2006"
+      },
+      {
+         "Name":"Michael Lamport Commons",
+         "Term":"2007"
+      },
+      {
+         "Name":"Randolph Grace",
+         "Term":"2007-2009"
+      },
+      {
+         "Name":"Alliston Reid",
+         "Term":"2010-2012"
+      },
+      {
+         "Name":"Timothy Shahan",
+         "Term":"2013-2015"
+      },
+      {
+         "Name":"Lewis Bizo",
+         "Term":"2016-2018"
+      },
+      {
+         "Name":"Chris Podlesnik",
+         "Term":"2019-2021"
+      }
+   ]
+}

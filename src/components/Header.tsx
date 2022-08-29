@@ -89,8 +89,8 @@ export default function Header() {
                                     Conference
                                 </MDBDropdownToggle>
                                 <MDBDropdownMenu>
-                                    <MDBDropdownItem link>Annual Conference</MDBDropdownItem>
-                                    <MDBDropdownItem link>Recorded Tutorials</MDBDropdownItem>
+                                    <MDBDropdownItem link href="/conference">Annual Conference</MDBDropdownItem>
+                                    <MDBDropdownItem link href="/tutorials/-1">Recorded Tutorials</MDBDropdownItem>
                                     <MDBDropdownItem link>Registration</MDBDropdownItem>
                                     <MDBDropdownItem link>Submissions</MDBDropdownItem>
                                     <MDBDropdownItem link>Programs and Newsletters</MDBDropdownItem>
