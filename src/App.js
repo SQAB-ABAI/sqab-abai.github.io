@@ -15,6 +15,7 @@ import Footer from './components/Footer'
 import Home from './pages/home/Home'
 import AnnualConference from './pages/conference/AnnualConference'
 import Tutorial from './pages/tutorials/Tutorials'
+import Registration from './pages/registration/Registration'
 
 const mainContainerStyle = {
   flexGrow: 1,
@@ -48,6 +49,9 @@ function App() {
                 </Route>
                 <Route path="/tutorials/:videoId">
                   <Tutorial />
+                </Route>
+                <Route path="/registration">
+                  <Registration />
                 </Route>
               </Switch>
             </div>
