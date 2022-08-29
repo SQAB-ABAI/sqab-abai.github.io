@@ -16,6 +16,7 @@ import Home from './pages/home/Home'
 import AnnualConference from './pages/conference/AnnualConference'
 import Tutorial from './pages/tutorials/Tutorials'
 import Registration from './pages/registration/Registration'
+import Submission from './pages/submissions/Submission'
 
 const mainContainerStyle = {
   flexGrow: 1,
@@ -52,6 +53,9 @@ function App() {
                 </Route>
                 <Route path="/registration">
                   <Registration />
+                </Route>
+                <Route path="/submission">
+                  <Submission />
                 </Route>
               </Switch>
             </div>
