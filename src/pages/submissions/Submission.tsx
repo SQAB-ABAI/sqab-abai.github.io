@@ -37,12 +37,14 @@ export default function Submission(): JSX.Element {
                 <CarouselConference />
             </MDBCol>
             <MDBCol md='4'>
-                <MDBCardBody>
-                    <MDBCardTitle>Submission Portal</MDBCardTitle>
-                    <MDBCardText>
-                        The submission portal is currently closed.
-                    </MDBCardText>
-                </MDBCardBody>
+                <MDBCard>
+                    <MDBCardBody>
+                        <MDBCardTitle>Submission Portal</MDBCardTitle>
+                        <MDBCardText>
+                            The submission portal is currently closed.
+                        </MDBCardText>
+                    </MDBCardBody>
+                </MDBCard>
             </MDBCol>
         </MDBRow>
     </>;

@@ -93,7 +93,7 @@ export default function Header() {
                                     <MDBDropdownItem link href="/tutorials/-1">Recorded Tutorials</MDBDropdownItem>
                                     <MDBDropdownItem link href="/registration">Registration</MDBDropdownItem>
                                     <MDBDropdownItem link href="/submission">Submissions</MDBDropdownItem>
-                                    <MDBDropdownItem link>Programs and Newsletters</MDBDropdownItem>
+                                    <MDBDropdownItem link href="/records">Programs and Newsletters</MDBDropdownItem>
                                 </MDBDropdownMenu>
                             </MDBDropdown>
                         </MDBNavbarItem>

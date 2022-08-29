@@ -1,0 +1,12 @@
+.records-ul {
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none;
+}
+
+.records-ul li,
+a {
+  padding-bottom: 10px;
+  color: rgb(127, 0, 127);
+  font-size: medium;
+}
