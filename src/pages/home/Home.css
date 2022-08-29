@@ -1,0 +1,13 @@
+.additional-margin {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}

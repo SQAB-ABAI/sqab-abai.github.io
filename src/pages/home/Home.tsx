@@ -11,9 +11,11 @@ import {
     MDBCardImage,
 } from 'mdb-react-ui-kit';
 
-import Logo from "../components/Logo";
-import CarouselConference from "../components/CarouselConference";
-import CarouselTutorial from "../components/CarouselTutorial";
+import Logo from "../../components/Logo";
+import CarouselConference from "../../components/CarouselConference";
+import CarouselTutorial from "../../components/CarouselTutorial";
+
+import './Home.css'
 
 /*
 
@@ -246,7 +248,7 @@ export default function Home(): JSX.Element {
             <Logo />
         </MDBRow>
 
-        <MDBRow center>
+        <MDBRow center className="row-eq-height">
             <MDBCol sm='4'>
                 <MDBCard>
                     <MDBCardBody>
@@ -254,13 +256,13 @@ export default function Home(): JSX.Element {
                         <MDBCardText>
                             The Society for the Quantitative Analyses of Behavior (SQAB) encourages diversity, inclusiveness, and freedom from discriminatory behavior in the field of behavioral science broadly, and within the organization specifically. Diversity refers to differences in race, ethnicity, sexual orientation, gender identity, age, country of origin, religious or spiritual beliefs, ability, and social and economic class.
                             <br /><br />
-                            The ethics and diversity policy was approved by the SQAB Executive Board in 2018 and was based on those developed by ABAI with the approval of ABAI..
+                            The ethics and diversity policy was approved by the SQAB Executive Board in 2018 and was based on those developed by ABAI with the approval of ABAI.
                         </MDBCardText>
                     </MDBCardBody>
                 </MDBCard>
             </MDBCol>
             <MDBCol sm='4'>
-                <MDBCard>
+                <MDBCard style={{ height: '100%' }}>
                     <MDBCardBody>
                         <MDBCardTitle>Society for the Quantitative Analyses of Behavior</MDBCardTitle>
                         <MDBCardText>
@@ -271,7 +273,11 @@ export default function Home(): JSX.Element {
             </MDBCol>
         </MDBRow>
 
-        <hr className="additional-margin" />
+        <MDBRow center>
+            <MDBCol sm='8'>
+                <hr className="additional-margin" />
+            </MDBCol>
+        </MDBRow>
 
         <MDBRow className='d-flex justify-content-center'>
             <MDBCol sm='8'>
@@ -296,7 +302,11 @@ export default function Home(): JSX.Element {
             </MDBCol>
         </MDBRow>
 
-        <hr className="additional-margin" />
+        <MDBRow center>
+            <MDBCol sm='8'>
+                <hr className="additional-margin" />
+            </MDBCol>
+        </MDBRow>
 
         <MDBRow className='d-flex justify-content-center'>
             <MDBCol sm='8'>
@@ -318,10 +328,5 @@ export default function Home(): JSX.Element {
                 </MDBCard>
             </MDBCol>
         </MDBRow>
-
-        <hr className="extra-margin" />
-        <br />
-
-    </>
-        ;
+    </>;
 }

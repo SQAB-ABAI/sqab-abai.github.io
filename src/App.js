@@ -1,28 +1,30 @@
-import { MDBContainer } from 'mdb-react-ui-kit';
-import React from 'react';
+import React from 'react'
+import { useEffect } from 'react'
 
-import { useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+} from 'react-router-dom'
 
-// components
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Home from './pages/Home';
+import { MDBContainer } from 'mdb-react-ui-kit'
+
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Home from './pages/home/Home'
+
+const mainContainerStyle = { flexGrow: 1, padding: '0' }
 
 function App() {
   useEffect(() => {
-    document.title = 'SQAB';
-  }, []);
+    document.title = 'SQAB'
+  }, [])
 
   return (
-    <div
-      style={{
-        display: 'flex',
-      }}
-    >
+    <>
       {
         <BrowserRouter>
-          <MDBContainer fluid style={{ flexGrow: 1, padding: '0' }}>
+          <MDBContainer fluid style={mainContainerStyle}>
             <Header />
             <Switch>
               <Route exact path="/">
@@ -33,8 +35,8 @@ function App() {
           </MDBContainer>
         </BrowserRouter>
       }
-    </div>
-  );
+    </>
+  )
 }
 
-export default App;
+export default App

@@ -1,0 +1,38 @@
+.btn-facebook {
+  background-color: #3b5998 !important;
+}
+
+.btn-facebook:focus,
+.btn-facebook:hover {
+  background-color: #4264aa !important;
+}
+
+.btn-github {
+  background-color: #4183c4 !important;
+}
+
+.btn-github:focus,
+.btn-github:hover {
+  background-color: #5490ca !important;
+}
+
+.btn-twitter {
+  background-color: #55acee !important;
+}
+
+.btn-twitter:focus,
+.btn-twitter:hover {
+  background-color: #2795e9 !important;
+}
+
+.overall-footer {
+  color: white;
+}
+
+.overall-footer a {
+  color: white;
+}
+
+.footer-copyright a {
+  color: white !important;
+}
