@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import { MDBContainer } from 'mdb-react-ui-kit';
 
@@ -27,59 +27,57 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <MDBContainer
-        fluid
+    <MDBContainer
+      fluid
+      style={{
+        flexGrow: 1,
+        paddingLeft: '0',
+        paddingRight: '0',
+        backgroundColor: '#e3e3e3',
+      }}
+    >
+      <Header />
+      <div
         style={{
-          flexGrow: 1,
-          paddingLeft: '0',
-          paddingRight: '0',
-          backgroundColor: '#e3e3e3',
+          paddingTop: '20px',
+          paddingBottom: '20px',
         }}
       >
-        <Header />
-        <div
-          style={{
-            paddingTop: '20px',
-            paddingBottom: '20px',
-          }}
-        >
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/conference">
-              <AnnualConference />
-            </Route>
-            <Route path="/tutorials/:id">
-              <Tutorials />
-            </Route>
-            <Route path="/registration">
-              <Registration />
-            </Route>
-            <Route path="/submission">
-              <Submission />
-            </Route>
-            <Route path="/records">
-              <Records />
-            </Route>
-            <Route path="/behavioralprocesses">
-              <BeProcInformation />
-            </Route>
-            <Route path="/executiveboard">
-              <ExecutiveBoard />
-            </Route>
-            <Route path="/resources">
-              <Resources />
-            </Route>
-            <Route path="/recruitment">
-              <Recruitment />
-            </Route>
-          </Switch>
-        </div>
-        <Footer />
-      </MDBContainer>
-    </BrowserRouter>
+        <Switch>
+          <Route exact path="/conference">
+            <AnnualConference />
+          </Route>
+          <Route exact path="/tutorials/:id">
+            <Tutorials />
+          </Route>
+          <Route exact path="/registration">
+            <Registration />
+          </Route>
+          <Route exact path="/submission">
+            <Submission />
+          </Route>
+          <Route exact path="/records">
+            <Records />
+          </Route>
+          <Route exact path="/behavioralprocesses">
+            <BeProcInformation />
+          </Route>
+          <Route exact path="/executiveboard">
+            <ExecutiveBoard />
+          </Route>
+          <Route exact path="/resources">
+            <Resources />
+          </Route>
+          <Route exact path="/recruitment">
+            <Recruitment />
+          </Route>
+          <Route exact path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+      <Footer />
+    </MDBContainer>
   );
 }
 

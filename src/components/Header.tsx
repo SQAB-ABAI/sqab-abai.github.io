@@ -17,6 +17,8 @@ import {
   MDBBtn,
 } from 'mdb-react-ui-kit';
 
+import { Link } from 'react-router-dom';
+
 import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
@@ -228,8 +230,8 @@ export default function Header(): JSX.Element {
                     Conference
                   </MDBDropdownToggle>
                   <MDBDropdownMenu>
-                    <MDBDropdownItem link href="/conference">
-                      Annual Conference
+                    <MDBDropdownItem link>
+                      <Link to="/conference">Annual Conference</Link>
                     </MDBDropdownItem>
                     <MDBDropdownItem link href="/tutorials/-1">
                       Recorded Tutorials
