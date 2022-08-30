@@ -1,15 +1,15 @@
-.records-ul {
+.beproc-ul {
   padding: 0 !important;
   margin: 0 !important;
   list-style: none;
 }
 
-.records-ul > li {
+.beproc-ul > li {
   padding-bottom: 10px !important;
   font-size: medium !important;
 }
 
-.records-ul > li > a {
+.beproc-ul > li > a {
   padding-bottom: 10px !important;
   font-size: medium !important;
   color: rgb(127, 0, 127);

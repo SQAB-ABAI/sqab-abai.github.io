@@ -9,6 +9,8 @@ import {
     MDBCol,
 } from 'mdb-react-ui-kit';
 
+import "./BeProcInformation.css"
+
 import specialIssueJson from './../../assets/specialissues.json';
 
 export default function BeProcInformation(): JSX.Element {
@@ -37,7 +39,7 @@ export default function BeProcInformation(): JSX.Element {
                 <MDBCard>
                     <MDBCardBody>
                         <MDBCardTitle>Available Tutorials</MDBCardTitle>
-                        <ul className="tutorials-ul">
+                        <ul className="beproc-ul">
                             {specialIssueJson.Specials.map((issue) => {
                                 return <li
                                     key={`index-${issue.Title}`}>

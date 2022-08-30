@@ -1,0 +1,21 @@
+.board-ul {
+  padding: 0 0 0 0 !important;
+  list-style: none;
+}
+
+.board-ul > li > p {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  margin-top: 0px !important;
+  margin-bottom: 5px !important;
+  font-size: medium !important;
+}
+
+.board-ul > li > a {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  margin-top: 0px !important;
+  margin-bottom: 5px !important;
+  font-size: medium !important;
+  color: rgb(127, 0, 127);
+}

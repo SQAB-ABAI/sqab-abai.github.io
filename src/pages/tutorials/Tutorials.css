@@ -4,9 +4,13 @@
   list-style: none;
 }
 
-.tutorials-ul li,
-a {
-  padding-bottom: 10px;
+.tutorials-ul > li {
+  padding-bottom: 10px !important;
+  font-size: medium !important;
+}
+
+.tutorials-ul > li > a {
+  padding-bottom: 10px !important;
+  font-size: medium !important;
   color: rgb(127, 0, 127);
-  font-size: medium;
 }
