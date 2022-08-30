@@ -25,7 +25,10 @@ export default function ExecutiveBoard(): JSX.Element {
                 <br />
                 <br />
                 The most recent copy of the organization's bylaws are available{' '}
-                <a href={Bylaws}>here</a>.
+                <a href={Bylaws} className="bylawsLink">
+                  here
+                </a>
+                .
               </MDBCardText>
             </MDBCardBody>
           </MDBCard>

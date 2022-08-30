@@ -117,7 +117,10 @@ export default function Header(): JSX.Element {
             SQAB maintains an active listserv with over 400 members. Prospective members may access
             this resource by consulting the following webpage:{' '}
           </p>
-          <a href="https://mailmanlists.us/mailman/listinfo/sqab">
+          <a
+            href="https://mailmanlists.us/mailman/listinfo/sqab"
+            style={{ color: 'rgb(127, 0, 127)' }}
+          >
             https://mailmanlists.us/mailman/listinfo/sqab
           </a>
           <br />
@@ -180,7 +183,10 @@ export default function Header(): JSX.Element {
             <br />
             Those interested in participating in the listserv may visit the listserv page for
             information on how to apply to be included on the listserv:{' '}
-            <a href="https://mailmanlists.us/mailman/listinfo/sqab">
+            <a
+              href="https://mailmanlists.us/mailman/listinfo/sqab"
+              style={{ color: 'rgb(127, 0, 127)' }}
+            >
               https://mailmanlists.us/mailman/listinfo/sqab
             </a>
           </p>

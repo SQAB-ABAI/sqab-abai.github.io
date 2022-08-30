@@ -24,3 +24,16 @@
   color: rgb(127, 0, 127);
   font-size: 1.1rem;
 }
+
+.board-ul > li > a {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  margin-top: 0px !important;
+  margin-bottom: 5px !important;
+  color: rgb(127, 0, 127);
+  font-size: 1.1rem;
+}
+
+.bylawsLink {
+  color: rgb(127, 0, 127);
+}
