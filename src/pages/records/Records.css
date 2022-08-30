@@ -5,10 +5,11 @@
 }
 
 .records-ul > li {
-  padding-bottom: 10px !important;
+  padding-bottom: 20px !important;
 }
 
 .records-ul > li > a {
-  padding-bottom: 10px !important;
+  padding-bottom: 15px !important;
   color: rgb(127, 0, 127);
+  font-size: 1.1rem;
 }

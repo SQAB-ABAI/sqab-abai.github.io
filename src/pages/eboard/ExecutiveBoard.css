@@ -1,13 +1,19 @@
 .board-ul {
-  padding: 0 0 0 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
   list-style: none;
+}
+
+.board-ul > li {
+  padding-bottom: 20px !important;
 }
 
 .board-ul > li > p {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
   margin-top: 0px !important;
-  margin-bottom: 5px !important;
+  margin-bottom: 0px !important;
+  font-size: 1.1rem;
 }
 
 .board-ul > li > a {
@@ -16,4 +22,5 @@
   margin-top: 0px !important;
   margin-bottom: 5px !important;
   color: rgb(127, 0, 127);
+  font-size: 1.1rem;
 }

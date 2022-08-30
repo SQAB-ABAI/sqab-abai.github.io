@@ -19,18 +19,14 @@ import tutorialJson from './../../assets/tutorials.json';
 import './Tutorials.css';
 import IframeResizer from 'iframe-resizer-react';
 
-const iframeStyle = {
-  minWidth: '100%',
-  minHeight: '800px',
-  marginTop: '20px',
-};
-
 export default function Tutorials(): JSX.Element {
   const { id } = useParams<{ id?: string }>();
 
-  const showDirectory = !!id || parseInt(id) < 0 ? true : false;
+  const showDirectory = id === undefined || parseInt(id) < 0 ? true : false;
 
   const videoInfo = !showDirectory ? tutorialJson.Tutorials[id] : null;
+
+  console.log(showDirectory);
 
   const prevVideoId: number = parseInt(id) > 0 ? parseInt(id) + 1 : null;
   const nextVideoId: number = parseInt(id) >= 0 && parseInt(id) < 77 ? parseInt(id) + 1 : null;
@@ -100,7 +96,11 @@ export default function Tutorials(): JSX.Element {
                   <IframeResizer
                     src={videoInfo.Video}
                     title={videoInfo.Title}
-                    style={iframeStyle}
+                    style={{
+                      minWidth: '100%',
+                      minHeight: '800px',
+                      marginTop: '20px',
+                    }}
                     allowFullScreen
                   />
 

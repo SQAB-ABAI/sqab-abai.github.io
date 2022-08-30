@@ -4,7 +4,7 @@ import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 
 
 import { CardBodyTextStyle } from '../../utilities/StyleHelper';
 
-import AceLogo from './../../assets/ace.jpeg';
+import AceLogo from './../../assets/BACB-ACE-475x325.png';
 
 export default function AnnualConference(): JSX.Element {
   return (

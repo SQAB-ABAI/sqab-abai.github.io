@@ -13,7 +13,7 @@ import './ExecutiveBoard.css';
 export default function ExecutiveBoard(): JSX.Element {
   return (
     <>
-      <MDBRow center className="row-eq-height">
+      <MDBRow center>
         <MDBCol sm="8">
           <MDBCard>
             <MDBCardBody>
@@ -46,7 +46,7 @@ export default function ExecutiveBoard(): JSX.Element {
         </MDBCol>
       </MDBRow>
 
-      <MDBRow center className="row-eq-height">
+      <MDBRow center>
         <MDBCol sm="4">
           <MDBCard>
             <MDBCardBody>
@@ -104,7 +104,7 @@ export default function ExecutiveBoard(): JSX.Element {
         </MDBCol>
       </MDBRow>
 
-      <MDBRow center className="row-eq-height">
+      <MDBRow center>
         <MDBCol sm="4">
           <MDBCard>
             <MDBCardBody>
