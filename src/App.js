@@ -19,9 +19,11 @@ import ExecutiveBoard from './pages/eboard/ExecutiveBoard';
 import Resources from './pages/resources/Resources';
 import Recruitment from './pages/recruitment/Recruitment';
 
+const pageTitle = 'SQAB';
+
 function App() {
   useEffect(() => {
-    document.title = 'SQAB';
+    document.title = pageTitle;
   }, []);
 
   return (
