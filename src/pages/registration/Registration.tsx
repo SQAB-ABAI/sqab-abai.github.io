@@ -9,6 +9,8 @@ import {
     MDBCol,
 } from 'mdb-react-ui-kit';
 
+import { CardBodyTextStyle } from "../../utilities/StyleHelper"
+
 export default function Registration(): JSX.Element {
     return <>
 
@@ -17,7 +19,7 @@ export default function Registration(): JSX.Element {
                 <MDBCard style={{ height: '100%' }}>
                     <MDBCardBody>
                         <MDBCardTitle>SQAB Membership and Registration (2022)</MDBCardTitle>
-                        <MDBCardText>
+                        <MDBCardText style={CardBodyTextStyle}>
                             SQAB 2022 Membership is $20 and is payable through PayPal or surface mail. The membership fee is separate from registration fees.
                             <br /><br />
                             SQAB Membership includes six months of free electronic access to the Special Issue of Behavioural Processes, containing the proceedings of last year's SQAB meeting, beginning on the date of our conference.
@@ -29,7 +31,7 @@ export default function Registration(): JSX.Element {
                 <MDBCard style={{ height: '100%' }}>
                     <MDBCardBody>
                         <MDBCardTitle>Ethics and Diversity Policy</MDBCardTitle>
-                        <MDBCardText>
+                        <MDBCardText style={CardBodyTextStyle}>
                             The Society for the Quantitative Analyses of Behavior (SQAB) encourages diversity, inclusiveness, and freedom from discriminatory behavior in the field of behavioral science broadly, and within the organization specifically. Diversity refers to differences in race, ethnicity, sexual orientation, gender identity, age, country of origin, religious or spiritual beliefs, ability, and social and economic class.
                             <br /><br />
                             The ethics and diversity policy was approved by the SQAB Executive Board in 2018 and was based on those developed by ABAI with the approval of ABAI.
@@ -50,7 +52,7 @@ export default function Registration(): JSX.Element {
                 <MDBCard style={{ height: '100%' }}>
                     <MDBCardBody>
                         <MDBCardTitle>Terms of Registration</MDBCardTitle>
-                        <MDBCardText>
+                        <MDBCardText style={CardBodyTextStyle}>
                             All attendees at SQAB events are expected to abide by SQAB's Ethics and Diversity policies. Discriminatory and derogatory language and behavior, as well as harassment of any kind, will not be tolerated at the SQAB conference.
                             <br /><br />
                             Anyone registering for the SQAB conference is required to accept the following:
@@ -75,7 +77,7 @@ export default function Registration(): JSX.Element {
                 <MDBCard style={{ height: '100%' }}>
                     <MDBCardBody>
                         <MDBCardTitle>Conference Registration</MDBCardTitle>
-                        <MDBCardText>
+                        <MDBCardText style={CardBodyTextStyle}>
                             Registration is closed.
                         </MDBCardText>
                     </MDBCardBody>

@@ -9,7 +9,7 @@ import {
     MDBCol,
 } from 'mdb-react-ui-kit';
 
-import programJson from './../../assets/programs.json';
+import { CardBodyTextStyle } from "../../utilities/StyleHelper"
 
 import Program2004 from './../../assets/programs/2004.pdf';
 import Program2005 from './../../assets/programs/2005.pdf';
@@ -198,7 +198,7 @@ export default function Records(): JSX.Element {
                 <MDBCard>
                     <MDBCardBody>
                         <MDBCardTitle>Yearly Programs and Newsletters</MDBCardTitle>
-                        <MDBCardText>
+                        <MDBCardText style={CardBodyTextStyle}>
                             Newsletters and Conference programs are retained for future reference in this location. They are also hosted online in the respective Github repository.
                         </MDBCardText>
                     </MDBCardBody>

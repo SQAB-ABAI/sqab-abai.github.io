@@ -20,6 +20,7 @@ import Submission from './pages/submissions/Submission'
 import Records from './pages/records/Records'
 import BeProcInformation from './pages/bproc/BeProcInformation'
 import ExecutiveBoard from './pages/eboard/ExecutiveBoard'
+import Resources from './pages/resources/Resources'
 
 const mainContainerStyle = {
   flexGrow: 1,
@@ -68,6 +69,9 @@ function App() {
                 </Route>
                 <Route path="/executiveboard">
                   <ExecutiveBoard />
+                </Route>
+                <Route path="/resources">
+                  <Resources />
                 </Route>
               </Switch>
             </div>

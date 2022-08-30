@@ -9,6 +9,8 @@ import {
     MDBCol,
 } from 'mdb-react-ui-kit';
 
+import { CardBodyTextStyle } from "../../utilities/StyleHelper"
+
 import "./BeProcInformation.css"
 
 import specialIssueJson from './../../assets/specialissues.json';
@@ -20,7 +22,7 @@ export default function BeProcInformation(): JSX.Element {
                 <MDBCard>
                     <MDBCardBody>
                         <MDBCardTitle>Special Issues from The Society for the Quantitative Analyses of Behavior</MDBCardTitle>
-                        <MDBCardText>
+                        <MDBCardText style={CardBodyTextStyle}>
                             Special Issues are available through Open Access complements of Elsevier for six months following​ conference proceedings.
                         </MDBCardText>
                     </MDBCardBody>

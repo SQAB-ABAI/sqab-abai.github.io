@@ -8,6 +8,9 @@ import {
     MDBRow,
     MDBCol,
 } from 'mdb-react-ui-kit';
+
+import { CardBodyTextStyle } from "../../utilities/StyleHelper"
+
 import CarouselConference from "../../components/CarouselConference";
 
 export default function Submission(): JSX.Element {
@@ -18,7 +21,7 @@ export default function Submission(): JSX.Element {
                 <MDBCard>
                     <MDBCardBody>
                         <MDBCardTitle>Submissions for Annual Conference</MDBCardTitle>
-                        <MDBCardText>
+                        <MDBCardText style={CardBodyTextStyle}>
                             Submissions are currently disabled.
                         </MDBCardText>
                     </MDBCardBody>
@@ -40,7 +43,7 @@ export default function Submission(): JSX.Element {
                 <MDBCard>
                     <MDBCardBody>
                         <MDBCardTitle>Submission Portal</MDBCardTitle>
-                        <MDBCardText>
+                        <MDBCardText style={CardBodyTextStyle}>
                             The submission portal is currently closed.
                         </MDBCardText>
                     </MDBCardBody>

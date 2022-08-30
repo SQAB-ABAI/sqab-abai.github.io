@@ -1,14 +1,14 @@
-.records-ul {
+.resources-ul {
   padding: 0 !important;
   margin: 0 !important;
   list-style: none;
 }
 
-.records-ul > li {
+.resources-ul > li {
   padding-bottom: 10px !important;
 }
 
-.records-ul > li > a {
+.resources-ul > li > p > a {
   padding-bottom: 10px !important;
   color: rgb(127, 0, 127);
 }

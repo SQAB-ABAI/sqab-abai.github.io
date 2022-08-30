@@ -12,6 +12,8 @@ import {
     MDBBtn,
 } from 'mdb-react-ui-kit';
 
+import { CardBodyTextStyle } from "../../utilities/StyleHelper"
+
 import tutorialJson from './../../assets/tutorials.json';
 
 import "./Tutorials.css";
@@ -39,7 +41,7 @@ export default function Tutorials(): JSX.Element {
                 <MDBCard>
                     <MDBCardBody>
                         <MDBCardTitle>SQAB Pre-eminent Tutorials</MDBCardTitle>
-                        <MDBCardText>
+                        <MDBCardText style={CardBodyTextStyle}>
                             SQAB is committed to simplifying the transition to quantitative behavior analysis for students as well as advanced researchers. These videos of presentations from leaders in the field are at various levels and are appropriate for individual, classroom, and seminar use. Individual video presentations can be accessed by clicking on the appropriate links below. All of the videos can be accessed on our <a href="https://www.youtube.com/c/SocietyfortheQuantitativeAnalysesofBehavior">YouTube channel</a>.
                         </MDBCardText>
                     </MDBCardBody>

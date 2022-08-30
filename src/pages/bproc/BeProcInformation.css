@@ -5,12 +5,10 @@
 }
 
 .beproc-ul > li {
-  padding-bottom: 10px !important;
-  font-size: medium !important;
+  padding-bottom: 20px !important;
 }
 
 .beproc-ul > li > a {
   padding-bottom: 10px !important;
-  font-size: medium !important;
   color: rgb(127, 0, 127);
 }
