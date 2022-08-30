@@ -1,0 +1,7 @@
+.recruitment-table-th {
+  white-space: nowrap;
+}
+
+.recruitment-table-tr > td > a {
+  color: rgb(127, 0, 127);
+}
